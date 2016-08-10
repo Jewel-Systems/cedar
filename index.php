@@ -1,3 +1,8 @@
+<?php
+  // ob_start();
+  // session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -11,6 +16,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/style.css" type="text/css" />
+    <link rel="stylesheet" href="css/home.css" type="text/css" />
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -24,77 +30,77 @@
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
+    <!-- Script for the QRCode camera -->
+    <script type="text/javascript" src="grid.js"></script>
+    <script type="text/javascript" src="version.js"></script>
+    <script type="text/javascript" src="detector.js"></script>
+    <script type="text/javascript" src="formatinf.js"></script>
+    <script type="text/javascript" src="errorlevel.js"></script>
+    <script type="text/javascript" src="bitmat.js"></script>
+    <script type="text/javascript" src="datablock.js"></script>
+    <script type="text/javascript" src="bmparser.js"></script>
+    <script type="text/javascript" src="datamask.js"></script>
+    <script type="text/javascript" src="rsdecoder.js"></script>
+    <script type="text/javascript" src="gf256poly.js"></script>
+    <script type="text/javascript" src="gf256.js"></script>
+    <script type="text/javascript" src="decoder.js"></script>
+    <script type="text/javascript" src="qrcode.js"></script>
+    <script type="text/javascript" src="findpat.js"></script>
+    <script type="text/javascript" src="alignpat.js"></script>
+    <script type="text/javascript" src="databr.js"></script>
+
     <script type="text/javascript">
       $(document).ready(function () {
       // $(document).ajaxStart(function () {
-        $('.content img.loading').fadeIn(1000);
-        $('.content img.loading').css('display', 'block');
+        // $('.content img.loading').fadeIn(1000);
+        // $('.content img.loading').css('display', 'block');
       // });
 
       // $(document).ajaxComplete(function () {
-        $('.content img.loading').delay(2000).fadeOut(1000);
-        $('.content p.greeting').delay(5000).fadeIn(1000);
-        $('.content p.greeting').delay(2000).fadeOut(1000);
-        $('.content .panel').delay(10000).fadeIn(1000);
+        // $('.content img.loading').delay(2000).fadeOut(1000);
+        // $('.content p.greeting').delay(5000).fadeIn(1000);
+        // $('.content p.greeting').delay(2000).fadeOut(1000);
+        // $('.content .panel').delay(10000).fadeIn(1000);
+        $('.content .panel').fadeIn(1000);
       // });
       });
     </script>
   </head>
   <body>
     <div class="container-fluid">
-      <nav class="navbar navbar-default">
-        <div class="container-fluid">
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#">
-              <img src="images/logo.png" class="img-responsive" alt="Cedar House" />
-            </a>
-          </div>
-
-          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav navbar-right">
-              <li><a href="#">Home</a></li>
-              <li><a href="#">News</a></li>
-              <li><a href="#">About Us</a></li>
-              <li><a href="#">Contact Us</a></li>
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                  <li><a href="#">Action</a></li>
-                  <li><a href="#">Another action</a></li>
-                  <li><a href="#">Something else here</a></li>
-                  <li role="separator" class="divider"></li>
-                  <li><a href="#">Separated link</a></li>
-                </ul>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
+      <?php
+        include "layout/navbar.php";
+      ?>
       <div class="container">
         <div class="row content">
           <img src="images/balls.gif" class="img-responsive loading" alt="loading" />
-          <p class="greeting"><span class="glyphicon glyphicon-user"></span>Hello</p>
+          <p class="greeting">Hello</p>
           <div class="panel panel-default">
             <div class="panel-heading">
               <h3 class="panel-title text-center">Login</h3>
             </div>
             <div class="panel-body">
-              <p>Present your QR code</p>
-              <img class="img-responsive" src="http://placehold.it/350x300" alt="placeholder" />
+              <div class="col-md-6">
+                <p>Present your QR code</p>
+                <!-- <video id="v" autoplay=""></video> -->
+                <img class="img-responsive" src="http://placehold.it/350x300" alt="placeholder" />
+              </div>
+              <div class="col-md-6">
+      			  	<div class="loginmodal-container">
+        					<h1>Login to Your Account</h1><br>
+        				  <form action="user/" method="post">
+          					<input type="text" name="email" placeholder="Email" required>
+          					<input type="password" name="pass" placeholder="Password" required>
+          					<input type="submit" name="login" class="login loginmodal-submit" value="Login">
+        				  </form>
+        				</div>
+              </div>
             </div>
           </div>
         </div>
-        <div class="row footer">
-          <div class="col-md-12">
-            <span class="pull-left">Copyright &copy; Cedar House</span><span class="pull-right text-right">Education for our time</span>
-          </div>
-        </div>
+        <?php
+          include "layout/footer.php";
+        ?>
       </div>
     </div>
   </body>

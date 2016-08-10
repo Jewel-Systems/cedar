@@ -1,4 +1,5 @@
-@import "home.css";
+/*@import "home.css";*/
+@import "login.css";
 
 .content {
   min-height: calc(100vh - 122px);
@@ -9,4 +10,12 @@
   border-top: 1px solid rgb(212, 212, 212);
   height: 50px;
   line-height: 50px;
+}
+
+.navbar-brand {
+  padding: 10px;
+}
+
+.navbar-brand img {
+  height: 30px;
 }
