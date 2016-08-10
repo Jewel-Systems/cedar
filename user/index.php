@@ -3,14 +3,13 @@
   // session_start();
   include "../resources/domain.php";
 
-  $email = null;
-  $pass = null;
+  // $email = null;
+  // $pass = null;
 
   // echo var_export($_POST, true);
-  var_dump($_POST);
+  // var_dump($_POST);
   $email = $_POST['email'];
   $pass = $_POST['pass'];
-  $login = array("email" => $email, "password" => $pass);
 ?>
 
 <!DOCTYPE html>
@@ -40,16 +39,43 @@
           "password" : "1234",
         }
       ];
-      var login = <?php echo json_encode($login); ?>;
       $(document).ready(function() {
-        $('.status').append('blah');
-        $.getJSON("", function(data) {
-          $('.status').append(data);
-          alert(data);
-          // var email = data["email"];
-          // var password = data["password"];
-          // $('.status').append("Email: " + email + "; Password: " + password);
+        var email = "<?= $email ?>";
+        var pass = "<?= $pass ?>";
+        var msg = null;
+        for (var i = 0; i < details.length; i++) {
+          if (details[i]["email"].localeCompare(email)) {
+            if (details[i]["password"] == pass) {
+              msg = "Logged in<br />";
+            } else {
+              msg = "Email or password entered incorrectly<br />";
+            }
+          } else {
+            msg = "Email or password entered incorrectly<br />";
+          }
+        }
+        $('.status').append("Status: " + msg + "<br /><br />");
+        $.get("<?= domain ?>user", function(data, status) {
+          console.log(data);
+          console.log(data["data"].length);
+          data = data["data"];
+          for (var i = 0; i < data.length; i++) {
+            $('.status').append(data[i]["fname"] + " " + data[i]["lname"] + "<br />" + data[i]["email"] + "<br />");
+          }
         });
+
+        // var data = {
+        //   "email" : email,
+        //   "password" : pass,
+        // };
+        // $.ajax({
+        //   type: 'POST',
+        //   url: 'getUser/',
+        //   data: data,
+        //   success: function (jsondata) {
+        //
+        //   }
+        // });
       });
     </script>
   </head>
@@ -66,7 +92,6 @@
             </div>
             <div class="panel-body">
               <div class="col-md-6">
-                <h3>Login Status</h3>
                 <div class="status">
 
                 </div>

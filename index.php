@@ -74,13 +74,13 @@
             <div class="panel-body">
               <div class="col-md-6">
                 <p>Present your QR code</p>
-                <!-- <video id="v" autoplay=""></video> -->
-                <img class="img-responsive" src="http://placehold.it/350x300" alt="placeholder" />
+                <video id="v" autoplay=""></video>
+                <!-- <img class="img-responsive" src="http://placehold.it/350x300" alt="placeholder" /> -->
               </div>
               <div class="col-md-6">
       			  	<div class="loginmodal-container">
         					<h1>Login to Your Account</h1><br>
-        				  <form action="user/index.php" method="post">
+        				  <form action="user/" method="post">
           					<input type="text" name="email" placeholder="Email" required>
           					<input type="password" name="pass" placeholder="Password" required>
           					<input type="submit" class="login loginmodal-submit" value="Login">
