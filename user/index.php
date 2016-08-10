@@ -3,11 +3,14 @@
   // session_start();
   include "../resources/domain.php";
 
+  $email = null;
+  $pass = null;
+
   // echo var_export($_POST, true);
+  var_dump($_POST);
   $email = $_POST['email'];
   $pass = $_POST['pass'];
   $login = array("email" => $email, "password" => $pass);
-
 ?>
 
 <!DOCTYPE html>
@@ -18,23 +21,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Cedar House</title>
 
-    <!-- Bootstrap -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-
-    <link rel="stylesheet" href="../css/style.css" />
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.2/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+    <!-- CSS -->
+    <link rel="stylesheet" href="../css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../css/style.css" type="text/css" />
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script type="text/javascript" src="../js/jquery-3.1.0.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../js/bootstrap.min.js"></script>
     <script type="text/javascript">
       var details = [
         {
@@ -46,12 +40,11 @@
           "password" : "1234",
         }
       ];
-      var login = <?= json_encode($login); ?>;
-      alert(login);
+      var login = <?php echo json_encode($login); ?>;
       $(document).ready(function() {
-        $('.status').html('blah');
-        $.getJSON("index.php", function(data) {
-          $('.status').html(data);
+        $('.status').append('blah');
+        $.getJSON("", function(data) {
+          $('.status').append(data);
           alert(data);
           // var email = data["email"];
           // var password = data["password"];
