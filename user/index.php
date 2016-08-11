@@ -19,6 +19,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Cedar House</title>
+    <link rel="shortcut icon" href="images/index.ico" />
 
     <!-- CSS -->
     <link rel="stylesheet" href="../css/bootstrap.min.css" type="text/css" />
@@ -59,11 +60,17 @@
           console.log(data);
           console.log(data["data"].length);
           data = data["data"];
+          var table = '<table class="table table-striped"><thead><th>ID</th><th>Full Name</th><th>Email</th></thead><tbody>';
           for (var i = 0; i < data.length; i++) {
-            $('.status').append(data[i]["fname"] + " " + data[i]["lname"] + "<br />" + data[i]["email"] + "<br />");
+            table += "<tr>";
+              table += "<th>" + data[i]["id"] + "</th>";
+              table += "<td>" + data[i]["fname"] + " " + data[i]["lname"] + "</td>";
+              table += "<td>" + data[i]["email"] + "</td>";
+            table += '</tr>';
           }
+          table += '</tbody</table>';
+          $('.status').append(table);
         });
-
         // var data = {
         //   "email" : email,
         //   "password" : pass,
@@ -91,7 +98,7 @@
               <h3 class="panel-title text-center">Logged In</h3>
             </div>
             <div class="panel-body">
-              <div class="col-md-6">
+              <div class="col-md-12">
                 <div class="status">
 
                 </div>
