@@ -1,15 +1,22 @@
 /*@import "home.css";*/
-@import "login.css";
+/*@import "login.css";*/
 
 .content {
-  min-height: calc(100vh - 122px);
-  max-height: calc(100vh - 122px);
+  /*min-height: calc(100vh + 20px);
+  max-height: calc(100vh + 20px);*/
 }
 
 .footer {
-  border-top: 1px solid rgb(212, 212, 212);
+  background-color: #f8f8f8;
+  position: fixed;
+  width: 83%;
   height: 50px;
   line-height: 50px;
+  bottom: 0;
+  border: 1px solid rgb(212, 212, 212);
+  border-bottom: 0;
+  border-radius: 5px 5px 0 0;
+  z-index: 0;
 }
 
 .navbar-brand {
