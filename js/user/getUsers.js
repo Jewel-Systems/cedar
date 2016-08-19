@@ -1,4 +1,8 @@
 function getUsers() {
+  $.ajaxSetup({
+    error: AjaxError
+  });
+
   $.get(domain + "user", function(data, status) {
     datas = data["data"];
     stat = data["success"];
@@ -20,4 +24,16 @@ function getUsers() {
 
     $('.status').append(table);
   });
+}
+
+function AjaxError(x, e) {
+  if (x.status == 0) {
+    alert(' Check Your Network.');
+  } else if (x.status == 404) {
+    alert('Requested URL not found. Server could be offline.');
+  } else if (x.status == 500) {
+    alert('Internel Server Error.');
+  }  else {
+    alert('Unknown Error.\n' + x.responseText);
+  }
 }

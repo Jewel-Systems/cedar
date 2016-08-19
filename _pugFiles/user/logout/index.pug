@@ -1,0 +1,23 @@
+doctype html
+html(lang="en")
+  head
+    include html/head/head_default_init.pug
+    include html/head/head_qrcode_js.pug
+
+    include html/head/3_head_js.pug
+
+  body
+    .container-fluid
+      .row
+        include html/body/default_body_and_nav.pug
+
+        .row
+          .col-md-offset-1.col-md-10
+            .content
+              .panel.panel-default
+                .panel-heading
+                  h3.panel-title.text-center Status
+                .panel-body
+                  .status
+                    p Logged out, you will be redirected in 3 seconds...
+          include html/body/default_body_and_footer.pug

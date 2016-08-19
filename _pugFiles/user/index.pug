@@ -1,0 +1,80 @@
+doctype html
+html(lang="en")
+  head
+    include html/head/head_default_init.pug
+    include html/head/2_head_js.pug
+
+  body
+    .container-fluid
+      .row
+        .col-md-12
+          nav.navbar.navbar-default
+            .container-fluid
+              .navbar-header
+                button(type="button", data-toggle="collapse", data-target="#bs-example-navbar-collapse-1", aria-expanded="false").navbar-toggle.collapsed
+                  span.sr-only Toggle navigation
+                  span.icon-bar
+                  span.icon-bar
+                  span.icon-bar
+                a(href="/cedar/").navbar-brand
+                  img(src="/cedar/images/logo.png", alt="Cedar House").img-responsive
+
+              .collapse.navbar-collapse#bs-example-navbar-collapse-1
+                ul.nav.navbar-nav.navbar-right
+                  li
+                    a(href="/cedar/") Home
+                  li
+                    a(href="#") News
+                  li
+                    a(href="#") About Us
+                  li
+                    a(href="#") Contact Us
+                  li
+                    a(href="/cedar/user/logout") Logout
+
+        .row
+          .col-md-offset-1.col-md-10
+            .content
+              .panel.panel-default
+                .panel-heading
+                  h3.panel-title.text-center.user-type Status
+                .panel-body
+                  .status
+                    button(id="addUserBut", type="button", data-toggle="modal", data-target="#addUser").btn.btn-success.pull-right Add a user
+
+                    div(id="addUser", tabindex="-1", role="dialog", aria-labelledby="addUserModal", aria-hidden="true").modal.fade
+                      div(role="document").modal-dialog
+                        .modal-content
+                          .modal-header Add an user
+                            button(type="button", data-dismiss="modal", aria-label="close").close
+                              span(aria-hidden="true") &times;
+                          .modal-body
+                            form(id="add", method="post")
+                              .form-group
+                                label(for="inputFname") First Name:
+                                input(id="inputFname", type="text", name="fname", placeholder="Peter", required).form-control
+                              .form-group
+                                label(for="inputLname") Last Name:
+                                input(id="inputLname", type="text", name="lname", placeholder="Pan", required).form-control
+                              .form-group
+                                label(for="inputEmail") Email:
+                                input(id="inputEmail", type="email", name="email", placeholder="peter.pan123@gmail.com", required).form-control
+                              .form-group
+                                label(for="inputType") User Type:
+                                select(name="type").form-control
+                                  option(value="student") Student
+                                  option(value="teacher") Teacher
+                                  option(value="admin") Admin
+                              .form-group
+                                label(for="inputPass1") Enter Password:
+                                input(id="inputPass1", name="pass1", type="password", required).form-control
+                              .form-group
+                                label(for="inputPass2") Confirm Password:
+                                input(id="inputPass2", name="pass2", type="password", required).form-control
+                              .form-group
+                                button(type="submit").pull-right.btn.btn-success Add User
+                              .form-group
+                                hr
+                          .modal-footer
+                            button(type="button", data-dismiss="modal").btn.btn-default Close
+            include html/body/default_body_and_footer.pug

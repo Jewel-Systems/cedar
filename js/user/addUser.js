@@ -5,9 +5,6 @@ $(document).ready(function() {
     var pass1 = null;
     var pass2 = null;
     for (var i = 0; i < data.length; i++) {
-      if ((data[i]["name"] === "pass1") && (data[i]["name"] === "pass2")) {
-
-      }
       if (data[i]["name"] === "pass1") {
         pass1 = data[i]["value"];
       } else if (data[i]["name"] === "pass2") {

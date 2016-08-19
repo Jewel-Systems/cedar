@@ -1,0 +1,27 @@
+{
+  "name": "cedar",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jewel-Systems/front.git"
+  },
+  "author": "Liang-Shih Lin",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Jewel-Systems/front/issues"
+  },
+  "homepage": "https://github.com/Jewel-Systems/front#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.1",
+    "gulp-clean-css": "^2.0.12",
+    "gulp-html-prettify": "0.0.1",
+    "gulp-pug": "^3.0.4",
+    "gulp-sass": "^2.3.2"
+  }
+}
