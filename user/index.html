@@ -6,16 +6,20 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Cedar House</title>
-  <link rel="shortcut icon" href="/cedar/css/images/index.ico">
-  <link rel="stylesheet" href="/cedar/css/bootstrap.min.css" type="text/css">
-  <link rel="stylesheet" href="/cedar/css/style.css" type="text/css">
-  <script type="text/javascript" src="/cedar/js/jquery-3.1.0.min.js"></script>
-  <script type="text/javascript" src="/cedar/js/bootstrap.min.js"></script>
-  <script type="text/javascript" src="/cedar/js/defaults.js"></script>
-  <script type="text/javascript" src="/cedar/js/user/getUsers.js"></script>
-  <script type="text/javascript" src="/cedar/js/user/auth.js"></script>
-  <script type="text/javascript" src="/cedar/js/user/addUser.js"></script>
-  <script type="text/javascript" src="/cedar/js/user/deleteUser.js"></script>
+  <base href="/cedar/">
+  <link rel="shortcut icon" href="images/index.ico">
+  <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+  <link rel="stylesheet" href="css/style.css" type="text/css">
+  <script type="text/javascript" src="js/jquery-3.1.0.min.js"></script>
+  <script type="text/javascript" src="js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="js/defaults.js"></script>
+  <script type="text/javascript" src="js/user/loanDevice.js"></script>
+  <script type="text/javascript" src="js/user/getUsers.js"></script>
+  <script type="text/javascript" src="js/user/getDevices.js"></script>
+  <script type="text/javascript" src="js/user/auth.js"></script>
+  <script type="text/javascript" src="js/user/addUser.js"></script>
+  <script type="text/javascript" src="js/user/deleteUser.js"></script>
+  <link rel="stylesheet" type="text/css" href="css/user.css">
 </head>
 
 <body>
@@ -27,13 +31,13 @@
             <div class="navbar-header">
               <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
               </button>
-              <a class="navbar-brand" href="/cedar/">
-                <img class="img-responsive" src="/cedar/images/logo.png" alt="Cedar House">
+              <a class="navbar-brand" href="#">
+                <img class="img-responsive" src="images/logo.png" alt="Cedar House">
               </a>
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
               <ul class="nav navbar-nav navbar-right">
-                <li><a href="/cedar/">Home</a>
+                <li><a href="#">Home</a>
                 </li>
                 <li><a href="#">News</a>
                 </li>
@@ -41,64 +45,127 @@
                 </li>
                 <li><a href="#">Contact Us</a>
                 </li>
-                <li><a href="/cedar/user/logout">Logout</a>
+                <li><a href="user/logout">Logout</a>
                 </li>
               </ul>
             </div>
           </div>
         </nav>
       </div>
-      <div class="row">
-        <div class="col-md-offset-1 col-md-10">
-          <div class="content">
-            <div class="panel panel-default">
-              <div class="panel-heading">
-                <h3 class="panel-title text-center user-type">Status</h3>
+      <div class="col-md-12">
+        <div class="row">
+          <div class="col-md-offset-1 col-md-10">
+            <div class="content">
+              <div class="loading">
+                <img src="images/balls.gif" alt="loading">
               </div>
-              <div class="panel-body">
-                <div class="status">
-                  <button class="btn btn-success pull-right" id="addUserBut" type="button" data-toggle="modal" data-target="#addUser">Add a user</button>
-                  <div class="modal fade" id="addUser" tabindex="-1" role="dialog" aria-labelledby="addUserModal" aria-hidden="true">
+              <div class="panel panel-default users">
+                <div class="panel-heading">
+                  <h3 class="panel-title text-center">Users</h3>
+                </div>
+                <div class="panel-body">
+                  <div class="status">
+                    <button class="btn btn-success pull-right" id="addUserBut" type="button" data-toggle="modal" data-target="#addUser">Add a user</button>
+                    <div class="modal fade" id="addUser" tabindex="-1" role="dialog" aria-labelledby="addUserModal" aria-hidden="true">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">Add an user
+                            <button class="close" type="button" data-dismiss="modal" aria-label="close"><span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            <form id="add" method="post">
+                              <div class="form-group">
+                                <label for="inputFname">First Name:</label>
+                                <input class="form-control" id="inputFname" type="text" name="fname" placeholder="Peter" required>
+                              </div>
+                              <div class="form-group">
+                                <label for="inputLname">Last Name:</label>
+                                <input class="form-control" id="inputLname" type="text" name="lname" placeholder="Pan" required>
+                              </div>
+                              <div class="form-group">
+                                <label for="inputEmail">Email:</label>
+                                <input class="form-control" id="inputEmail" type="email" name="email" placeholder="peter.pan123@gmail.com" required>
+                              </div>
+                              <div class="form-group">
+                                <label for="inputType">User Type:</label>
+                                <select class="form-control" name="type">
+                                  <option value="student">Student</option>
+                                  <option value="teacher">Teacher</option>
+                                  <option value="admin">Admin</option>
+                                </select>
+                              </div>
+                              <div class="form-group">
+                                <label for="inputPass1">Enter Password:</label>
+                                <input class="form-control" id="inputPass1" name="pass1" type="password" required>
+                              </div>
+                              <div class="form-group">
+                                <label for="inputPass2">Confirm Password:</label>
+                                <input class="form-control" id="inputPass2" name="pass2" type="password" required>
+                              </div>
+                              <div class="form-group">
+                                <button class="pull-right btn btn-success" type="submit">Add User</button>
+                              </div>
+                              <div class="form-group">
+                                <hr>
+                              </div>
+                            </form>
+                          </div>
+                          <div class="modal-footer">
+                            <button class="btn btn-default" type="button" data-dismiss="modal">Close</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <table class="table table-striped users-table">
+                    <thead>
+                      <th>ID</th>
+                      <th>Full Name</th>
+                      <th>Email</th>
+                      <th>Account Type</th>
+                      <th class="text-center">Options</th>
+                    </thead>
+                    <tbody></tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="panel panel-default devices">
+                <div class="panel-heading">
+                  <h3 class="panel-title text-center">Devices</h3>
+                </div>
+                <div class="panel-body">
+                  <button class="btn btn-primary pull-right" id="addDeviceBut" type="button" data-toggle="modal" data-target="#addDevice">Add a Device</button>
+                  <div class="modal fade" id="addDevice" tabindex="-1" role="dialog" aria-labelledby="addDeviceModal" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                       <div class="modal-content">
-                        <div class="modal-header">Add an user
-                          <button class="close" type="button" data-dismiss="modal" aria-label="close"><span aria-hidden="true">&times;</span>
+                        <div class="modal-header">Add a Device
+                          <button class="close" type="button" data-dismiss="modal" aria-hidden="true"><span aria-hidden="true">&times;</span>
                           </button>
                         </div>
                         <div class="modal-body">
                           <form id="add" method="post">
                             <div class="form-group">
-                              <label for="inputFname">First Name:</label>
-                              <input class="form-control" id="inputFname" type="text" name="fname" placeholder="Peter" required>
+                              <label for="inputSerial">Serial Number:</label>
+                              <input class="form-control" id="inputSerial" type="text" name="serial_no" placeholder="walalalala" required>
                             </div>
                             <div class="form-group">
-                              <label for="inputLname">Last Name:</label>
-                              <input class="form-control" id="inputLname" type="text" name="lname" placeholder="Pan" required>
+                              <label for="inputType">Device Type:</label>
+                              <input class="form-control" id="inputType" type="text" name="type" placeholder="mac" required>
                             </div>
                             <div class="form-group">
-                              <label for="inputEmail">Email:</label>
-                              <input class="form-control" id="inputEmail" type="email" name="email" placeholder="peter.pan123@gmail.com" required>
+                              <label for="inputActive">Is the device active:</label>
+                              <div class="radio">
+                                <label>
+                                  <input type="radio" name="is_active" value="true">Is Active</label>
+                              </div>
+                              <div class="radio">
+                                <label>
+                                  <input type="radio" name="is_active" value="false">Not Active</label>
+                              </div>
                             </div>
                             <div class="form-group">
-                              <label for="inputType">User Type:</label>
-                              <select class="form-control" name="type">
-                                <option value="student">Student</option>
-                                <option value="teacher">Teacher</option>
-                                <option value="admin">Admin</option>
-                              </select>
-                            </div>
-                            <div class="form-group">
-                              <label for="inputPass1">Enter Password:</label>
-                              <input class="form-control" id="inputPass1" name="pass1" type="password" required>
-                            </div>
-                            <div class="form-group">
-                              <label for="inputPass2">Confirm Password:</label>
-                              <input class="form-control" id="inputPass2" name="pass2" type="password" required>
-                            </div>
-                            <div class="form-group">
-                              <button class="pull-right btn btn-success" type="submit">Add User</button>
-                            </div>
-                            <div class="form-group">
+                              <button class="btn btn-success pull-right" type="submit">Add Device</button>
                               <hr>
                             </div>
                           </form>
@@ -109,12 +176,20 @@
                       </div>
                     </div>
                   </div>
+                  <table class="table table-striped available-devices">
+                    <thead>
+                      <th>Device Name</th>
+                      <th>Type</th>
+                      <th class="text-center">Options</th>
+                    </thead>
+                    <tbody></tbody>
+                  </table>
                 </div>
               </div>
             </div>
-          </div>
-          <div class="row footer">
-            <div class="col-md-12"><span class="pull-left">Copyright &copy; Cedar House</span><span class="pull-right text-right">Education for our time</span>
+            <div class="row footer">
+              <div class="col-md-12"><span class="pull-left">Copyright &copy; Cedar House</span><span class="pull-right text-right">Education for our time</span>
+              </div>
             </div>
           </div>
         </div>

@@ -3,11 +3,11 @@ html(lang="en")
   head
     include html/head/head_default_init.pug
 
-    link(rel="stylesheet", type="text/css", href="/cedar/css/home.css")
-    link(rel="stylesheet", type="text/css", href="/cedar/css/login.css")
+    link(rel="stylesheet", type="text/css", href="css/home.css")
+    link(rel="stylesheet", type="text/css", href="css/login.css")
 
     include html/head/head_qrcode_js.pug
-    script(type="text/javascript", src="/cedar/js/user/login.js")
+    script(type="text/javascript", src="js/user/login.js")
   body
     .container-fluid
       .row
@@ -16,7 +16,7 @@ html(lang="en")
       .row
         .col-md-offset-1.col-md-10
           .content
-            img(src="/cedar/images/balls.gif", alt="loading").img-responsive.loading
+            img(src="images/balls.gif", alt="loading").img-responsive.loading
             p.greeting Hello
             .panel.panel-default
               .panel-heading
@@ -25,12 +25,14 @@ html(lang="en")
                 .row
                   .col-md-6
                     p Present your QR code
-                    img(src="http://placehold.it/350x300", alt="placeholder").img-responsive
+                    .thumbnail.embed-responsive.embed-responsive-4by3#camera
+                    #qrStatus
+                      p No QR Code in sight.
                   .col-md-6
                     .loginmodal-container
                       h1 Login to Your Account
                       br
-                      form(method="post", action="/cedar/user").loginForm
+                      form(method="post", action="user").loginForm
                         input(type="text", name="email", placeholder="Email", required)
                         input(type="password", name="pass", placeholder="Password", required)
                         input(type="submit", value="Login").login.loginmodal-submit

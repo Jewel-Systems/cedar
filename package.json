@@ -17,11 +17,14 @@
   },
   "homepage": "https://github.com/Jewel-Systems/front#readme",
   "devDependencies": {
+    "browser-sync": "^2.14.0",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^3.1.1",
     "gulp-clean-css": "^2.0.12",
     "gulp-html-prettify": "0.0.1",
     "gulp-pug": "^3.0.4",
-    "gulp-sass": "^2.3.2"
+    "gulp-sass": "^2.3.2",
+    "karma": "^1.2.0",
+    "pm2": "^1.1.3"
   }
 }

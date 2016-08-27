@@ -4,6 +4,22 @@ var clean       = require('gulp-clean-css');
 var prettify    = require('gulp-html-prettify');
 var pug         = require('gulp-pug');
 var sass        = require('gulp-sass');
+var browserSync = require('browser-sync');
+
+gulp.task('server', function() {
+  browserSync.init({
+    proxy: 'localhost/cedar',
+    ui: {
+      port: '8000',
+    },
+    notify: false,
+  });
+
+  gulp.watch('_pugFiles/**', ['pug']);
+  gulp.watch('_sassFiles/**', ['sass']);
+  gulp.watch('./**/*.html').on('change', browserSync.reload);
+  gulp.watch('./**/*.js').on('change', browserSync.reload);
+});
 
 gulp.task('pug', function() {
   return gulp.src('_pugFiles/**/*.pug')
@@ -15,14 +31,10 @@ gulp.task('pug', function() {
 gulp.task('sass', function() {
   return gulp.src('_sassFiles/**/*.sass')
     .pipe(sass())
-    .pipe(prefix(prefix(['last 15 versions', '> 1%', 'ie 8', 'ie 7'], { cascade: true })))
+    .pipe(prefix(['last 15 versions', '> 1%', 'ie 8', 'ie 7'], { cascade: true }))
     .pipe(clean({'compatibility' : 'ie8'}))
-    .pipe(gulp.dest('./css'));
+    .pipe(gulp.dest('./css'))
+    .pipe(browserSync.stream());
 });
 
-gulp.task('watch', function() {
-  gulp.watch('_pugFiles/**', ['pug']);
-  gulp.watch('_sassFiles/**', ['sass']);
-});
-
-gulp.task('default', ['watch']);
+gulp.task('default', ['server']);

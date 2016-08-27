@@ -6,32 +6,35 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Cedar House</title>
-  <link rel="shortcut icon" href="/cedar/css/images/index.ico">
+  <base href="/cedar/">
+  <link rel="shortcut icon" href="/cedar/images/index.ico">
   <link rel="stylesheet" href="/cedar/css/bootstrap.min.css" type="text/css">
   <link rel="stylesheet" href="/cedar/css/style.css" type="text/css">
   <script type="text/javascript" src="/cedar/js/jquery-3.1.0.min.js"></script>
   <script type="text/javascript" src="/cedar/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="/cedar/js/defaults.js"></script>
-  <link rel="stylesheet" type="text/css" href="/cedar/css/home.css">
-  <link rel="stylesheet" type="text/css" href="/cedar/css/login.css">
-  <script type="application/javascript" src="/cedar/js/qrcode/grid.js"></script>
-  <script type="application/javascript" src="/cedar/js/qrcode/version.js"></script>
-  <script type="application/javascript" src="/cedar/js/qrcode/detector.js"></script>
-  <script type="application/javascript" src="/cedar/js/qrcode/formatinf.js"></script>
-  <script type="application/javascript" src="/cedar/js/qrcode/errorlevel.js"></script>
-  <script type="application/javascript" src="/cedar/js/qrcode/bitmat.js"></script>
-  <script type="application/javascript" src="/cedar/js/qrcode/datablock.js"></script>
-  <script type="application/javascript" src="/cedar/js/qrcode/bmparser.js"></script>
-  <script type="application/javascript" src="/cedar/js/qrcode/datamask.js"></script>
-  <script type="application/javascript" src="/cedar/js/qrcode/rsdecoder.js"></script>
-  <script type="application/javascript" src="/cedar/js/qrcode/gf256poly.js"></script>
-  <script type="application/javascript" src="/cedar/js/qrcode/gf256.js"></script>
-  <script type="application/javascript" src="/cedar/js/qrcode/decoder.js"></script>
-  <script type="application/javascript" src="/cedar/js/qrcode/qrcode.js"></script>
-  <script type="application/javascript" src="/cedar/js/qrcode/findpat.js"></script>
-  <script type="application/javascript" src="/cedar/js/qrcode/alignpat.js"></script>
-  <script type="application/javascript" src="/cedar/js/qrcode/databr.js"></script>
-  <script type="text/javascript" src="/cedar/js/user/login.js"></script>
+  <link rel="stylesheet" type="text/css" href="css/home.css">
+  <link rel="stylesheet" type="text/css" href="css/login.css">
+  <script type="text/javascript" src="/cedar/js/say-cheese.js"></script>
+  <script type="text/javascript" src="/cedar/js/qrcode/grid.js"></script>
+  <script type="text/javascript" src="/cedar/js/qrcode/version.js"></script>
+  <script type="text/javascript" src="/cedar/js/qrcode/detector.js"></script>
+  <script type="text/javascript" src="/cedar/js/qrcode/formatinf.js"></script>
+  <script type="text/javascript" src="/cedar/js/qrcode/errorlevel.js"></script>
+  <script type="text/javascript" src="/cedar/js/qrcode/bitmat.js"></script>
+  <script type="text/javascript" src="/cedar/js/qrcode/datablock.js"></script>
+  <script type="text/javascript" src="/cedar/js/qrcode/bmparser.js"></script>
+  <script type="text/javascript" src="/cedar/js/qrcode/datamask.js"></script>
+  <script type="text/javascript" src="/cedar/js/qrcode/rsdecoder.js"></script>
+  <script type="text/javascript" src="/cedar/js/qrcode/gf256poly.js"></script>
+  <script type="text/javascript" src="/cedar/js/qrcode/gf256.js"></script>
+  <script type="text/javascript" src="/cedar/js/qrcode/decoder.js"></script>
+  <script type="text/javascript" src="/cedar/js/qrcode/qrcode.js"></script>
+  <script type="text/javascript" src="/cedar/js/qrcode/findpat.js"></script>
+  <script type="text/javascript" src="/cedar/js/qrcode/alignpat.js"></script>
+  <script type="text/javascript" src="/cedar/js/qrcode/databr.js"></script>
+  <script type="text/javascript" src="/cedar/js/effects_saycheese.js"></script>
+  <script type="text/javascript" src="js/user/login.js"></script>
 </head>
 
 <body>
@@ -66,7 +69,7 @@
     <div class="row">
       <div class="col-md-offset-1 col-md-10">
         <div class="content">
-          <img class="img-responsive loading" src="/cedar/images/balls.gif" alt="loading">
+          <img class="img-responsive loading" src="images/balls.gif" alt="loading">
           <p class="greeting">Hello</p>
           <div class="panel panel-default">
             <div class="panel-heading">
@@ -76,13 +79,16 @@
               <div class="row">
                 <div class="col-md-6">
                   <p>Present your QR code</p>
-                  <img class="img-responsive" src="http://placehold.it/350x300" alt="placeholder">
+                  <div class="thumbnail embed-responsive embed-responsive-4by3" id="camera"></div>
+                  <div id="qrStatus">
+                    <p>No QR Code in sight.</p>
+                  </div>
                 </div>
                 <div class="col-md-6">
                   <div class="loginmodal-container">
                     <h1>Login to Your Account</h1>
                     <br>
-                    <form class="loginForm" method="post" action="/cedar/user">
+                    <form class="loginForm" method="post" action="user">
                       <input type="text" name="email" placeholder="Email" required>
                       <input type="password" name="pass" placeholder="Password" required>
                       <input class="login loginmodal-submit" type="submit" value="Login">
