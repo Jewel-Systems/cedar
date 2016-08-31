@@ -1,4 +1,4 @@
-const domain = "http://localhost:200/link/";
+const domain = "http://localhost:200/api/v1/";
 
 $(document).ready(function() {
   $('h2.addStatus').css("display", "none");
