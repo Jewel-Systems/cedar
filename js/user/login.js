@@ -20,6 +20,7 @@ $(document).ready(function() {
     $.ajax({
       url: domain + 'testauth',
       type: 'POST',
+      contentType: 'application/json',
       data: '{"username": "' + data[0].value + '", "password" : "' + data[1].value + '"}',
       success: function(result, status, xhr) {
         var user_data = result.data;

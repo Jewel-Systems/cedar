@@ -1,17 +1,17 @@
 doctype html
 html(lang="en")
   head
-    include html/head/head_default_init.pug
+    include _html/_head/_head_default_init.pug
 
     link(rel="stylesheet", type="text/css", href="css/home.css")
     link(rel="stylesheet", type="text/css", href="css/login.css")
 
-    include html/head/head_qrcode_js.pug
+    include _html/_head/_head_qrcode_js.pug
     script(type="text/javascript", src="js/user/login.js")
   body
     .container-fluid
       .row
-        include html/body/default_body_and_nav.pug
+        include _html/_body/_default_body_and_nav.pug
 
       .row
         .col-md-offset-1.col-md-10
@@ -36,4 +36,4 @@ html(lang="en")
                         input(type="text", name="email", placeholder="Email", required)
                         input(type="password", name="pass", placeholder="Password", required)
                         input(type="submit", value="Login").login.loginmodal-submit
-          include html/body/default_body_and_footer.pug
+          include _html/_body/_default_body_and_footer.pug

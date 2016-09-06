@@ -5,10 +5,10 @@ $(document).ready(function() {
     var pass1 = null;
     var pass2 = null;
     for (var i = 0; i < data.length; i++) {
-      if (data[i]["name"] === "pass1") {
-        pass1 = data[i]["value"];
-      } else if (data[i]["name"] === "pass2") {
-        pass2 = data[i]["value"];
+      if (data[i].name === "pass1") {
+        pass1 = data[i].value;
+      } else if (data[i].name === "pass2") {
+        pass2 = data[i].value;
       }
       if ((i == (data.length - 1)) || (i == (data.length - 2))) {
         if ((pass1 === pass2) && (i == (data.length - 1))) {
@@ -17,6 +17,7 @@ $(document).ready(function() {
           $.ajax({
             url: domain + "user",
             type: "POST",
+            contentType: 'application/json',
             data: jsondata,
             success: function (result, status, xhr) {
               if (result) {
@@ -25,13 +26,13 @@ $(document).ready(function() {
                 statusMsg("Added new user");
                 $('div.modal#addUser').modal('toggle');
               } else {
-                alert(result["success"]);
+                alert(result.success);
               }
             },
             error: function(xhr, status, error) {
-              var response = JSON.parse(xhr["responseText"]);
-              console.log(response["error"]);
-              $('h4.addStatus').css("display", "block").append(response["error"]);
+              var response = JSON.parse(xhr.responseText);
+              console.log(response.error);
+              $('h4.addStatus').css("display", "block").append(response.error);
             },
           });
         } else if ((pass1 !== pass2) && (i == (data.length - 1))) {
@@ -39,7 +40,7 @@ $(document).ready(function() {
           event.preventDefault();
         }
       } else {
-        jsondata += "\"" + data[i]["name"] + "\" : \"" + data[i]["value"] + "\", ";
+        jsondata += "\"" + data[i].name + "\" : \"" + data[i].value + "\", ";
       }
     }
     event.preventDefault();

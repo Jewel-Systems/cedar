@@ -1,14 +1,14 @@
 doctype html
 html(lang="en")
   head
-    include html/head/head_default_init.pug
+    include _html/_head/_head_default_init.pug
 
-    include html/head/3_head_js.pug
+    include _html/_head/_3_head_js.pug
 
   body
     .container-fluid
       .row
-        include html/body/default_body_and_nav.pug
+        include _html/_body/_default_body_and_nav.pug
 
       .row
         .col-md-offset-1.col-md-10
@@ -19,4 +19,4 @@ html(lang="en")
               .panel-body
                 .status
                   p Logged out, you will be redirected in 3 seconds...
-          include html/body/default_body_and_footer.pug
+          include _html/_body/_default_body_and_footer.pug

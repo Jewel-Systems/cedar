@@ -22,7 +22,7 @@ gulp.task('server', function() {
 });
 
 gulp.task('pug', function() {
-  return gulp.src('_pugFiles/**/*.pug')
+  return gulp.src('_pugFiles/**/[^_]*.pug')
     .pipe(pug())
     .pipe(prettify({indent_char: " ", indent_size: 2}))
     .pipe(gulp.dest('./'));
