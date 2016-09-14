@@ -20,8 +20,8 @@ $(document).ready(function() {
     $.ajax({
       url: domain + 'testauth',
       type: 'POST',
+      data: JSON.stringify({"username": data[0].value, "password" : data[1].value}),
       contentType: 'application/json',
-      data: '{"username": "' + data[0].value + '", "password" : "' + data[1].value + '"}',
       success: function(result, status, xhr) {
         var user_data = result.data;
 
@@ -42,6 +42,7 @@ $(document).ready(function() {
       },
       error: function(xhr, status, error) {
         var response = JSON.parse(xhr.responseText);
+        // var response = xhr.statusText;
         success = response.success;
         var errorMsg = response.error;
         $('.error-message').remove();

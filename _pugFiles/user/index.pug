@@ -26,8 +26,6 @@ html(lang="en")
                   li
                     a(href="#") Home
                   li
-                    a(href="#") News
-                  li
                     a(href="#") About Us
                   li
                     a(href="#") Contact Us
@@ -45,7 +43,11 @@ html(lang="en")
                     h3.panel-title.text-center Users
                   .panel-body
                     .status
-                      button(id="addUserBut", type="button", data-toggle="modal", data-target="#addUser").btn.btn-success.pull-right Add a user
+                      button(id="addUserBut", type="button", data-toggle="modal", data-target="#addUser").btn.btn-success.pull-right.admin Add a user
+
+                      button(id="setPrivilegeBut", type="button", data-toggle="modal", data-target="#setPrivilege").btn.btn-primary.pull-right.admin Set Privileges
+
+                      button(id="revokePrivilegeBut", type="button", data-toggle="modal", data-target="#revokePrivilege").btn.btn-danger.pull-right.admin Revoke Privileges
 
                       div(id="addUser", tabindex="-1", role="dialog", aria-labelledby="addUserModal", aria-hidden="true").modal.fade
                         div(role="document").modal-dialog
@@ -83,21 +85,58 @@ html(lang="en")
                             .modal-footer
                               button(type="button", data-dismiss="modal").btn.btn-default Close
 
+                      div(id="setPrivilege", tabindex="-1", role="dialog", aria-labelledby="setPrivilegeModal", aria-hidden="true").modal.fade
+                        div(role="document").modal-dialog
+                          .modal-content
+                            .modal-header Set Privilege
+                              button(type="button", data-dismiss="modal", aria-hidden="true").close
+                                span(aria-hidden="true") &times;
+                            .modal-body
+                              form(id="setPrivilege", method="post")
+                                .form-group
+                                  label(for="userID") User ID:
+                                  input(id="userID", type="text", name="user_id", placeholder="4", required).form-control
+                                .form-group.deviceType
+                                  label(for="deviceType") Device Type:
+                                .form-group
+                                  button(type="submit").btn.btn-success.pull-right Set
+                                  hr
+                            .modal-footer
+                              button(type="button", data-dismiss="modal").btn.btn-default Close
+
+                      div(id="revokePrivilege", tabindex="-1", role="dialog", aria-labelledby="revokePrivilegeModal", aria-hidden="true").modal.fade
+                        div(role="document").modal-dialog
+                          .modal-content
+                            .modal-header Revoke Privilege
+                              button(type="button", data-dismiss="modal", aria-hidden="true").close
+                                span(aria-hidden="true") &times;
+                            .modal-body
+                              form(id="revokePrivilege", method="post")
+                                .form-group
+                                  label(for="userID") User ID:
+                                  input(id="userID", type="text", name="user_id", placeholder="4", required).form-control
+                                .form-group.deviceType
+                                  label(for="deviceType") Device Type:
+                                .form-group
+                                  button(type="submit").btn.btn-success.pull-right Revoke
+                                  hr
+                            .modal-footer
+                              button(type="button", data-dismiss="modal").btn.btn-default Close
+
                     table.table.table-striped.users-table
                       thead
                         th ID
                         th Full Name
                         th Email
                         th Account Type
-                        th.text-center Options
+                        th.text-right Options
                       tbody
-
 
                 .panel.panel-default.devices
                   .panel-heading
                     h3.panel-title.text-center Devices
                   .panel-body
-                    button(id="addDeviceBut", type="button", data-toggle="modal", data-target="#addDevice").btn.btn-primary.pull-right Add a Device
+                    button(id="addDeviceBut", type="button", data-toggle="modal", data-target="#addDevice").btn.btn-success.pull-right.admin Add a Device
 
                     div(id="addDevice", tabindex="-1", role="dialog", aria-labelledby="addDeviceModal", aria-hidden="true").modal.fade
                       div(role="document").modal-dialog
@@ -106,13 +145,12 @@ html(lang="en")
                             button(type="button", data-dismiss="modal", aria-hidden="true").close
                               span(aria-hidden="true") &times;
                           .modal-body
-                            form(id="add", method="post")
+                            form(id="addNewDevice", method="post")
                               .form-group
                                 label(for="inputSerial") Serial Number:
                                 input(id="inputSerial", type="text", name="serial_no", placeholder="walalalala", required).form-control
-                              .form-group
+                              .form-group.deviceType
                                 label(for="inputType") Device Type:
-                                input(id="inputType", type="text", name="type", placeholder="mac", required).form-control
                               .form-group
                                 label(for="inputActive") Is the device active:
                                 .radio
@@ -131,9 +169,64 @@ html(lang="en")
 
                     table.table.table-striped.available-devices
                       thead
-                        th Device Name
+                        th Device ID
                         th Type
-                        th.text-center Options
+                        th.admin Status
+                        th.admin.teacher Loaned By
+                        th.admin Created At
+                        th.text-right Options
+                      tbody
+
+                .panel.panel-default.reservations
+                  .panel-heading
+                    h3.panel-title.text-center Reservations
+                  .panel-body
+                    .status
+                      button(id="reserveDeviceBut", type="button", data-toggle="modal", data-target="#reserveDevice").btn.btn-primary.pull-right.teacher.admin Reserve Device/s
+
+                      div(id="reserveDevice", tabindex="-1", role="dialog", aria-labelledby="reserveDeviceModal", aria-hidden="true").modal.fade
+                        div(role="document").modal-dialog
+                          .modal-content
+                            .modal-header Device Reservation
+                              button(type="button", data-dismiss="modal", aria-hidden="true").close
+                                span(aria-hidden="true") &times;
+                            .modal-body
+                              form(id="reserve", method="post")
+                                .form-group
+                                  label(for="startTime") Start Time:
+                                  input(id="startTime", type="text", name="start_time", placeholder="2012/12/31 12:45:00", required).form-control
+                                .form-group
+                                  label(for="endTime") End Time:
+                                  input(id="endTime", type="text", name="end_time", placeholder="2012/12/31 14:45:00", required).form-control
+                                .form-group
+                                  label(for="classes") Classes:
+                                  select(name="class")#classes.form-control
+                                .form-group.deviceType
+                                  label(for="deviceType") Device Type:
+                                .form-group
+                                  label(for="count") Number of devices:
+                                  input(id="count", type="number", name="count", placeholder="10", required).form-control
+                                .form-group
+                                  label(for="safeZone") Safe Zone (hh:mm:ss):
+                                  input(id="safeZone", type="text", name="safe_zone", placeholder="00:30:00", value="00:30:00", required).form-control
+                                .form-group
+                                  button(type="submit").btn.btn-success.pull-right Reserve
+                                  hr
+                                script(type="application/javascript", src="js/pickerInit.js")
+                            .modal-footer
+                              button(type="button", data-dismiss="modal").btn.btn-default Close
+
+                    table.table.table-striped.device-reservations
+                      thead
+                        th ID
+                        th Class ID
+                        th Start Time
+                        th Type
+                        th Safe Zone
+                        th Count
+                        th End Time
+                        th User ID
+                        th.text-right.admin Options
                       tbody
 
               include _html/_body/_default_body_and_footer.pug

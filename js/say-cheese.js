@@ -154,7 +154,7 @@ var SayCheese = (function() {
     }
 
     var success = function success(stream) {
-    	console.log('sucess!');
+      console.log("Success!");
       this.stream = stream;
       this.createVideo();
 

@@ -16,7 +16,7 @@ function getUsers() {
             table += "<th>" + datas[i].id + "</th>";
             table += "<td>" + datas[i].fname + " " + datas[i].lname + "</td>";
             table += "<td>" + datas[i].email + "</td>";
-            table += "<td>" + datas[i].type + "</td>";
+            table += "<td>" + capitalize(datas[i].type) + "</td>";
             table += '<td><form class="pull-right delete" method="post"><input type="hidden" id="inputId" name="id" value="' + datas[i].id + '" /><input type="hidden" id="inputFname" name="fname" value="' + datas[i].fname + '" /><input type="hidden" id="inputLname" name="lname" value="' + datas[i].lname + '" /><input type="hidden" id="inputEmail"  name="email" value="' + datas[i].email + '" /><button type="submit" class="btn btn-danger">Delete</button></form></td>';
             table += '</tr>';
           }

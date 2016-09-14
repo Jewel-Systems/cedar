@@ -4,6 +4,7 @@ $(document).ready(function() {
     var jsondata = "{";
     var pass1 = null;
     var pass2 = null;
+    var id = 0;
     for (var i = 0; i < data.length; i++) {
       if (data[i].name === "pass1") {
         pass1 = data[i].value;
@@ -21,19 +22,24 @@ $(document).ready(function() {
             data: jsondata,
             success: function (result, status, xhr) {
               if (result) {
-                $('table.users-table').remove();
-                getUsers();
+                $('table.users-table tbody').empty();
                 statusMsg("Added new user");
+                getUsers();
                 $('div.modal#addUser').modal('toggle');
               } else {
-                alert(result.success);
+                console.log(result.success);
+                id = result.id;
               }
             },
             error: function(xhr, status, error) {
               var response = JSON.parse(xhr.responseText);
-              console.log(response.error);
-              $('h4.addStatus').css("display", "block").append(response.error);
+              var msg = $('<div class="alert alert-danger"></div>').html('<strong>Oh no!</strong> ' + capitalize(response.error));
+              $(msg).insertBefore('.content');
             },
+          });
+          $.ajax({
+            url: domain + "user/" + id + "/privilege/mac",
+            type: "PUT",
           });
         } else if ((pass1 !== pass2) && (i == (data.length - 1))) {
           $('h4.addStatus').css("display", "block").append("Passwords don't match");
