@@ -4,7 +4,9 @@ $(document).ready(function() {
     window.location = "/cedar";
   } else {
 
-    if (sessionStorage.device_loaned !== null) {
+    if (sessionStorage.device_loaned != "null" && sessionStorage.user_type != "admin") {
+      getDevices();
+    } else {
       getDevices();
       $('form#returnD').remove();
     }

@@ -3,16 +3,16 @@ $(document).ready(function() {
   if (typeof sessionStorage.email != "undefined") {
     window.location = "/cedar/user";
   } else {
-    $('.content img.loading').fadeIn(1000);
-    $('.content img.loading').css('display', 'block');
-    $('.content img.loading').delay(2000).fadeOut(1000);
-    $('.content p.greeting').delay(5000).fadeIn(1000);
-    $('.content p.greeting').delay(2000).fadeOut(1000);
-    $('.content .panel').delay(10000).fadeIn(1000);
-    $('.content .panel').fadeIn(1000);
+    // $('.content .loading').fadeIn(1000);
+    // $('.content .loading').css('display', 'block');
+    // $('.content .loading').delay(2000).fadeOut(1000);
+    // $('.content p.greeting').delay(5000).fadeIn(1000);
+    // $('.content p.greeting').delay(2000).fadeOut(1000);
+    // $('.content .panel').delay(10000).fadeIn(1000);
+    // $('.content .panel').fadeIn(1000);
   }
 
-  // $('.content .panel').fadeIn(1000);
+  $('.content .panel').fadeIn(1000);
 
   $('form.loginForm').submit(function(event) {
     var data = $(this).serializeArray();
@@ -34,11 +34,19 @@ $(document).ready(function() {
           sessionStorage.created_at = user_data.created_at;
           $.get(domain + "user/" + user_data.id, function(data) {
             data = data.data;
-            sessionStorage.device_loaned = data.loaned[0].id;
-            if (data.privilages.length > 1) {
-              sessionStorage.perm = data.privilages[0].type + "#" + data.privilages[1].type;
+            if (data.loaned[0] !== undefined) {
+              if (data.loaned.length > 1) {
+                sessionStorage.device_loaned = data.loaned[0].type + ":" + data.loaned[0].id + "#" + data.loaned[1].type + ":" + data.loaned[1].id;
+              } else if (data.loaned.length === 1) {
+                sessionStorage.device_loaned = data.loaned[0].type + ":" + data.loaned[0].id;
+              }
             } else {
-              sessionStorage.perm = data.privilages[0].type;
+              sessionStorage.device_loaned = null;
+            }
+            if (data.privileges.length > 1) {
+              sessionStorage.perm = data.privileges[0].type + "#" + data.privileges[1].type;
+            } else if (data.loaned.length === 1) {
+              sessionStorage.perm = data.privileges[0].type;
             }
             window.location = "/cedar/user";
           });

@@ -19,16 +19,31 @@ function getDevices() {
             // -- Loan Device
             // -- Return Device
             if (device.is_active && device.loaned_by === null) {
-              devices += '<tr>';
-              devices += '<td>' + device.id + '</td>';// Device ID
-              devices += '<td>' + device.type + '</td>';// Type
-              devices += '<td>';// Options
-              devices += '<form class="pull-right" id="device" method="post">';
-              devices += '<input type="hidden" name="device_id" value="' + device.id + '" />';
-              devices += '<input type="submit" class="btn btn-info" name="rent" value="Rent Device" />';
-              devices += '</form>';
-              devices += '</td>';
-              devices += '</tr>';
+              var d = null;
+              var dl = sessionStorage.device_loaned.split("#");
+              console.log(dl.length);
+              // dl[0] = mac:11;
+              // dl[1] = camera:8;
+              if (dl.length > 1) {
+                $('.available-devices').remove();
+              } else if (dl.length === 1) {
+                var type = dl[0].split(":");
+                console.log(type[0]);
+                // type[0] = "mac";
+                // type[1] = "11";
+                if (device.type != type[0]) {
+                  devices += '<tr>';
+                  devices += '<td>' + device.id + '</td>';// Device ID
+                  devices += '<td>' + device.type + '</td>';// Type
+                  devices += '<td>';// Options
+                  devices += '<form class="pull-right" id="device" method="post">';
+                  devices += '<input type="hidden" name="device_id" value="' + device.id + '" />';
+                  devices += '<input id="rent" type="submit" class="btn btn-info" name="rent" value="Rent Device" />';
+                  devices += '</form>';
+                  devices += '</td>';
+                  devices += '</tr>';
+                }
+              }
             }
           } else {
             // If the user is a teacher, then s/he can return the device
