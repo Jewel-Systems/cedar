@@ -20,22 +20,22 @@ You won't need to install nodejs if you only want to use it. Just place these fi
 - [x] Delete Users
 - [ ] Edit Users
 - [x] Add Device
-- [ ] Remove Device
-- [ ] Edit Device
-- [ ] Create Cards
+- [x] Remove Device
+- [x] Edit Device
+- [x] Create Cards
 - [ ] Add a class
 - [ ] Removing a class
 - [ ] Getting all classes
 
 ### Teacher:
-- [ ] Reserve Devices
-- [ ] Loan Device
+- [x] Reserve Devices
+- [x] Loan Device
 - [ ] Return Device
 - [ ] View Lateness Register
 
 ### Student:
 - [ ] Sign Lateness Register
-- [ ] Loan Device
+- [x] Loan Device
 - [ ] Return Device
 
 ## License

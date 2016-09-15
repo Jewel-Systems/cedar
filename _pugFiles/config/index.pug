@@ -1,0 +1,36 @@
+doctype html
+html(lang="en")
+  head
+    include ../_html/_head/_head_default_init.pug
+
+    link(rel="stylesheet", type="text/css", href="css/home.css")
+
+    script(type="application/javascript", src="js/config.js")
+  body
+    .container-fluid
+      .row
+        .col-md-12
+          nav.navbar.navbar-default
+            .container-fluid
+              .navbar-header
+                button(type="button", data-toggle="collapse", data-target="#bs-example-navbar-collapse-1", aria-expanded="false").navbar-toggle.collapsed
+                  span.sr-only Toggle navigation
+                  span.icon-bar
+                  span.icon-bar
+                  span.icon-bar
+                a(href="#").navbar-brand
+                  img(src="images/logo.png", alt="Cedar House").img-responsive
+
+              .collapse.navbar-collapse#bs-example-navbar-collapse-1
+                ul.nav.navbar-nav.navbar-right
+                  li
+                    a(href="user/logout") Logout
+
+      .row
+        .col-md-offset-1.col-md-10
+          .content
+            .loading
+              img(src="images/balls.gif", alt="loading").img-responsive
+
+
+          include ../_html/_body/_default_body_and_footer.pug

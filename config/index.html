@@ -7,13 +7,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Cedar House</title>
   <base href="/cedar/">
-  <link rel="shortcut icon" href="css/images/index.ico">
+  <link rel="shortcut icon" href="images/index.ico">
   <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
   <link rel="stylesheet" href="css/style.css" type="text/css">
   <script type="text/javascript" src="js/jquery-3.1.0.min.js"></script>
   <script type="text/javascript" src="js/bootstrap.min.js"></script>
   <script type="text/javascript" src="js/defaults.js"></script>
-  <script type="text/javascript" src="js/user/logout.js"></script>
+  <link rel="stylesheet" type="text/css" href="css/home.css">
+  <script type="application/javascript" src="js/config.js"></script>
 </head>
 
 <body>
@@ -23,9 +24,17 @@
         <nav class="navbar navbar-default">
           <div class="container-fluid">
             <div class="navbar-header">
+              <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+              </button>
               <a class="navbar-brand" href="#">
                 <img class="img-responsive" src="images/logo.png" alt="Cedar House">
               </a>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              <ul class="nav navbar-nav navbar-right">
+                <li><a href="user/logout">Logout</a>
+                </li>
+              </ul>
             </div>
           </div>
         </nav>
@@ -34,15 +43,8 @@
     <div class="row">
       <div class="col-md-offset-1 col-md-10">
         <div class="content">
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <h3 class="panel-title text-center">Status</h3>
-            </div>
-            <div class="panel-body">
-              <div class="status">
-                <p>Logged out, you will be redirected in 3 seconds...</p>
-              </div>
-            </div>
+          <div class="loading">
+            <img class="img-responsive" src="images/balls.gif" alt="loading">
           </div>
         </div>
         <div class="row footer">

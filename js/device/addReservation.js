@@ -16,7 +16,11 @@ $(document).ajaxStop(function() {
       },
       error: function(xhr, status, error) {
         var response = JSON.parse(xhr.responseText);
-        errorMsg(response);
+        if (response.error === 1) {
+          errorMsg("A reservation is already in place during this time period.");
+        } else {
+          errorMsg("Something went wrong reserving devices, please contact the administrator.");
+        }
       }
     });
     event.preventDefault();

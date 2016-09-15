@@ -5,6 +5,22 @@ $(document).ready(function() {
   $('h2.addStatus').css("display", "none");
 });
 
+$(document).ajaxStart(function() {
+  $('.loading').fadeIn();
+  var x = 0;
+  for (var i = 0; i < 5; i++) {
+    setTimeout(function(){
+      x++;
+    },1000);
+    if (x === 4) {
+      errorMsg("The page is taking longer than it should to load, please refresh the page or wait a bit longer.");
+    }
+  }
+}).ajaxStop(function() {
+  $('.loading').fadeOut();
+  $('.alert.alert-danger').remove();
+});
+
 $(document).ajaxStop(function() {
   if (!$.trim($('table.users-table tbody').html()).length) {
     $('table.users-table tbody').append('<p class="text-danger">No results found</p>');
@@ -18,6 +34,8 @@ $(document).ajaxStop(function() {
 });
 
 function errorMsg(msg) {
+  $('.alert.alert-danger').remove();
+  $('.alert.alert-success').remove();
   msg = $('<div class="alert alert-danger error-message"></div>').html("<strong>Oh snap!</strong> " + msg);
   $(msg).insertBefore('.content');
 }
@@ -100,6 +118,8 @@ function stTime() {
 }
 
 function statusMsg(msg) {
+  $('.alert.alert-success').remove();
+  $('.alert.alert-danger').remove();
   msg = $('<div class="alert alert-success"></div>').html('<strong>Yay! </strong>' + msg);
   $(msg).insertBefore(".content");
 }

@@ -6,6 +6,8 @@ $(document).ready(function() {
     sessionStorage.removeItem("fname");
     sessionStorage.removeItem("lname");
     sessionStorage.removeItem("created_at");
+    sessionStorage.removeItem("privileges");
+    sessionStorage.removeItem("device_loaned");
     setTimeout(function() {
       window.location = "/cedar";
     }, 3000);

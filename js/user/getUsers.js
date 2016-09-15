@@ -17,7 +17,7 @@ function getUsers() {
             table += "<td>" + datas[i].fname + " " + datas[i].lname + "</td>";
             table += "<td>" + datas[i].email + "</td>";
             table += "<td>" + capitalize(datas[i].type) + "</td>";
-            table += '<td><form class="pull-right delete" method="post"><input type="hidden" id="inputId" name="id" value="' + datas[i].id + '" /><input type="hidden" id="inputFname" name="fname" value="' + datas[i].fname + '" /><input type="hidden" id="inputLname" name="lname" value="' + datas[i].lname + '" /><input type="hidden" id="inputEmail"  name="email" value="' + datas[i].email + '" /><button type="submit" class="btn btn-danger">Delete</button></form></td>';
+            table += '<td><form id="deleteUser" class="pull-right delete" method="post"><input type="hidden" id="inputId" name="id" value="' + datas[i].id + '" /><input type="hidden" id="inputFname" name="fname" value="' + datas[i].fname + '" /><input type="hidden" id="inputLname" name="lname" value="' + datas[i].lname + '" /><input type="hidden" id="inputEmail"  name="email" value="' + datas[i].email + '" /><button type="submit" class="btn btn-danger">Delete</button></form><a class="pull-right" href="' + domain + 'user/card/' + datas[i].id + '/pdf" target="_blank"><button class="btn btn-primary" type="button">Retrieve Card</button></a></td>';
             table += '</tr>';
           }
         }
@@ -28,27 +28,17 @@ function getUsers() {
 
     $('.users-table tbody').append(table);
   });
-
-  $(document).ajaxStart(function() {
-    $('.loading').fadeIn(1000);
-  }).ajaxStop(function() {
-    $('.loading').fadeOut(1000);
-  });
 }
 
 function AjaxError(x, e) {
   var msg = null;
   if (x.status === 0) {
-    msg = $('<div class="alert alert-danger"></div>').html("<strong>Oh no!</strong> The server might be down");
-    $(msg).insertBefore('.panel');
+    errorMsg("The server might be down");
   } else if (x.status == 404) {
-    msg = $('<div class="alert alert-danger"></div>').html("<strong>Oh no!</strong> Requested URL not found. Server could be offline.");
-    $(msg).insertBefore('.panel');
+    errorMsg("Requested URL not found. Server could be offline.");
   } else if (x.status == 500) {
-    msg = $('<div class="alert alert-danger"></div>').html("<strong>Oh no!</strong> Internel Server Error.");
-    $(msg).insertBefore('.panel');
+    errorMsg("Internel Server Error.");
   }  else {
-    msg = $('<div class="alert alert-danger"></div>').html("<strong>Oh no!</strong> " + 'Unknown Error.\n' + x.responseText + ".");
-    $(msg).insertBefore('.panel');
+    errorMsg('Unknown Error.\n' + x.responseText + ".");
   }
 }

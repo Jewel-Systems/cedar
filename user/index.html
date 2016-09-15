@@ -17,7 +17,6 @@
   <script type="text/javascript" src="js/bootstrap.min.js"></script>
   <script type="application/javascript" src="js/bootstrap-material-datetimepicker.js"></script>
   <script type="text/javascript" src="js/defaults.js"></script>
-  <script type="text/javascript" src="js/device/loanDevice.js"></script>
   <script type="text/javascript" src="js/classes/getClasses.js"></script>
   <script type="text/javascript" src="js/user/getUsers.js"></script>
   <script type="text/javascript" src="js/user/getTypes.js"></script>
@@ -27,6 +26,7 @@
   <script type="text/javascript" src="js/user/addUser.js"></script>
   <script type="text/javascript" src="js/user/deleteUser.js"></script>
   <script type="text/javascript" src="js/device/addDevice.js"></script>
+  <script type="text/javascript" src="js/device/returnDevice.js"></script>
   <script type="text/javascript" src="js/device/addReservation.js"></script>
   <script type="text/javascript" src="js/device/deleteReservation.js"></script>
   <script type="text/javascript" src="js/user/setPrivilege.js"></script>
@@ -49,13 +49,9 @@
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
               <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">Home</a>
-                </li>
-                <li><a href="#">About Us</a>
-                </li>
-                <li><a href="#">Contact Us</a>
-                </li>
                 <li><a href="user/logout">Logout</a>
+                </li>
+                <li><a href="config"><span class="glyphicon glyphicon-cog"></span></a>
                 </li>
               </ul>
             </div>
@@ -86,6 +82,9 @@
                             </button>
                           </div>
                           <div class="modal-body">
+                            <div class="loading">
+                              <img src="images/balls.gif" alt="loading">
+                            </div>
                             <form id="add" method="post">
                               <div class="form-group">
                                 <label for="inputFname">First Name:</label>
@@ -137,6 +136,9 @@
                             </button>
                           </div>
                           <div class="modal-body">
+                            <div class="loading">
+                              <img src="images/balls.gif" alt="loading">
+                            </div>
                             <form id="setPrivilege" method="post">
                               <div class="form-group">
                                 <label for="userID">User ID:</label>
@@ -165,6 +167,9 @@
                             </button>
                           </div>
                           <div class="modal-body">
+                            <div class="loading">
+                              <img src="images/balls.gif" alt="loading">
+                            </div>
                             <form id="revokePrivilege" method="post">
                               <div class="form-group">
                                 <label for="userID">User ID:</label>
@@ -204,6 +209,10 @@
                 </div>
                 <div class="panel-body">
                   <button class="btn btn-success pull-right admin" id="addDeviceBut" type="button" data-toggle="modal" data-target="#addDevice">Add a Device</button>
+                  <button class="btn btn-primary pull-right admin" id="returnDeviceBut" type="button" data-toggle="modal" data-target="#returnDevice">Return a Device</button>
+                  <form class="pull-right" id="returnD" method="post">
+                    <button class="btn btn-warning" id="returnD" type="submit">Return a Device</button>
+                  </form>
                   <div class="modal fade" id="addDevice" tabindex="-1" role="dialog" aria-labelledby="addDeviceModal" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                       <div class="modal-content">
@@ -212,6 +221,9 @@
                           </button>
                         </div>
                         <div class="modal-body">
+                          <div class="loading">
+                            <img src="images/balls.gif" alt="loading">
+                          </div>
                           <form id="addNewDevice" method="post">
                             <div class="form-group">
                               <label for="inputSerial">Serial Number:</label>
@@ -243,6 +255,38 @@
                       </div>
                     </div>
                   </div>
+                  <div class="modal fade" id="returnDevice" tabindex="-1" role="dialog" aria-labelledby="returnDeviceModal" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">Return a Device
+                          <button class="close" type="button" data-dismiss="modal" aria-hidden="true"><span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          <div class="loading">
+                            <img src="images/balls.gif" alt="loading">
+                          </div>
+                          <form id="returnADevice" method="post">
+                            <div class="form-group">
+                              <label for="inputUserID">User ID:</label>
+                              <input class="form-control" id="inputUserID" type="number" name="user_id" placeholder="3" required>
+                            </div>
+                            <div class="form-group">
+                              <label for="inputDeviceID">Device ID:</label>
+                              <input class="form-control" id="inputDeviceID" type="number" name="device_id" placeholder="3" required>
+                            </div>
+                            <div class="form-group">
+                              <button class="btn btn-success pull-right" type="submit">Return Device</button>
+                              <hr>
+                            </div>
+                          </form>
+                        </div>
+                        <div class="modal-footer">
+                          <button class="btn btn-default" type="button" data-dismiss="modal">Close</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                   <table class="table table-striped available-devices">
                     <thead>
                       <th>Device ID</th>
@@ -256,7 +300,7 @@
                   </table>
                 </div>
               </div>
-              <div class="panel panel-default reservations">
+              <div class="panel panel-default reservations teacher admin">
                 <div class="panel-heading">
                   <h3 class="panel-title text-center">Reservations</h3>
                 </div>
@@ -271,6 +315,9 @@
                             </button>
                           </div>
                           <div class="modal-body">
+                            <div class="loading">
+                              <img src="images/balls.gif" alt="loading">
+                            </div>
                             <form id="reserve" method="post">
                               <div class="form-group">
                                 <label for="startTime">Start Time:</label>

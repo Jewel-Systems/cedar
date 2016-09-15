@@ -4,7 +4,10 @@ $(document).ready(function() {
     window.location = "/cedar";
   } else {
 
-    getDevices();
+    if (sessionStorage.device_loaned !== null) {
+      getDevices();
+      $('form#returnD').remove();
+    }
 
     if (sessionStorage.user_type == "admin") {
       getUsers();
@@ -13,6 +16,7 @@ $(document).ready(function() {
         $('.users').css("display", "block");
         $('.teacher').fadeIn();
         $('.admin').fadeIn();
+        $('form#returnD').css('display', 'none');
       });
     }
 
@@ -31,12 +35,6 @@ $(document).ready(function() {
 
     $('form').submit(function(event) {
       event.preventDefault();
-    });
-
-    $(document).ajaxStart(function() {
-      $('.loading').fadeIn(1000);
-    }).ajaxStop(function() {
-      $('.loading').fadeOut(1000);
     });
   }
 });

@@ -6,7 +6,7 @@ $(document).ajaxStop(function() {
       type: "PUT",
       success: function(result, status, xhr) {
         statusMsg("Privilege Set");
-        $('div#modal.setPrivilege').modal('toggle');
+        $('div#setPrivilege.modal').modal('toggle');
       },
       error: function(xhr, status, error) {
         var response = JSON.parse(xhr.responseText);
