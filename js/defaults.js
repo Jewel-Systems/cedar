@@ -6,7 +6,7 @@ $(document).ready(function() {
 });
 
 $(document).ajaxStart(function() {
-  $('.loading').fadeIn();
+  $('.loading').slideDown();
   var x = 0;
   for (var i = 0; i < 5; i++) {
     setTimeout(function(){
@@ -17,7 +17,7 @@ $(document).ajaxStart(function() {
     }
   }
 }).ajaxStop(function() {
-  $('.loading').fadeOut();
+  $('.loading').slideUp();
   $('.alert.alert-danger').remove();
 });
 

@@ -11,15 +11,19 @@ $(document).ajaxStop(function() {
       success: function(result, status, xhr) {
         $('.device-reservations tbody').empty();
         getReservations();
-        statusMsg("Privilege Set");
+        statusMsg("Devices Reserved");
         $('div#reserveDevice.modal').modal('toggle');
       },
       error: function(xhr, status, error) {
         var response = JSON.parse(xhr.responseText);
-        if (response.error === 1) {
+        if (response.error == 1) {
+          console.log("1 error!");
           errorMsg("A reservation is already in place during this time period.");
+          $('div#reserveDevice.modal').modal('toggle');
         } else {
+          console.log("2 error!");
           errorMsg("Something went wrong reserving devices, please contact the administrator.");
+          $('div#reserveDevice.modal').modal('toggle');
         }
       }
     });

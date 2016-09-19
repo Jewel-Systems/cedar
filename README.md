@@ -18,7 +18,7 @@ You won't need to install nodejs if you only want to use it. Just place these fi
 - [x] Display Users
 - [x] Add Users
 - [x] Delete Users
-- [ ] Edit Users
+- [ ] Edit Users (Partially)
 - [x] Add Device
 - [x] Remove Device
 - [x] Edit Device
@@ -30,13 +30,13 @@ You won't need to install nodejs if you only want to use it. Just place these fi
 ### Teacher:
 - [x] Reserve Devices
 - [x] Loan Device
-- [ ] Return Device
+- [x] Return Device
 - [ ] View Lateness Register
 
 ### Student:
 - [ ] Sign Lateness Register
 - [x] Loan Device
-- [ ] Return Device
+- [x] Return Device
 
 ## License
 This project is developed under the [MIT license](LICENSE)
