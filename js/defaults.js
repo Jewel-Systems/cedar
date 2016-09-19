@@ -1,4 +1,5 @@
 const domain = "http://localhost:200/api/v1/";
+const link_domain = "http://localhost:200/link/";
 // const domain = "http://steve.zanity.net:53455/api/v1/";
 
 $(document).ready(function() {
