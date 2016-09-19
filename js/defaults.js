@@ -1,5 +1,5 @@
-// const domain = "http://localhost:200/api/v1/";
-const domain = "http://steve.zanity.net:53455/api/v1/";
+const domain = "http://localhost:200/api/v1/";
+// const domain = "http://steve.zanity.net:53455/api/v1/";
 
 $(document).ready(function() {
   $('h2.addStatus').css("display", "none");
