@@ -13,7 +13,7 @@
   <script type="text/javascript" src="js/jquery-3.1.0.min.js"></script>
   <script type="text/javascript" src="js/bootstrap.min.js"></script>
   <script type="text/javascript" src="js/defaults.js"></script>
-  <script type="application/javascript" src="js/config.js"></script>
+  <script type="application/javascript" src="js/config/config.js"></script>
 </head>
 
 <body>
@@ -51,7 +51,24 @@
             <div class="panel-heading">
               <h3 class="panel-title">Configuration</h3>
             </div>
-            <div class="panel-body">
+            <div class="panel-body config">
+              <form method="post">
+                <div class="form-group">
+                  <label for="inputProtocol">Protocol:</label>
+                  <input type="text" name="protocol" placeholder="http">
+                </div>
+                <div class="form-group">
+                  <label for="inputHost">Host:</label>
+                  <input type="text" name="host" placeholder="http">
+                </div>
+                <div class="form-group">
+                  <label for="inputPort">Port:</label>
+                  <input type="text" name="port" placeholder="http">
+                </div>
+                <div class="form-group">
+                  <input class="btn btn-success" type="submit">
+                </div>
+              </form>
               <p class="text-danger">Site still under construction</p>
             </div>
           </div>

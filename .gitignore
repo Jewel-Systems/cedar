@@ -60,3 +60,4 @@ jspm_packages
 # Custom folders to ignore
 resources
 backup
+.htaccess

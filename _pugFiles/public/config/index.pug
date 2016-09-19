@@ -3,7 +3,7 @@ html(lang="en")
   head
     include ../_html/_head/_head_default_init.pug
 
-    script(type="application/javascript", src="js/config.js")
+    script(type="application/javascript", src="js/config/config.js")
   body
     .container-fluid
       .row
@@ -35,7 +35,21 @@ html(lang="en")
             .panel.panel-default
               .panel-heading
                 h3.panel-title Configuration
-              .panel-body
+              .panel-body.config
+                form(method="post")
+                  .form-group
+                    label(for="inputProtocol") Protocol:
+                    input(type="text", name="protocol", placeholder="http")
+                  .form-group
+                    label(for="inputHost") Host:
+                    input(type="text", name="host", placeholder="http")
+                  .form-group
+                    label(for="inputPort") Port:
+                    input(type="text", name="port", placeholder="http")
+                  .form-group
+                    input(type="submit").btn.btn-success
+
                 p.text-danger Site still under construction
+
 
           include ../_html/_body/_default_body_and_footer.pug
