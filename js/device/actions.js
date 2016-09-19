@@ -22,7 +22,7 @@ $(document).ajaxStop(function() {
               statusMsg("Rented device");
               getDevices();
             } else {
-              window.location = "/cedar/user/logout";
+              window.location = "/user/logout";
             }
           },
           error: function (xhr, status, error) {

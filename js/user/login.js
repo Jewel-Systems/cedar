@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
   if (typeof sessionStorage.email != "undefined") {
-    window.location = "/cedar/user";
+    window.location = "/user";
   } else {
     // $('.content .loading').fadeIn(1000);
     // $('.content .loading').css('display', 'block');
@@ -48,7 +48,7 @@ $(document).ready(function() {
             } else if (data.loaned.length === 1) {
               sessionStorage.perm = data.privileges[0].type;
             }
-            window.location = "/cedar/user";
+            window.location = "/user";
           });
         } else {
           $('.error-message').remove();

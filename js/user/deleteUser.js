@@ -7,7 +7,7 @@ $(document).ajaxStop(function() {
         url: domain + "user/" + data[0].value,
         type: "DELETE",
         success: function (result, status, xhr) {
-          window.location = "/cedar/user/";
+          window.location = "/user/";
         },
         error: function(xhr, status, error) {
           console.log(xhr.statusText);

@@ -12,7 +12,7 @@ $(document).ajaxStop(function() {
         statusMsg("Device Returned");
         $('div#returnDevice.modal').modal('toggle');
         if (really) {
-          window.location = "/cedar/user/logout";
+          window.location = "/user/logout";
         }
       },
       error: function(xhr, status, error) {
@@ -57,12 +57,12 @@ $(document).ready(function() {
       success: function(result, status, xhr) {
         sessionStorage.device_loaned = null;
         if (really) {
-          window.location = "/cedar/user/logout";
+          window.location = "/user/logout";
         } else {
           $('.available-devices tbody').empty();
           getDevices();
           statusMsg("Device Returned");
-          window.location = "/cedar/user";
+          window.location = "/user";
         }
       },
       error: function(xhr, status, error) {
