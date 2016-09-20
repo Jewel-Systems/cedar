@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
   if (sessionStorage.email === undefined) {
-    window.location = "/cedar";
+    window.location = "/";
   } else {
 
     if (sessionStorage.device_loaned != "null" && sessionStorage.user_type != "admin") {

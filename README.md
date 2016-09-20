@@ -8,6 +8,8 @@ Make sure that you have `nodejs` installed, then type:
 ## Usage
 You won't need to install nodejs if you only want to use it. Just place these files in the location that you want your server to load the files from, such as htdocs for XAMPP.
 
+If you are having trouble loading the css, js, and images then it could be because of the path. You can change the base tags to fix that issue in the pug files and some redirects might not work, those will need to be fixed in the js files.
+
 ## Things that have been done and still needs to be done:
 ### General User:
 - [x] User Login with Email Address and Password

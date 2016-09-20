@@ -9,9 +9,9 @@ $(document).ready(function() {
     sessionStorage.removeItem("privileges");
     sessionStorage.removeItem("device_loaned");
     setTimeout(function() {
-      window.location = "/cedar";
+      window.location = "/";
     }, 3000);
   } else {
-    window.location = "/cedar";
+    window.location = "/";
   }
 });
