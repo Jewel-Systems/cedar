@@ -62,8 +62,7 @@ $(document).ready(function() {
           var response = JSON.parse(xhr.responseText);
           $('.error-message').remove();
           var msg = $('<div class="alert alert-danger error-message"></div>').html("<strong>Oh snap!</strong> The email/ID or password entered is incorrect, please try again.");
-          // $(msg).insertBefore('.panel');
-          $('.panel').before(msg);
+          $(msg).insertBefore('.panel');
         } catch (e) {
           console.log(e);
         }

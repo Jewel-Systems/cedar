@@ -8,18 +8,8 @@ $(document).ready(function() {
 
 $(document).ajaxStart(function() {
   $('.loading').slideDown();
-  var x = 0;
-  for (var i = 0; i < 5; i++) {
-    setTimeout(function(){
-      x++;
-    },1000);
-    if (x === 4) {
-      errorMsg("The page is taking longer than it should to load, please refresh the page or wait a bit longer.");
-    }
-  }
 }).ajaxStop(function() {
   $('.loading').slideUp();
-  $('.alert.alert-danger').remove();
 });
 
 $(document).ajaxStop(function() {
