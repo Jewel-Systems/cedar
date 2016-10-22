@@ -1,3 +1,0 @@
-RewriteEngine On
-RewriteCond %{REQUEST_URI} ^/cedar/
-RewriteRule ^/public/(.*)$ $1public/ [NC]

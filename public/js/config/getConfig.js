@@ -1,4 +1,4 @@
-$(document).ready(function() {
+function getConfig() {
   $.ajaxSetup({
     error: AjaxError
   });
@@ -22,4 +22,4 @@ $(document).ready(function() {
       errorMsg('Unknown Error.\n' + x.responseText + ".");
     }
   }
-});
+}
