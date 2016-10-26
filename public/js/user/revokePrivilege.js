@@ -1,4 +1,4 @@
-$(document).ajaxStop(function() {
+$(document).ready(function() {
   $('form#revokePrivilege').submit(function(event) {
     var data = $(this).serializeArray();
     $.ajax({
@@ -6,10 +6,12 @@ $(document).ajaxStop(function() {
       type: "DELETE",
       success: function(result, status, xhr) {
         statusMsg("Privilege Revoke");
+        $('div#revokePrivilege.modal').modal('toggle');
       },
       error: function(xhr, status, error) {
         var response = JSON.parse(xhr.responseText);
-        errorMsg(response);
+        errorMsg(response.error);
+        $('div#revokePrivilege.modal').modal('toggle');
       }
     });
     event.preventDefault();

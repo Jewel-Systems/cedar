@@ -14,7 +14,7 @@ $(document).ajaxStop(function(event, xhr, settings) {
         },
         error: function(xhr, status, error) {
           var response = JSON.parse(xhr.responseText);
-          errorMsg(response);
+          errorMsg(response.error);
         }
       });
     }

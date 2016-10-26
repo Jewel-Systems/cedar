@@ -6,9 +6,11 @@ Make sure that you have `nodejs` installed, then type:
     npm install
 
 ## Usage
-You won't need to install nodejs if you only want to use it. Just place these files in the location that you want your server to load the files from, such as htdocs for XAMPP.
+~~You won't need to install nodejs if you only want to use it. Just place these files in the location that you want your server to load the files from, such as htdocs for XAMPP.~~
 
-If you are having trouble loading the css, js, and images then it could be because of the path. You can change the base tags to fix that issue in the pug files and some redirects might not work, those will need to be fixed in the js files.
+~~If you are having trouble loading the css, js, and images then it could be because of the path. You can change the base tags to fix that issue in the pug files and some redirects might not work, those will need to be fixed in the js files.~~
+
+Files locations have been changed to accommodate the [link-server](https://github.com/Jewel-Systems/link-server). I will make sure to maybe make a separate repo or something to accommodate those who want to test the code out.
 
 ## Things that have been done and still needs to be done:
 ### General User:
@@ -39,6 +41,26 @@ If you are having trouble loading the css, js, and images then it could be becau
 - [ ] Sign Lateness Register
 - [x] Loan Device
 - [x] Return Device
+
+## Bugs that still need to be fixed:
+
+- [x] Adding device - multiple times.
+
+- [x] Change ID showing in rental devices (loaded by) to users full name
+
+- [x] Return device .js on line 41
+
+- [x] Renting a device and returning it before it was taken out
+
+- [x] Reserving 1000 (more than a realistic number of MacBooks) laptop
+
+- [ ] Blanking of screen after rentals (modal) -- Not sure how to replicate this bug
+
+- [x] Grey out buttons for devices that are not null
+
+- [x] Adding a user (pictures)
+
+- [x] Add active for admin (for devices, weather devices are active or not)
 
 ## License
 This project is developed under the [MIT license](LICENSE)

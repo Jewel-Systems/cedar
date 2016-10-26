@@ -1,4 +1,4 @@
-$(document).ajaxStop(function() {
+$(document).ready(function() {
   $('form#reserve').submit(function(event) {
     var data = $(this).serializeArray();
     var start_time = new Date(data[0].value);
@@ -17,8 +17,7 @@ $(document).ajaxStop(function() {
       error: function(xhr, status, error) {
         var response = JSON.parse(xhr.responseText);
         if (response.error == 1) {
-          console.log("1 error!");
-          errorMsg("A reservation is already in place during this time period.");
+          errorMsg("A reservation is already in place during this time period or you have selected too many devices.");
           $('div#reserveDevice.modal').modal('toggle');
         } else {
           console.log("2 error!");

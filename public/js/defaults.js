@@ -29,34 +29,29 @@ function errorMsg(msg) {
   $('.alert.alert-success').remove();
   msg = $('<div class="alert alert-danger error-message"></div>').html("<strong>Oh snap!</strong> " + msg);
   $(msg).insertBefore('.content');
+  $('html, body').animate({scrollTop : 0},800);
 }
 
 function setStDateTime(day, month, year, hour, minute, second) {
   if (day < 10) {
     day = "0" + day;
   }
-  console.log("Day: " + day);
 
   if (month < 10) {
     month = "0" + month;
   }
-  console.log("Month: " + month);
-  console.log("Year: " + year);
 
   if (hour < 10) {
     hour = "0" + hour;
   }
-  console.log("Hour: " + hour);
 
   if (minute < 10) {
     minute = "0" + minute;
   }
-  console.log("Minute: " + minute);
 
   if (second < 10) {
     second = "0" + second;
   }
-  console.log("Second: " + second);
 
   return year + "-" + month + "-" + day + "T" + hour + ":" + minute + ":" + second + "+02:00";
 }
@@ -113,6 +108,7 @@ function statusMsg(msg) {
   $('.alert.alert-danger').remove();
   msg = $('<div class="alert alert-success"></div>').html('<strong>Yay! </strong>' + msg);
   $(msg).insertBefore(".content");
+  $('html, body').animate({scrollTop : 0},800);
 }
 
 function capitalize(text) {
@@ -146,4 +142,26 @@ function convertMonth(m) {
     case 12:
       return 'December';
   }
+}
+
+// Script to automatically log the user out when idle for 3 minutes
+var idleTime = 0;
+$(document).ready(function () {
+    //Increment the idle time counter every minute.
+    var idleInterval = setInterval(timerIncrement, 60000); // 1 minute
+
+    //Zero the idle timer on mouse movement.
+    $(this).mousemove(function (e) {
+        idleTime = 0;
+    });
+    $(this).keypress(function (e) {
+        idleTime = 0;
+    });
+});
+
+function timerIncrement() {
+    idleTime = idleTime + 1;
+    if (idleTime > 2) { // 20 minutes
+        window.location = "/user/logout";
+    }
 }

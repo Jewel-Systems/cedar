@@ -36,7 +36,14 @@ $(document).ready(function() {
             data = data.data;
             if (data.loaned[0] !== undefined) {
               if (data.loaned.length > 1) {
-                sessionStorage.device_loaned = data.loaned[0].type + ":" + data.loaned[0].id + "#" + data.loaned[1].type + ":" + data.loaned[1].id;
+                console.log(data.loaned.length);
+                for (var i = 0; i < data.loaned.length; i++) {
+                  if (sessionStorage.device_loaned === undefined) {
+                    sessionStorage.device_loaned = data.loaned[i].type + ":" + data.loaned[i].id + "#";
+                  } else {
+                    sessionStorage.device_loaned += data.loaned[i].type + ":" + data.loaned[i].id + "#";
+                  }
+                }
               } else if (data.loaned.length === 1) {
                 sessionStorage.device_loaned = data.loaned[0].type + ":" + data.loaned[0].id;
               }

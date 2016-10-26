@@ -1,4 +1,4 @@
-$(document).ajaxStop(function() {
+$(document).ready(function() {
   $('form#setPrivilege').submit(function(event) {
     var data = $(this).serializeArray();
     $.ajax({
@@ -10,7 +10,8 @@ $(document).ajaxStop(function() {
       },
       error: function(xhr, status, error) {
         var response = JSON.parse(xhr.responseText);
-        errorMsg(response);
+        errorMsg(response.error);
+        $('div#setPrivilege.modal').modal('toggle');
       }
     });
     event.preventDefault();
