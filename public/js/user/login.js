@@ -50,10 +50,10 @@ $(document).ready(function() {
             } else {
               sessionStorage.device_loaned = null;
             }
-            if (data.privileges.length > 1) {
-              sessionStorage.perm = data.privileges[0].type + "#" + data.privileges[1].type;
+            if (data.privilages.length > 1) {
+              sessionStorage.perm = data.privilages[0].type + "#" + data.privilages[1].type;
             } else if (data.loaned.length === 1) {
-              sessionStorage.perm = data.privileges[0].type;
+              sessionStorage.perm = data.privilages[0].type;
             }
             window.location = "/user";
           });

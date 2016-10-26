@@ -6,7 +6,6 @@ html(lang="en")
     link(rel="stylesheet", type="text/css", href="css/config.css")
 
     script(type="application/javascript", src="js/config/config.js")
-    script(type="application/javascript", src="js/config/getConfig.js")
   body
     .container-fluid
       .row
@@ -49,6 +48,9 @@ html(lang="en")
                   .form-group
                     label(for="inputPort") Port:
                     input(type="text", name="port", placeholder="53455").form-control
+                  .form-group
+                    label(for="inputPort") Base Directory:
+                    input(type="text", name="base", placeholder="/home/troopy712139/NetBeansProjects/link-server/web").form-control
                   input(type="submit").btn.btn-success
 
 
