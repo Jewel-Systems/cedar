@@ -1,5 +1,7 @@
 function getDevices() {
 
+  // console.log(sessionStorage.device_loaned);
+
   $.ajaxSetup({
     error: AjaxError
   });
@@ -21,27 +23,22 @@ function getDevices() {
           for (var i = 0; i < datas.length; i++) {
             device = datas[i];
             if (p[0] == device.type || p[1] == device.type) {
-              var loaned;
               if (sessionStorage.user_type == "student") {
-                // If the user is student or teacher, then they can do the following:
-                // -- Loan Device
-                // -- Return Device
                 if (device.is_active && device.loaned_by === null) {
                   var d = null;
                   var dl = sessionStorage.device_loaned.split("#");
                   // dl[0] = mac:11;
                   // dl[1] = camera:8;
-                  if (dl.length > 1) {
-                    $('.available-devices').remove();
-                  } else if (dl.length === 1) {
+                  if (dl.length === 1) {
+                    $('.available-devices').fadeIn();
                     var type = dl[0].split(":");
                     // type[0] = "mac";
                     // type[1] = "11";
                     if (device.type != type[0]) {
                       devices += '<tr>';
-                      devices += '<td>' + device.id + '</td>';// Device ID
-                      devices += '<td>' + device.type + '</td>';// Type
-                      devices += '<td>';// Options
+                      devices += '<td>' + device.id + '</td>';
+                      devices += '<td>' + device.type + '</td>';
+                      devices += '<td>';
                       devices += '<form class="pull-right" id="device" method="post">';
                       devices += '<input type="hidden" name="device_id" value="' + device.id + '" />';
                       devices += '<input id="rent" type="submit" class="btn btn-info" name="rent" value="Rent Device" />';
@@ -49,24 +46,17 @@ function getDevices() {
                       devices += '</td>';
                       devices += '</tr>';
                     }
+                  } else {
+                    $('.available-devices').fadeOut();
                   }
                 }
-              } else if (sessionStorage.user_type == "admin" || (sessionStorage.user_type == "teacher" && device.is_active === true)) {
+              } else if (sessionStorage.user_type == "admin" || (sessionStorage.user_type == "teacher" && device.is_active === true && (device.loaned_by == sessionStorage.user_id || device.loaned_by === null))) {
                 // If the user is a teacher, then s/he can return the device
-
-                // Admins have many functions, namely:
-                // -- Reservation Revocation
-                // -- Add Device
-                // -- Remove Device
-                // -- Edit Device
-                // -- Create Cards
-                // -- Add User
-                // -- Edit User
-                // -- Remove User
                 var date = new Date(device.created_at);
                 var id = device.id;
                 var typ = device.type;
                 var active = device.is_active;
+                var loaned;
                 var loanedb = device.loaned_by;
                 date = date.getDate() + ' ' + convertMonth(date.getMonth()) + ' ' + date.getFullYear() + ', ' + date.getHours() + 'h' + date.getMinutes();
 

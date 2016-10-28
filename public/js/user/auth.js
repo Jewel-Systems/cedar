@@ -8,7 +8,7 @@ $(document).ready(function() {
       getDevices();
     } else {
       getDevices();
-      $('form#returnD').remove();
+      $('form#returnD').fadeOut();
     }
 
     if (sessionStorage.user_type == "admin") {
@@ -34,9 +34,5 @@ $(document).ready(function() {
       getTypes();
       getClasses();
     }
-
-    $('form').submit(function(event) {
-      event.preventDefault();
-    });
   }
 });

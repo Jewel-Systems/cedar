@@ -39,9 +39,9 @@ $(document).ready(function() {
                 console.log(data.loaned.length);
                 for (var i = 0; i < data.loaned.length; i++) {
                   if (sessionStorage.device_loaned === undefined) {
-                    sessionStorage.device_loaned = data.loaned[i].type + ":" + data.loaned[i].id + "#";
+                    sessionStorage.device_loaned = data.loaned[i].type + ":" + data.loaned[i].id;
                   } else {
-                    sessionStorage.device_loaned += data.loaned[i].type + ":" + data.loaned[i].id + "#";
+                    sessionStorage.device_loaned += "#" + data.loaned[i].type + ":" + data.loaned[i].id;
                   }
                 }
               } else if (data.loaned.length === 1) {
@@ -58,18 +58,13 @@ $(document).ready(function() {
             window.location = "/user";
           });
         } else {
-          $('.error-message').remove();
-          var msg = $('<div class="alert alert-danger error-message"></div>').html("<strong>Oh snap!</strong> Your browser doesn't support local storage, please update your browser or download <a href='https://www.google.com/chrome/'>Google Chrome</a>/<a href='https://www.mozilla.org/en-US/firefox/new/'>Mozilla Firefox</a>.");
-          $(msg).insertBefore('.panel');
-          event.preventDefault();
+          errorMsg("Your browser doesn't support local storage, please update your browser or download <a href='https://www.google.com/chrome/'>Google Chrome</a>/<a href='https://www.mozilla.org/en-US/firefox/new/'>Mozilla Firefox</a>.");
         }
       },
       error: function(xhr, status, error) {
         try {
           var response = JSON.parse(xhr.responseText);
-          $('.error-message').remove();
-          var msg = $('<div class="alert alert-danger error-message"></div>').html("<strong>Oh snap!</strong> The email/ID or password entered is incorrect, please try again.");
-          $(msg).insertBefore('.panel');
+          errorMsg("The email/ID or password entered is incorrect, please try again.");
         } catch (e) {
           console.log(e);
         }

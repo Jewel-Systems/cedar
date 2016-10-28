@@ -3,7 +3,8 @@ $(document).ready(function() {
     var data = $(this).serializeArray();
     var fname = data[0].value;
     var lname = data[1].value;
-    var email = data[2].value;
+    var email = data[2].value + "@cedarhouse.co.za";
+    email = email.toLowerCase();
     var type = data[3].value;
     var pass1 = data[4].value;
     var pass2 = data[5].value;
@@ -27,9 +28,6 @@ $(document).ready(function() {
           statusMsg("Added new user");
           getUsers();
           $('div.modal#addUser').modal('toggle');
-          console.log(result);
-          console.log(result.data);
-          console.log(result.data.id);
           id = result.data.id;
           setPrivilege(id);
         },

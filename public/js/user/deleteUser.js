@@ -7,7 +7,9 @@ $(document).ajaxStop(function() {
         url: domain + "user/" + data[0].value,
         type: "DELETE",
         success: function (result, status, xhr) {
-          window.location = "/user/";
+          $('table.users-table tbody').empty();
+          statusMsg("User is deleted");
+          getUsers();
         },
         error: function(xhr, status, error) {
           console.log(xhr.statusText);

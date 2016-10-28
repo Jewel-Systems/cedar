@@ -1,8 +1,8 @@
 $(document).ready(function() {
-  $("input[type=submit]").click(function(event) {
-    $("input[type=submit]", $(this).parents("form#device")).removeAttr("clicked");
-    $(this).attr("clicked", "true");
-  });
+  // $("input[type=submit]").click(function(event) {
+  //   $("input[type=submit]", $(this).parents("form#device")).removeAttr("clicked");
+  //   $(this).attr("clicked", "true");
+  // });
 
   $('form#device').submit(function(event) {
     var data = $(this).serializeArray();
@@ -20,19 +20,21 @@ $(document).ready(function() {
       $.ajax({
         url: domain + "device/" + data[0].value + "/loan/" + sessionStorage.user_id,
         type: "PUT",
+        cache: false,
         success: function (result, status, xhr) {
           for (var i = 0; i < devices.length; i++) {
             if (devices[i].id == data[0].value) {
               if (sessionStorage.device_loaned == 'null') {
-                sessionStorage.device_loaned = devices[i].type + ":" + data[0].value + "#";
+                sessionStorage.device_loaned = devices[i].type + ":" + data[0].value;
               } else {
-                sessionStorage.device_loaned += devices[i].type + ":" + data[0].value + "#";
+                sessionStorage.device_loaned += "#" + devices[i].type + ":" + data[0].value;
               }
             }
           }
           $('table.available-devices tbody').empty();
           statusMsg("Rented device");
           getDevices();
+          $('form#returnD').fadeIn();
         },
         error: function (xhr, status, error) {
           var response = JSON.parse(xhr.responseText);
@@ -51,6 +53,7 @@ $(document).ready(function() {
       $.ajax({
         url: domain + "device/" + data[0].value + "/active",
         type: putOr(data[1].value),
+        cache: false,
         success: function(result, status, xhr) {
           location.reload();
           // $('.available-devices tbody').empty();
@@ -65,6 +68,7 @@ $(document).ready(function() {
       $.ajax({
         url: domain + "device/" + data[0].value,
         type: "DELETE",
+        cache: false,
         success: function(result, status, xhr) {
           statusMsg("Device deleted!");
           $('.available-devices tbody').empty();
