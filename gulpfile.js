@@ -5,18 +5,22 @@ var prettify    = require('gulp-html-prettify');
 var pug         = require('gulp-pug');
 var sass        = require('gulp-sass');
 var browserSync = require('browser-sync');
+var uglify      = require('gulp-uglify');
+var pump        = require('pump');
 
 gulp.task('server', function() {
-//   browserSync.init({
-//     proxy: 'localhost/cedar',
-//     ui: {
-//       port: '8000',
-//     },
-//     notify: false,
-//   });
-//
+  browserSync.init({
+    proxy: 'localhost:200',
+    ui: {
+      port: '8000',
+    },
+    browser: 'google chrome',
+    notify: false,
+  });
+
   gulp.watch('_pugFiles/public/**', ['pug']);
   gulp.watch('_sassFiles/**', ['sass']);
+  gulp.watch('_jsFiles/**', ['js']);
   gulp.watch('./public/**/*.html').on('change', browserSync.reload);
   gulp.watch('./public/**/*.js').on('change', browserSync.reload);
 });
@@ -35,6 +39,16 @@ gulp.task('sass', function() {
     .pipe(clean({'compatibility' : 'ie8'}))
     .pipe(gulp.dest('public/css'))
     .pipe(browserSync.stream());
+});
+
+gulp.task('js', function(cb) {
+  pump([
+      gulp.src('_jsFiles/**/*.js'),
+      uglify(),
+      gulp.dest('public/js')
+    ],
+    cb
+  );
 });
 
 gulp.task('default', ['server']);
