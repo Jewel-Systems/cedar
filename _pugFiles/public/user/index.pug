@@ -99,7 +99,7 @@ html(lang="en")
                               form(id="setPrivilege", method="post")
                                 .form-group
                                   label(for="userID") User ID:
-                                  input(id="userID", type="text", name="user_id", placeholder="4", required).form-control
+                                  input(id="userID", type="number", name="user_id", placeholder="4", required).form-control
                                 .form-group.deviceType
                                   label(for="deviceType") Device Type:
                                 .form-group
@@ -120,7 +120,7 @@ html(lang="en")
                               form(id="revokePrivilege", method="post")
                                 .form-group
                                   label(for="userID") User ID:
-                                  input(id="userID", type="text", name="user_id", placeholder="4", required).form-control
+                                  input(id="userID", type="number", name="user_id", placeholder="4", required).form-control
                                 .form-group.deviceType
                                   label(for="deviceType") Device Type:
                                 .form-group
@@ -161,7 +161,7 @@ html(lang="en")
                             form(id="addNewDevice", method="post")
                               .form-group
                                 label(for="inputSerial") Serial Number:
-                                input(id="inputSerial", type="text", name="serial_no", placeholder="walalalala", required).form-control
+                                input(id="inputSerial", type="text", name="serial_no", placeholder="MAC001", required).form-control
                               .form-group.deviceType
                                 label(for="inputType") Device Type:
                               .form-group

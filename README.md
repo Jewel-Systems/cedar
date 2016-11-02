@@ -42,25 +42,5 @@ Files locations have been changed to accommodate the [link-server](https://githu
 - [x] Loan Device
 - [x] Return Device
 
-## Bugs that still need to be fixed:
-
-- [x] Adding device - multiple times.
-
-- [x] Change ID showing in rental devices (loaded by) to users full name
-
-- [x] Return device .js on line 41
-
-- [x] Renting a device and returning it before it was taken out
-
-- [x] Reserving 1000 (more than a realistic number of MacBooks) laptop
-
-- [ ] Blanking of screen after rentals (modal) -- Not sure how to replicate this bug
-
-- [x] Grey out buttons for devices that are not null
-
-- [x] Adding a user (pictures)
-
-- [x] Add active for admin (for devices, weather devices are active or not)
-
 ## License
 This project is developed under the [MIT license](LICENSE)

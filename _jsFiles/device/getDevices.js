@@ -67,7 +67,7 @@ function getDevices() {
 
                 for (var u = 0; u < users.length; u++) {
                   if (users[u].id === loanedb) {
-                    loaned = "[" + users[u].id + "]: " + users[u].fname;
+                    loaned = "[" + users[u].id + "]: " + users[u].fname + " " + users[u].lname;
                   } else if (loanedb === null) {
                     loaned = "Not loaned";
                   }

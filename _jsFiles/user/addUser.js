@@ -1,6 +1,7 @@
 $(document).ready(function() {
   $('form#add').submit(function(event) {
     var data = $(this).serializeArray();
+    var blank = false;
     var fname = data[0].value;
     var lname = data[1].value;
     var email = data[2].value + "@cedarhouse.co.za";
@@ -11,8 +12,12 @@ $(document).ready(function() {
     var id = 0;
     var match = false;
     if (pass1 == pass2) {
-      match = true;
-      console.log("Passwords match");
+      if (data[2].value.search("@") === -1 && data[2].value.search(" ") === -1) {
+        match = true;
+      } else {
+        errorMsg("The email you have entered is invalid. Just enter the username for the email, the '@cedarhouse.co,za' will be automatically incremented.");
+        $('div.modal#addUser').modal('toggle');
+      }
     } else {
       errorMsg("The passwords don't match, please re-enter.");
       $('div.modal#addUser').modal('toggle');

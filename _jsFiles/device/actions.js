@@ -1,12 +1,14 @@
 $(document).ready(function() {
-  // $("input[type=submit]").click(function(event) {
-  //   $("input[type=submit]", $(this).parents("form#device")).removeAttr("clicked");
-  //   $(this).attr("clicked", "true");
-  // });
+  $("input[type=submit]").click(function(event) {
+    $("input[type=submit]", $(this).parents("form#device")).removeAttr("clicked");
+    $(this).attr("clicked", "true");
+  });
 
   $('form#device').submit(function(event) {
     var data = $(this).serializeArray();
-    var val = event.originalEvent.explicitOriginalTarget.id;
+    // var val = event.originalEvent.explicitOriginalTarget.id;
+    var val = $("input[type=submit][clicked=true]").attr("id");
+    console.log(val);
     if (val == "rent") {
       var devices = null;
       $.get(domain + "device", function(data, status) {
@@ -56,8 +58,6 @@ $(document).ready(function() {
         cache: false,
         success: function(result, status, xhr) {
           location.reload();
-          // $('.available-devices tbody').empty();
-          // getDevices();
         },
         error: function(xhr, status, error) {
           var response = JSON.parse(xhr.responseText);

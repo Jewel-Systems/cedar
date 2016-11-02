@@ -1,5 +1,7 @@
 const domain = "http://localhost:200/api/v1/";
 const link_domain = "http://localhost:200/link/";
+// const domain = "http://localhost:3000/api/v1/";
+// const link_domain = "http://localhost:3000/link/";
 // const domain = "http://steve.zanity.net:53455/api/v1/";
 
 $(document).ready(function() {
@@ -30,6 +32,7 @@ function errorMsg(msg) {
   msg = $('<div class="alert alert-danger error-message"></div>').html("<strong>Oh snap!</strong> " + msg);
   $(msg).insertBefore('.content');
   $('html, body').animate({scrollTop : 0},800);
+  $('.alert.alert-danger, .alert.alert-success').delay(3000).slideUp();
 }
 
 function setStDateTime(day, month, year, hour, minute, second) {
@@ -109,6 +112,7 @@ function statusMsg(msg) {
   msg = $('<div class="alert alert-success"></div>').html('<strong>Yay! </strong>' + msg);
   $(msg).insertBefore(".content");
   $('html, body').animate({scrollTop : 0},800);
+  $('.alert.alert-danger, .alert.alert-success').delay(3000).slideUp();
 }
 
 function capitalize(text) {

@@ -9,14 +9,14 @@ var uglify      = require('gulp-uglify');
 var pump        = require('pump');
 
 gulp.task('server', function() {
-  browserSync.init({
-    proxy: 'localhost:200',
-    ui: {
-      port: '8000',
-    },
-    browser: 'google chrome',
-    notify: false,
-  });
+  // browserSync.init({
+  //   proxy: 'localhost:200',
+  //   ui: {
+  //     port: '8000',
+  //   },
+  //   browser: 'google chrome',
+  //   notify: false,
+  // });
 
   gulp.watch('_pugFiles/public/**', ['pug']);
   gulp.watch('_sassFiles/**', ['sass']);
@@ -41,14 +41,10 @@ gulp.task('sass', function() {
     .pipe(browserSync.stream());
 });
 
-gulp.task('js', function(cb) {
-  pump([
-      gulp.src('_jsFiles/**/*.js'),
-      uglify(),
-      gulp.dest('public/js')
-    ],
-    cb
-  );
+gulp.task('js', function() {
+  return gulp.src('_jsFiles/**/*.js')
+    .pipe(uglify())
+    .pipe(gulp.dest('public/js'));
 });
 
 gulp.task('default', ['server']);
