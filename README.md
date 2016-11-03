@@ -12,6 +12,8 @@ Make sure that you have `nodejs` installed, then type:
 
 Files locations have been changed to accommodate the [link-server](https://github.com/Jewel-Systems/link-server). I will make sure to maybe make a separate repo or something to accommodate those who want to test the code out.
 
+The repo does not work with XAMPP anymore, you will need to use the [link-server](https://github.com/Jewel-Systems/link-server).
+
 ## Things that have been done and still needs to be done:
 ### General User:
 - [x] User Login with Email Address and Password
