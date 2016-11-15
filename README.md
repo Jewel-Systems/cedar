@@ -44,5 +44,12 @@ The repo does not work with XAMPP anymore, you will need to use the [link-server
 - [x] Loan Device
 - [x] Return Device
 
+## To be implemented and fixed
+
+* Redesign interface
+* When selecting ID of device or user, make sure that it is in a dropdown list
+* Reservations done only from today onwards
+* Use QR code to login only, with no Password
+
 ## License
 This project is developed under the [MIT license](LICENSE)
