@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cedar House</title>
+  <base href="/">
+  <link rel="shortcut icon" href="images/index.ico">
+  <link rel="stylesheet" type="text/css" href="css/styles.css">
+  <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
+</head>
+
+<body>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <nav class="navbar navbar-light bg-faded">
+          <button class="navbar-toggler hidden-lg-up" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"></button>
+          <div class="collapse navbar-toggleable-md" id="navbarResponsive">
+            <a class="navbar-brand" href="#">
+              <img src="images/logo.png" alt="Cedar House">
+            </a>
+            <ul class="nav navbar-nav float-lg-right">
+              <li class="nav-item admin"><a class="nav-link" href="/config" title="Configuration"><i class="fa fa-cog fa-lg"></i></a>
+              </li>
+              <li class="nav-item"><a class="nav-link" href="/user/logout" title="Log Out"><i class="fa fa-sign-out fa-lg"></i></a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </div>
+    <div class="row flex-items-md-center">
+      <div class="container">
+        <div class="row flex-items-md-center content">
+          <div class="col-md-12">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="user">Home</a>
+              </li>
+              <li class="breadcrumb-item active"></li>
+            </ol>
+            <div class="card main">
+              <div class="card-block">
+                <h3 class="card-title"></h3>
+                <ul class="nav nav-tabs">
+                  <li class="nav-item user-management-admin"><a class="user nav-link" href="/user/management/?page=user">User Management</a>
+                  </li>
+                  <li class="nav-item class-management-admin"><a class="class nav-link" href="/user/management/?page=class">Class Management</a>
+                  </li>
+                  <li class="nav-item"><a class="device nav-link" href="/user/management/?page=device">Device Management</a>
+                  </li>
+                  <li class="nav-item"><a class="reservation nav-link" href="/user/management/?page=reservation">Reservation Management</a>
+                  </li>
+                </ul>
+                <div class="loading">
+                  <img class="img-fluid" src="images/balls.gif" alt="loading">
+                </div>
+                <div class="caramel"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer class="footer">
+    <div class="row flex-items-md-around">
+      <div class="col-md-8"><span class="float-md-left">Copyright &copy; Cedar House</span><span class="float-md-right text-right">Education for our time</span>
+      </div>
+    </div>
+    <script type="application/javascript" src="js/default.js"></script>
+    <script type="application/javascript" src="js/user.js"></script>
+  </footer>
+</body>
+
+</html>

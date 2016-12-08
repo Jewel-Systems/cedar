@@ -1,0 +1,75 @@
+@font-face
+  font-family: Comfortaa
+  src: url(../fonts/Comfortaa-Regular.ttf)
+
+@font-face
+  font-family: 'Material Icons'
+  font-style: normal
+  font-weight: 400
+  src: local('Material Icons'), local('MaterialIcons-Regular'), url(../fonts/Material-Icons.woff2) format('woff2')
+
+.material-icons
+  font-family: 'Material Icons'
+  font-weight: normal
+  font-style: normal
+  font-size: 24px
+  line-height: 1
+  letter-spacing: normal
+  text-transform: none
+  display: inline-block
+  white-space: nowrap
+  word-wrap: normal
+  direction: ltr
+  -moz-font-feature-settings: 'liga'
+  -moz-osx-font-smoothing: grayscale
+
+body, html
+  min-height: 100vh
+  font-family: "Comfortaa", cursive
+
+.breadcrumb
+  margin-top: 20px
+
+.card
+  margin-top: 20px
+  a
+    :hover
+      color: rgb(255, 255, 255)
+      background-color: rgb(177, 177, 177)
+      text-decoration: none
+
+.card.main
+    margin-bottom: 70px
+
+.alert
+  margin: auto
+  margin-top: 20px
+
+a
+  color: rgb(0, 0, 0)
+
+a:visited
+  color: rgb(0, 0, 0)
+
+a:hover
+  color: rgb(98, 98, 98)
+  text-decoration: none
+
+.disabled-link
+  a
+    cursor: default
+    color: rgb(177, 177, 177)
+    text-decoration: none
+
+    .card.card-block
+      border: 1px solid rgb(177, 177, 177)
+
+    :hover
+      cursor: default
+      color: rgb(177, 177, 177)
+      background-color: transparent
+
+.nav-link.user-management-admin.disabled-link
+  a
+    :hover
+      border-color: transparent

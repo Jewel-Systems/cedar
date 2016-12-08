@@ -1,0 +1,54 @@
+doctype html
+html(lang="en")
+  head
+    include ../../_html/_head/_init.pug
+
+    link(rel="stylesheet", type="text/css", href="css/font-awesome.min.css")
+  body
+    .container-fluid
+      .row
+        .col-md-12
+          nav.navbar.navbar-light.bg-faded
+            button(type="button", data-toggle="collapse", data-target="#navbarResponsive", aria-controls="navbarResponsive", aria-expanded="false", aria-label="Toggle navigation").navbar-toggler.hidden-lg-up
+            .collapse.navbar-toggleable-md#navbarResponsive
+              a(href="#").navbar-brand
+                img(src="images/logo.png", alt="Cedar House")
+
+              ul.nav.navbar-nav.float-lg-right
+                li.nav-item.admin
+                  a(href="/config", title="Configuration").nav-link
+                    i.fa.fa-cog.fa-lg
+                li.nav-item
+                  a(href="/user/logout", title="Log Out").nav-link
+                    i.fa.fa-sign-out.fa-lg
+
+      .row.flex-items-md-center
+        .container
+          .row.flex-items-md-center.content
+            .col-md-12
+              ol.breadcrumb
+                li.breadcrumb-item
+                  a(href="user") Home
+                li.breadcrumb-item.active
+              .card.main
+                .card-block
+                  h3.card-title
+                  ul.nav.nav-tabs
+                    li.nav-item.user-management-admin
+                      a(href="/user/management/?page=user").user.nav-link User Management
+                    li.nav-item.class-management-admin
+                      a(href="/user/management/?page=class").class.nav-link Class Management
+                    li.nav-item
+                      a(href="/user/management/?page=device").device.nav-link Device Management
+                    li.nav-item
+                      a(href="/user/management/?page=reservation").reservation.nav-link Reservation Management
+                  .loading
+                    img(src="images/balls.gif", alt="loading").img-fluid
+                    //- i.fa.fa-circle-o-notch.fa-spin.fa-3x.fa-fw
+                    //- span.sr-only Loading...
+                  .caramel
+
+    footer.footer
+      include ../../_html/_body/_footer.pug
+      script(type="application/javascript", src="js/default.js")
+      script(type="application/javascript", src="js/user.js")

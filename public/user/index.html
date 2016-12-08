@@ -8,376 +8,127 @@
   <title>Cedar House</title>
   <base href="/">
   <link rel="shortcut icon" href="images/index.ico">
-  <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
-  <link rel="stylesheet" href="css/style.css" type="text/css">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="css/bootstrap-material-datetimepicker.css">
-  <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
-  <script type="application/javascript" src="js/moment-with-locales.js"></script>
-  <script type="text/javascript" src="js/bootstrap.min.js"></script>
-  <script type="application/javascript" src="js/bootstrap-material-datetimepicker.js"></script>
-  <script type="text/javascript" src="js/defaults.js"></script>
-  <script type="text/javascript" src="js/classes/getClasses.js"></script>
-  <script type="text/javascript" src="js/user/getUsers.js"></script>
-  <script type="text/javascript" src="js/user/getTypes.js"></script>
-  <script type="text/javascript" src="js/device/addReservation.js"></script>
-  <script type="text/javascript" src="js/device/getReservations.js"></script>
-  <script type="text/javascript" src="js/device/getDevices.js"></script>
-  <script type="text/javascript" src="js/user/auth.js"></script>
-  <script type="text/javascript" src="js/user/addUser.js"></script>
-  <script type="text/javascript" src="js/user/deleteUser.js"></script>
-  <script type="text/javascript" src="js/device/addDevice.js"></script>
-  <script type="text/javascript" src="js/device/returnDevice.js"></script>
-  <script type="text/javascript" src="js/device/deleteReservation.js"></script>
-  <script type="text/javascript" src="js/user/setPrivilege.js"></script>
-  <script type="text/javascript" src="js/user/revokePrivilege.js"></script>
-  <link rel="stylesheet" type="text/css" href="css/user.css">
+  <link rel="stylesheet" type="text/css" href="css/styles.css">
+  <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
 </head>
 
 <body>
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-12">
-        <nav class="navbar navbar-default">
-          <div class="container-fluid">
-            <div class="navbar-header">
-              <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
-              </button>
-              <a class="navbar-brand" href="#">
-                <img class="img-responsive" src="images/logo.png" alt="Cedar House">
-              </a>
-            </div>
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-              <ul class="nav navbar-nav navbar-right">
-                <li class="admin"><a href="config" title="Configuration"><span class="glyphicon glyphicon-cog"></span></a>
-                </li>
-                <li><a href="user/logout" title="Log Out"><span class="glyphicon glyphicon-log-out"></span></a>
-                </li>
-              </ul>
-            </div>
+        <nav class="navbar navbar-light bg-faded">
+          <button class="navbar-toggler hidden-lg-up" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"></button>
+          <div class="collapse navbar-toggleable-md" id="navbarResponsive">
+            <a class="navbar-brand" href="#">
+              <img src="images/logo.png" alt="Cedar House">
+            </a>
+            <ul class="nav navbar-nav float-lg-right">
+              <li class="nav-item admin"><a class="nav-link" href="/config" title="Configuration"><i class="fa fa-cog fa-lg"></i></a>
+              </li>
+              <li class="nav-item"><a class="nav-link" href="/user/logout" title="Log Out"><i class="fa fa-sign-out fa-lg"></i></a>
+              </li>
+            </ul>
           </div>
         </nav>
       </div>
-      <div class="col-md-12">
-        <div class="row">
-          <div class="col-md-offset-1 col-md-10">
-            <div class="content">
-              <div class="loading">
-                <img src="images/balls.gif" alt="loading">
-              </div>
-              <div class="panel panel-default users">
-                <div class="panel-heading">
-                  <h3 class="panel-title text-center">Users</h3>
-                </div>
-                <div class="panel-body">
-                  <div class="status">
-                    <button class="btn btn-success pull-right admin" id="addUserBut" type="button" data-toggle="modal" data-target="#addUser">Add a user</button>
-                    <button class="btn btn-primary pull-right admin" id="setPrivilegeBut" type="button" data-toggle="modal" data-target="#setPrivilege">Set Privileges</button>
-                    <button class="btn btn-danger pull-right admin" id="revokePrivilegeBut" type="button" data-toggle="modal" data-target="#revokePrivilege">Revoke Privileges</button>
-                    <div class="modal fade" id="addUser" tabindex="-1" role="dialog" aria-labelledby="addUserModal" aria-hidden="true">
-                      <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                          <div class="modal-header">Add an user
-                            <button class="close" type="button" data-dismiss="modal" aria-label="close"><span aria-hidden="true">&times;</span>
-                            </button>
+    </div>
+    <div class="row flex-items-md-center">
+      <div class="container">
+        <div class="row flex-items-md-center">
+          <div class="col-md-10">
+            <div class="row flex-items-md-center content">
+              <div class="col-md-12">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item active">Home</li>
+                </ol>
+                <div class="card main text-md-center">
+                  <div class="card-block">
+                    <h3 class="card-title">Welcome&nbsp;<span class="user-name">{First Name}</span></h3>
+                    <div class="loading">
+                      <img class="img-fluid" src="images/balls.gif" alt="loading">
+                    </div>
+                    <div class="row flex-items-md-around">
+                      <div class="col-md-8">
+                        <div class="row flex-items-md-around student-available-devices">
+                          <div class="col-md-8">
+                            <p><strong>Available devices:</strong>
+                            </p>
+                            <form class="form-inline" method="POST" id="available-devices">
+                              <div class="form-group">
+                                <select class="form-control available-devices" name="available-devices"></select>
+                              </div>
+                              <button class="btn btn-success" type="submit">Rent Device</button>
+                            </form>
                           </div>
-                          <div class="modal-body">
-                            <div class="loading">
-                              <img src="images/balls.gif" alt="loading">
-                            </div>
-                            <form id="add" method="post">
-                              <div class="form-group">
-                                <label for="inputFname">First Name:</label>
-                                <input class="form-control" id="inputFname" type="text" name="fname" placeholder="Peter" required>
-                              </div>
-                              <div class="form-group">
-                                <label for="inputLname">Last Name:</label>
-                                <input class="form-control" id="inputLname" type="text" name="lname" placeholder="Pan" required>
-                              </div>
-                              <div class="form-group">
-                                <label for="inputEmail">Email:</label>
-                                <div class="input-group">
-                                  <input class="form-control" id="inputEmail" type="text" name="email" placeholder="peter.pan" required>
-                                  <div class="input-group-addon">@cedarhouse.co.za</div>
+                        </div>
+                        <div class="row student">
+                          <div class="col-md-12">
+                            <button class="btn btn-primary btn-block" type="button" data-toggle="modal" data-target="#returnDevice-m1" id="returnBtn-1">Return Device</button>
+                            <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" id="returnDevice-m1">
+                              <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                                    </button>
+                                    <h4 class="modal-title">Return a device</h4>
+                                  </div>
+                                  <div class="modal-body">
+                                    <div class="loading">
+                                      <img class="img-fluid" src="images/balls.gif" alt="loading">
+                                    </div>
+                                    <form method="POST" id="returnDevice-f1">
+                                      <div class="form-group">
+                                        <select class="form-control" name="device_id"></select>
+                                      </div>
+                                      <div class="form-group">
+                                        <button class="btn btn-success" type="submit">Return</button>
+                                      </div>
+                                    </form>
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button class="btn btn-default" type="button" data-dismiss="modal">Close</button>
+                                  </div>
                                 </div>
                               </div>
-                              <div class="form-group">
-                                <label for="inputType">User Type:</label>
-                                <select class="form-control" name="type">
-                                  <option value="student">Student</option>
-                                  <option value="teacher">Teacher</option>
-                                  <option value="admin">Admin</option>
-                                </select>
-                              </div>
-                              <div class="form-group">
-                                <label for="inputPass1">Enter Password:</label>
-                                <input class="form-control" id="inputPass1" name="pass1" type="password" required>
-                              </div>
-                              <div class="form-group">
-                                <label for="inputPass2">Confirm Password:</label>
-                                <input class="form-control" id="inputPass2" name="pass2" type="password" required>
-                              </div>
-                              <div class="form-group">
-                                <button class="pull-right btn btn-success" type="submit">Add User</button>
-                              </div>
-                              <div class="form-group">
-                                <hr>
-                              </div>
-                            </form>
-                          </div>
-                          <div class="modal-footer">
-                            <button class="btn btn-default" type="button" data-dismiss="modal">Close</button>
+                            </div>
                           </div>
                         </div>
                       </div>
                     </div>
-                    <div class="modal fade" id="setPrivilege" tabindex="-1" role="dialog" aria-labelledby="setPrivilegeModal" aria-hidden="true">
-                      <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                          <div class="modal-header">Set Privilege
-                            <button class="close" type="button" data-dismiss="modal" aria-hidden="true"><span aria-hidden="true">&times;</span>
-                            </button>
+                    <div class="row teacher admin">
+                      <div class="col-md-4 options landing-user-management">
+                        <a href="/user/management/?page=user">
+                          <div class="card card-block text-md-center"><i class="fa fa-user fa-5x"></i>
+                            <h6>User Management</h6>
                           </div>
-                          <div class="modal-body">
-                            <div class="loading">
-                              <img src="images/balls.gif" alt="loading">
-                            </div>
-                            <form id="setPrivilege" method="post">
-                              <div class="form-group">
-                                <label for="userID">User ID:</label>
-                                <input class="form-control" id="userID" type="number" name="user_id" placeholder="4" required>
-                              </div>
-                              <div class="form-group deviceType">
-                                <label for="deviceType">Device Type:</label>
-                              </div>
-                              <div class="form-group">
-                                <button class="btn btn-success pull-right" type="submit">Set</button>
-                                <hr>
-                              </div>
-                            </form>
+                        </a>
+                      </div>
+                      <div class="col-md-4 options landing-device-management">
+                        <a href="/user/management/?page=device">
+                          <div class="card card-block text-md-center"><i class="fa fa-laptop fa-5x"></i>
+                            <h6>Device Management</h6>
                           </div>
-                          <div class="modal-footer">
-                            <button class="btn btn-default" type="button" data-dismiss="modal">Close</button>
+                        </a>
+                      </div>
+                      <div class="col-md-4 options landing-reservation-management">
+                        <a href="/user/management/?page=reservation">
+                          <div class="card card-block text-md-center"><i class="fa fa-calendar fa-5x"></i>
+                            <h6>Reservation Management</h6>
                           </div>
-                        </div>
+                        </a>
                       </div>
                     </div>
-                    <div class="modal fade" id="revokePrivilege" tabindex="-1" role="dialog" aria-labelledby="revokePrivilegeModal" aria-hidden="true">
-                      <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                          <div class="modal-header">Revoke Privilege
-                            <button class="close" type="button" data-dismiss="modal" aria-hidden="true"><span aria-hidden="true">&times;</span>
-                            </button>
+                    <div class="row admin">
+                      <div class="offset-md-4 col-md-4 options landing-class-management">
+                        <a href="/user/management/?page=class">
+                          <div class="card card-block text-md-center"><i class="fa fa-book fa-5x"></i>
+                            <h6>Class Management</h6>
                           </div>
-                          <div class="modal-body">
-                            <div class="loading">
-                              <img src="images/balls.gif" alt="loading">
-                            </div>
-                            <form id="revokePrivilege" method="post">
-                              <div class="form-group">
-                                <label for="userID">User ID:</label>
-                                <input class="form-control" id="userID" type="number" name="user_id" placeholder="4" required>
-                              </div>
-                              <div class="form-group deviceType">
-                                <label for="deviceType">Device Type:</label>
-                              </div>
-                              <div class="form-group">
-                                <button class="btn btn-success pull-right" type="submit">Revoke</button>
-                                <hr>
-                              </div>
-                            </form>
-                          </div>
-                          <div class="modal-footer">
-                            <button class="btn btn-default" type="button" data-dismiss="modal">Close</button>
-                          </div>
-                        </div>
+                        </a>
                       </div>
                     </div>
                   </div>
-                  <table class="table table-striped users-table">
-                    <thead>
-                      <th>ID</th>
-                      <th>Full Name</th>
-                      <th>Email</th>
-                      <th>Account Type</th>
-                      <th class="text-right">Options</th>
-                    </thead>
-                    <tbody></tbody>
-                  </table>
                 </div>
-              </div>
-              <div class="panel panel-default devices">
-                <div class="panel-heading">
-                  <h3 class="panel-title text-center">Devices</h3>
-                </div>
-                <div class="panel-body">
-                  <button class="btn btn-success pull-right admin" id="addDeviceBut" type="button" data-toggle="modal" data-target="#addDevice">Add a Device</button>
-                  <button class="btn btn-primary pull-right admin" id="returnDeviceBut" type="button" data-toggle="modal" data-target="#returnDevice">Return a Device</button>
-                  <form class="pull-right" id="returnD" method="post">
-                    <button class="btn btn-warning" id="returnAD" type="submit">Return a Device</button>
-                  </form>
-                  <div class="modal fade" id="addDevice" tabindex="-1" role="dialog" aria-labelledby="addDeviceModal" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                      <div class="modal-content">
-                        <div class="modal-header">Add a Device
-                          <button class="close" type="button" data-dismiss="modal" aria-hidden="true"><span aria-hidden="true">&times;</span>
-                          </button>
-                        </div>
-                        <div class="modal-body">
-                          <div class="loading">
-                            <img src="images/balls.gif" alt="loading">
-                          </div>
-                          <form id="addNewDevice" method="post">
-                            <div class="form-group">
-                              <label for="inputSerial">Serial Number:</label>
-                              <input class="form-control" id="inputSerial" type="text" name="serial_no" placeholder="MAC001" required>
-                            </div>
-                            <div class="form-group deviceType">
-                              <label for="inputType">Device Type:</label>
-                            </div>
-                            <div class="form-group">
-                              <label for="inputActive">Is the device active:</label>
-                              <div class="radio">
-                                <label>
-                                  <input type="radio" name="is_active" value="true">Is Active</label>
-                              </div>
-                              <div class="radio">
-                                <label>
-                                  <input type="radio" name="is_active" value="false">Not Active</label>
-                              </div>
-                            </div>
-                            <div class="form-group">
-                              <button class="btn btn-success pull-right" type="submit">Add Device</button>
-                              <hr>
-                            </div>
-                          </form>
-                        </div>
-                        <div class="modal-footer">
-                          <button class="btn btn-default" type="button" data-dismiss="modal">Close</button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="modal fade" id="returnDevice" tabindex="-1" role="dialog" aria-labelledby="returnDeviceModal" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                      <div class="modal-content">
-                        <div class="modal-header">Return a Device
-                          <button class="close" type="button" data-dismiss="modal" aria-hidden="true"><span aria-hidden="true">&times;</span>
-                          </button>
-                        </div>
-                        <div class="modal-body">
-                          <div class="loading">
-                            <img src="images/balls.gif" alt="loading">
-                          </div>
-                          <form id="returnADevice" method="post">
-                            <div class="form-group">
-                              <label for="inputUserID">User ID:</label>
-                              <input class="form-control" id="inputUserID" type="number" name="user_id" placeholder="3" required>
-                            </div>
-                            <div class="form-group">
-                              <label for="inputDeviceID">Device ID:</label>
-                              <input class="form-control" id="inputDeviceID" type="number" name="device_id" placeholder="3" required>
-                            </div>
-                            <div class="form-group">
-                              <button class="btn btn-success pull-right" type="submit">Return Device</button>
-                              <hr>
-                            </div>
-                          </form>
-                        </div>
-                        <div class="modal-footer">
-                          <button class="btn btn-default" type="button" data-dismiss="modal">Close</button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <table class="table table-striped available-devices">
-                    <thead>
-                      <th>Device ID</th>
-                      <th>Type</th>
-                      <th class="admin">Is active</th>
-                      <th class="admin teacher">Loaned By</th>
-                      <th class="admin">Created At</th>
-                      <th class="text-right">Options</th>
-                    </thead>
-                    <tbody></tbody>
-                  </table>
-                </div>
-              </div>
-              <div class="panel panel-default reservations teacher admin">
-                <div class="panel-heading">
-                  <h3 class="panel-title text-center">Reservations</h3>
-                </div>
-                <div class="panel-body">
-                  <div class="status">
-                    <button class="btn btn-primary pull-right teacher admin" id="reserveDeviceBut" type="button" data-toggle="modal" data-target="#reserveDevice">Reserve Device/s</button>
-                    <div class="modal fade" id="reserveDevice" tabindex="-1" role="dialog" aria-labelledby="reserveDeviceModal" aria-hidden="true">
-                      <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                          <div class="modal-header">Device Reservation
-                            <button class="close" type="button" data-dismiss="modal" aria-hidden="true"><span aria-hidden="true">&times;</span>
-                            </button>
-                          </div>
-                          <div class="modal-body">
-                            <div class="loading">
-                              <img src="images/balls.gif" alt="loading">
-                            </div>
-                            <form id="reserve" method="post">
-                              <div class="form-group">
-                                <label for="startTime">Start Time:</label>
-                                <input class="form-control" id="startTime" type="text" name="start_time" placeholder="2012/12/31 12:45:00" required>
-                              </div>
-                              <div class="form-group">
-                                <label for="endTime">End Time:</label>
-                                <input class="form-control" id="endTime" type="text" name="end_time" placeholder="2012/12/31 14:45:00" required>
-                              </div>
-                              <div class="form-group">
-                                <label for="classes">Classes:</label>
-                                <select class="form-control" name="class" id="classes"></select>
-                              </div>
-                              <div class="form-group deviceType">
-                                <label for="deviceType">Device Type:</label>
-                              </div>
-                              <div class="form-group">
-                                <label for="count">Number of devices:</label>
-                                <input class="form-control" id="count" type="number" name="count" placeholder="10" required>
-                              </div>
-                              <div class="form-group">
-                                <label for="safeZone">Safe Zone (hh:mm:ss):</label>
-                                <input class="form-control" id="safeZone" type="text" name="safe_zone" placeholder="00:30:00" value="00:30:00" required>
-                              </div>
-                              <div class="form-group">
-                                <button class="btn btn-success pull-right" type="submit">Reserve</button>
-                                <hr>
-                              </div>
-                              <script type="application/javascript" src="js/pickerInit.js"></script>
-                            </form>
-                          </div>
-                          <div class="modal-footer">
-                            <button class="btn btn-default" type="button" data-dismiss="modal">Close</button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <table class="table table-striped device-reservations">
-                    <thead>
-                      <th>ID</th>
-                      <th>Class ID</th>
-                      <th>Start Time</th>
-                      <th>Type</th>
-                      <th>Safe Zone</th>
-                      <th>Count</th>
-                      <th>End Time</th>
-                      <th>User ID</th>
-                      <th class="text-right admin">Options</th>
-                    </thead>
-                    <tbody></tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-            <div class="row footer">
-              <div class="col-md-12"><span class="pull-left">Copyright &copy; Cedar House</span><span class="pull-right text-right">Education for our time</span>
               </div>
             </div>
           </div>
@@ -385,6 +136,14 @@
       </div>
     </div>
   </div>
+  <footer class="footer">
+    <div class="row flex-items-md-around">
+      <div class="col-md-8"><span class="float-md-left">Copyright &copy; Cedar House</span><span class="float-md-right text-right">Education for our time</span>
+      </div>
+    </div>
+    <script type="application/javascript" src="js/default.js"></script>
+    <script type="application/javascript" src="js/user.js"></script>
+  </footer>
 </body>
 
 </html>

@@ -1,0 +1,110 @@
+<div class="row">
+  <div class="col-md-5">
+    <div class="card">
+      <div class="card-block">
+        <h3 class="card-title">Filter by:</h3>
+        <div class="row flex-items-md-around">
+          <div class="col-md-6">
+            <div class="dropdown">
+              <button class="btn btn-info btn-block dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="ddTypeMenu">Type:</button>
+              <div class="dropdown-menu reservation-type" aria-labelledby="ddTypeMenu">
+                <button class="dropdown-item" type="button">Mac</button>
+                <button class="dropdown-item" type="button">Mac/Win</button>
+                <button class="dropdown-item" type="button">Camera</button>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="dropdown">
+              <button class="btn btn-info btn-block dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="ddUserMenu">User:</button>
+              <div class="dropdown-menu reservation-user" aria-labelledby="ddUserMenu"></div>
+            </div>
+          </div>
+        </div>
+        <hr/>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="dropdown">
+              <button class="btn btn-info btn-block dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="ddClassMenu">Class:</button>
+              <div class="dropdown-menu reservation-class" aria-labelledby="ddClassMenu"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-7">
+    <div class="card">
+      <div class="card-block">
+        <h3 class="card-title">Search:</h3>
+        <form class="form-inline" method="POST" id="searchReservation">
+          <div class="form-group">
+            <input class="form-control" type="text" name="start" placeholder="Start date" />
+            <input class="form-control" type="text" name="end" placeholder="End date" />
+          </div>
+          <hr/>
+          <div class="form-group">
+            <button class="btn btn-primary" type="submit">Search</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <button class="btn btn-success btn-block" type="button" data-toggle="modal" data-target="#deviceReservation-m">Create a reservation</button>
+    <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="reserveDeviceModal" aria-hidden="true" id="deviceReservation-m">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">Device Reservation
+            <button class="close" type="button" data-dismiss="modal" aria-hidden="true"><span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="loading">
+              <img class="img-fluid" src="images/balls.gif" alt="loading" />
+            </div>
+            <form method="post" id="deviceReservation-f">
+              <div class="form-group">
+                <label for="startTime">Start Time:</label>
+                <input class="form-control" id="startTime" type="text" name="start_time" placeholder="2012/12/31 12:45:00" required="required" />
+              </div>
+              <div class="form-group">
+                <label for="endTime">End Time:</label>
+                <input class="form-control" id="endTime" type="text" name="end_time" placeholder="2012/12/31 14:45:00" required="required" />
+              </div>
+              <div class="form-group">
+                <label for="classes">Classes:</label>
+                <select class="form-control" name="class" id="classes"></select>
+              </div>
+              <div class="form-group deviceType">
+                <label for="deviceType">Device Type:</label>
+              </div>
+              <div class="form-group">
+                <label for="count">Number of devices:</label>
+                <input class="form-control" id="count" type="number" name="count" placeholder="10" required="required" />
+              </div>
+              <div class="form-group">
+                <label for="safeZone">Safe Zone (hh:mm:ss):</label>
+                <input class="form-control" id="safeZone" type="text" name="safe_zone" placeholder="00:30:00" value="00:30:00" required="required" />
+              </div>
+              <div class="form-group">
+                <button class="btn btn-success" type="submit">Reserve</button>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-default" type="button" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<hr/>
+<div class="row">
+  <div class="col-md-12">
+    <div class="chocolate"></div>
+  </div>
+</div>

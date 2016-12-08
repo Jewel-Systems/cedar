@@ -1,57 +1,43 @@
 doctype html
 html(lang="en")
   head
-    include ../_html/_head/_head_default_init.pug
-
-    link(rel="stylesheet", type="text/css", href="css/config.css")
-
-    script(type="application/javascript", src="js/config/config.js")
+    include ../_html/_head/_init.pug
   body
     .container-fluid
       .row
-        .col-md-12
-          nav.navbar.navbar-default
-            .container-fluid
-              .navbar-header
-                button(type="button", data-toggle="collapse", data-target="#bs-example-navbar-collapse-1", aria-expanded="false").navbar-toggle.collapsed
-                  span.sr-only Toggle navigation
-                  span.icon-bar
-                  span.icon-bar
-                  span.icon-bar
-                a(href="#").navbar-brand
-                  img(src="images/logo.png", alt="Cedar House").img-responsive
-
-              .collapse.navbar-collapse#bs-example-navbar-collapse-1
-                ul.nav.navbar-nav.navbar-right
-                  li
-                    a(href="user") Back
-                  li
-                    a(href="user/logout", alt="Logout")
-                      span.glyphicon.glyphicon-log-out
+        include ../_html/_body/_nav.pug
 
       .row
-        .col-md-offset-1.col-md-10
-          .content
-            .loading
-              img(src="images/balls.gif", alt="loading").img-responsive
-            .panel.panel-default
-              .panel-heading
-                h3.panel-title Configuration
-              .panel-body.config
-                form(method="post").configuration
-                  .form-group
-                    label(for="inputProtocol") Protocol:
-                    input(type="text", name="protocol", placeholder="http").form-control
-                  .form-group
-                    label(for="inputHost") Host:
-                    input(type="text", name="host", placeholder="steve.zanity.net").form-control
-                  .form-group
-                    label(for="inputPort") Port:
-                    input(type="text", name="port", placeholder="53455").form-control
-                  .form-group
-                    label(for="inputPort") Base Directory:
-                    input(type="text", name="base", placeholder="/home/troopy712139/NetBeansProjects/link-server/web").form-control
-                  input(type="submit").btn.btn-success
+        .container
+          .row.flex-items-md-center
+            .col-md-10
+              .row.flex-items-md-center
+                .col-md-8
+                  ol.breadcrumb
+                    li.breadcrumb-item
+                      a(href="/user") Home
+                    li.breadcrumb-item.active Configuration
+                  .card.main
+                    .card-block
+                      h4.card-title Configuration
+                      .loading
+                        img(src="images/balls.gif", alt="loading").img-fluid
+                      form(method="post").configuration
+                        .form-group
+                          label(for="inputProtocol") Protocol:
+                          input(type="text", name="protocol", placeholder="http").form-control
+                        .form-group
+                          label(for="inputHost") Host:
+                          input(type="text", name="host", placeholder="steve.zanity.net").form-control
+                        .form-group
+                          label(for="inputPort") Port:
+                          input(type="text", name="port", placeholder="53455").form-control
+                        .form-group
+                          label(for="inputPort") Base Directory:
+                          input(type="text", name="base", placeholder="/home/troopy712139/NetBeansProjects/link-server/web").form-control
+                        input(type="submit").btn.btn-success
 
-
-          include ../_html/_body/_default_body_and_footer.pug
+    footer.footer
+      include ../_html/_body/_footer.pug
+      script(type="application/javascript", src="js/default.js")
+      script(type="application/javascript", src="js/config.js")

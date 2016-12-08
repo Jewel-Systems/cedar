@@ -1,0 +1,100 @@
+.row
+  .col-md-3
+    .card
+      .card-block
+        h3.card-title Filter by:
+        .dropdown
+          button(type="button", data-toggle="dropdown", aria-haspopup="true", aria-expanded="false").btn.btn-info.btn-block.dropdown-toggle#ddTypeMenu Type:
+          div(aria-labelledby="ddTypeMenu").dropdown-menu.user
+            button(type="button").dropdown-item Student
+            button(type="button").dropdown-item Teacher
+            button(type="button").dropdown-item Admin
+  .col-md-9
+    .card
+      .card-block
+        h3.card-title Search:
+        form(method="POST").form-inline#searchUser
+          input(type="text", name="search", placeholder="Search").form-control
+          select.form-control#searchType
+            option(value="id") User ID
+            option(value="name") Name
+            option(value="email") Email
+          button(type="submit").btn.btn-primary Search
+.row.admin
+  .col-md-6
+    button(type="button", data-toggle="modal", data-target="#addUser").btn.btn-success.btn-block Add User
+
+    div(tabindex="-1", role="dialog", aria-labelledby="myModalLabel", aria-hidden="true").modal.fade#addUser
+      div(role="document").modal-dialog
+        .modal-content
+          .modal-header
+            button(type="button", data-dismiss="modal", aria-label="Close").close
+              span(aria-hidden="true") &times;
+            h4.modal-title#addUserTitle Add a new user
+          .modal-body
+            .loading
+              img(src="images/balls.gif", alt="loading").img-fluid
+            form(method="POST")#addUserForm
+              .form-group
+                label(for="inputFname") First Name:
+                input(id="inputFname", type="text", name="fname", placeholder="Peter", required).form-control
+              .form-group
+                label(for="inputLname") Last Name:
+                input(id="inputLname", type="text", name="lname", placeholder="Pan", required).form-control
+              .form-group
+                label(for="inputEmail") Email:
+                .input-group
+                  input(id="inputEmail", type="text", name="email", placeholder="peter.pan", required).form-control
+                  .input-group-addon @cedarhouse.co.za
+              .form-group
+                label(for="inputType") User Type:
+                select(name="type").form-control
+                  option(value="student") Student
+                  option(value="teacher") Teacher
+                  option(value="admin") Admin
+              .form-group
+                label(for="inputPass1") Enter Password:
+                input(id="inputPass1", name="pass1", type="password", required).form-control
+              .form-group
+                label(for="inputPass2") Confirm Password:
+                input(id="inputPass2", name="pass2", type="password", required).form-control
+              .form-group
+                button(type="submit").pull-right.btn.btn-success Add User
+              .form-group
+                p &nbsp;
+          .modal-footer
+            button(type="button", data-dismiss="modal").btn.btn-default Close
+  .col-md-6
+    button(type="button", data-toggle="modal", data-target="#changePermission-m").btn.btn-success.btn-block Privileges
+
+    div(tabindex="-1", role="dialog", aria-labelledby="myModalLabel", aria-hidden="true").modal.fade#changePermission-m
+      div(role="document").modal-dialog
+        .modal-content
+          .modal-header
+            button(type="button", data-dismiss="modal", aria-label="Close").close
+              span(aria-hidden="true") &times;
+            h4.modal-title#changePermissionTitle Change Permission
+          .modal-body
+            .loading
+              img(src="images/balls.gif", alt="loading").img-fluid
+            form(method="POST")#changePermission-f
+              .form-group
+                label(for="user") Pick a user:
+                select(name="user").form-control#user_id
+              .form-group
+                .form-check
+                  label.form-check-label
+                    input(type="checkbox", name="type" value="mac").form-check-input.mac
+                    p Mac
+                .form-check
+                  label.form-check-label
+                    input(type="checkbox", name="type", value="camera").form-check-input.camera
+                    p Camera
+              .form-group
+                button(type="submit").btn.btn-success Change permissions
+          .modal-footer
+            button(type="button", data-dismiss="modal").btn.btn-default Close
+hr
+.row
+  .col-md-12
+    .chocolate

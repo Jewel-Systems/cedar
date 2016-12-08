@@ -7,51 +7,46 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Cedar House</title>
   <base href="/">
-  <link rel="shortcut icon" href="css/images/index.ico">
-  <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
-  <link rel="stylesheet" href="css/style.css" type="text/css">
-  <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
-  <script type="text/javascript" src="js/bootstrap.min.js"></script>
-  <script type="text/javascript" src="js/defaults.js"></script>
-  <script type="text/javascript" src="js/user/logout.js"></script>
+  <link rel="shortcut icon" href="images/index.ico">
+  <link rel="stylesheet" type="text/css" href="css/styles.css">
 </head>
 
 <body>
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-12">
-        <nav class="navbar navbar-default">
-          <div class="container-fluid">
-            <div class="navbar-header">
-              <a class="navbar-brand" href="#">
-                <img class="img-responsive" src="images/logo.png" alt="Cedar House">
-              </a>
-            </div>
+        <nav class="navbar navbar-light bg-faded">
+          <button class="navbar-toggler hidden-lg-up" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"></button>
+          <div class="collapse navbar-toggleable-md" id="navbarResponsive">
+            <a class="navbar-brand" href="#">
+              <img src="images/logo.png" alt="Cedar House">
+            </a>
           </div>
         </nav>
       </div>
     </div>
-    <div class="row">
-      <div class="col-md-offset-1 col-md-10">
-        <div class="content">
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <h3 class="panel-title text-center">Status</h3>
-            </div>
-            <div class="panel-body">
-              <div class="status">
-                <p>Logged out, you will be redirected in 3 seconds...</p>
+    <div class="row flex-items-md-center">
+      <div class="container">
+        <div class="row flex-items-md-center content">
+          <div class="col-md-12">
+            <div class="card main">
+              <div class="card-block">
+                <h3 class="card-title">Logged out, you will be redirected in 3 seconds...</h3>
               </div>
             </div>
-          </div>
-        </div>
-        <div class="row footer">
-          <div class="col-md-12"><span class="pull-left">Copyright &copy; Cedar House</span><span class="pull-right text-right">Education for our time</span>
           </div>
         </div>
       </div>
     </div>
   </div>
+  <footer class="footer">
+    <div class="row flex-items-md-around">
+      <div class="col-md-8"><span class="float-md-left">Copyright &copy; Cedar House</span><span class="float-md-right text-right">Education for our time</span>
+      </div>
+    </div>
+    <script type="application/javascript" src="js/default.js"></script>
+    <script type="application/javascript" src="js/logout.js"></script>
+  </footer>
 </body>
 
 </html>

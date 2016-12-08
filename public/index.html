@@ -8,92 +8,54 @@
   <title>Cedar House</title>
   <base href="/">
   <link rel="shortcut icon" href="images/index.ico">
-  <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
-  <link rel="stylesheet" href="css/style.css" type="text/css">
-  <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
-  <script type="text/javascript" src="js/bootstrap.min.js"></script>
-  <script type="text/javascript" src="js/defaults.js"></script>
-  <link rel="stylesheet" type="text/css" href="css/home.css">
-  <link rel="stylesheet" type="text/css" href="css/login.css">
-  <script type="text/javascript" src="js/say-cheese.js"></script>
-  <script type="text/javascript" src="js/qrcode/grid.js"></script>
-  <script type="text/javascript" src="js/qrcode/version.js"></script>
-  <script type="text/javascript" src="js/qrcode/detector.js"></script>
-  <script type="text/javascript" src="js/qrcode/formatinf.js"></script>
-  <script type="text/javascript" src="js/qrcode/errorlevel.js"></script>
-  <script type="text/javascript" src="js/qrcode/bitmat.js"></script>
-  <script type="text/javascript" src="js/qrcode/datablock.js"></script>
-  <script type="text/javascript" src="js/qrcode/bmparser.js"></script>
-  <script type="text/javascript" src="js/qrcode/datamask.js"></script>
-  <script type="text/javascript" src="js/qrcode/rsdecoder.js"></script>
-  <script type="text/javascript" src="js/qrcode/gf256poly.js"></script>
-  <script type="text/javascript" src="js/qrcode/gf256.js"></script>
-  <script type="text/javascript" src="js/qrcode/decoder.js"></script>
-  <script type="text/javascript" src="js/qrcode/qrcode.js"></script>
-  <script type="text/javascript" src="js/qrcode/findpat.js"></script>
-  <script type="text/javascript" src="js/qrcode/alignpat.js"></script>
-  <script type="text/javascript" src="js/qrcode/databr.js"></script>
-  <script type="text/javascript" src="js/effects_saycheese.js"></script>
-  <script type="text/javascript" src="js/user/login.js"></script>
+  <link rel="stylesheet" type="text/css" href="css/styles.css">
 </head>
 
 <body>
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-12">
-        <nav class="navbar navbar-default">
-          <div class="container-fluid">
-            <div class="navbar-header">
-              <a class="navbar-brand" href="#">
-                <img class="img-responsive" src="images/logo.png" alt="Cedar House">
-              </a>
-            </div>
+        <nav class="navbar navbar-light bg-faded">
+          <button class="navbar-toggler hidden-lg-up" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"></button>
+          <div class="collapse navbar-toggleable-md" id="navbarResponsive">
+            <a class="navbar-brand" href="#">
+              <img src="images/logo.png" alt="Cedar House">
+            </a>
           </div>
         </nav>
       </div>
     </div>
-    <div class="row">
-      <div class="col-md-offset-1 col-md-10">
-        <div class="content">
-          <div class="loading">
-            <img class="img-responsive" src="images/balls.gif" alt="loading">
-          </div>
-          <p class="greeting">Hello</p>
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <h3 class="panel-title text-center">Login</h3>
-            </div>
-            <div class="panel-body">
-              <div class="row">
-                <div class="col-md-6">
-                  <p>Present your QR code</p>
-                  <div class="thumbnail embed-responsive embed-responsive-4by3" id="camera"></div>
-                  <div id="qrStatus">
-                    <p>No QR Code in sight.</p>
-                  </div>
+    <div class="row flex-items-md-center">
+      <div class="container">
+        <div class="row flex-items-md-center content">
+          <div class="col-md-8">
+            <div class="card main text-xs-center login">
+              <div class="card-block">
+                <h4 class="card-title">Present your QR code</h4>
+                <div class="loading">
+                  <img class="img-fluid" src="images/balls.gif" alt="loading">
                 </div>
-                <div class="col-md-6">
-                  <div class="loginmodal-container">
-                    <h1>Login to Your Account</h1>
-                    <br>
-                    <form class="loginForm" method="post" action="user">
-                      <input type="text" name="email" placeholder="Email/User ID" required>
-                      <input type="password" name="pass" placeholder="Password" required>
-                      <input class="login loginmodal-submit" type="submit" value="Login">
-                    </form>
+                <div class="row flex-items-md-center">
+                  <div class="col-md-10">
+                    <div class="thumbnail embed-responsive embed-responsive-4by3" id="camera"></div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="row footer">
-          <div class="col-md-12"><span class="pull-left">Copyright &copy; Cedar House</span><span class="pull-right text-right">Education for our time</span>
-          </div>
-        </div>
       </div>
     </div>
   </div>
+  <footer class="footer">
+    <div class="row flex-items-md-around">
+      <div class="col-md-8"><span class="float-md-left">Copyright &copy; Cedar House</span><span class="float-md-right text-right">Education for our time</span>
+      </div>
+    </div>
+    <script type="application/javascript" src="js/default.js"></script>
+    <script type="application/javascript" src="js/qr.js"></script>
+    <script type="application/javascript" src="js/login.js"></script>
+  </footer>
 </body>
 
 </html>

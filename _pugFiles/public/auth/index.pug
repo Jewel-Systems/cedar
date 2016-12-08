@@ -1,0 +1,30 @@
+doctype html
+html(lang="en")
+  head
+    include ../_html/_head/_init.pug
+
+    link(rel="stylesheet", type="text/css", href="css/font-awesome.min.css")
+  body
+    .container-fluid
+      .row
+        include ../_html/_body/_nav.pug
+
+      .row.flex-items-md-center
+        .container
+          .row.flex-items-md-center
+            .col-md-10
+              .row.flex-items-md-center.content
+                .col-md-12
+                  .loading
+                    img(src="images/balls.gif", alt="loading").img-fluid
+                  .card.text-md-center
+                    .card-block
+                      h3.card-title Please Enter Your Password
+                      form(method="POST").form-inline.password
+                        input(type="password", name="password", placeholder="Password").form-control
+                        button(type="submit").btn.btn-success Login
+
+    footer.footer
+      include ../_html/_body/_footer.pug
+      script(type="application/javascript", src="js/default.js")
+      script(type="application/javascript", src="js/login.js")

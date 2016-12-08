@@ -1,8 +1,8 @@
 {
   "name": "cedar",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.html",
+  "version": "2.0.0",
+  "description": "Rewriting the entire Cedar House front-en",
+  "main": "README.md",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -17,16 +17,17 @@
   },
   "homepage": "https://github.com/Jewel-Systems/front#readme",
   "devDependencies": {
-    "browser-sync": "^2.14.0",
+    "browser-sync": "^2.17.6",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^3.1.1",
-    "gulp-clean-css": "^2.0.12",
+    "gulp-clean-css": "^2.0.13",
+    "gulp-concat": "^2.6.1",
+    "gulp-concat-css": "^2.3.0",
     "gulp-html-prettify": "0.0.1",
-    "gulp-pug": "^3.0.4",
+    "gulp-plumber": "^1.1.0",
+    "gulp-pug": "^3.1.0",
     "gulp-sass": "^2.3.2",
     "gulp-uglify": "^2.0.0",
-    "karma": "^1.2.0",
-    "pm2": "^1.1.3",
     "pump": "^1.0.1"
   }
 }

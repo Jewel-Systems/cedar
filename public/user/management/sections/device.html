@@ -1,0 +1,169 @@
+<div class="row">
+  <div class="col-md-4">
+    <div class="card">
+      <div class="card-block">
+        <h3 class="card-title">Filter by:</h3>
+        <div class="row flex-items-md-around">
+          <div class="col-md-6">
+            <div class="dropdown">
+              <button class="btn btn-info dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="ddTypeMenu">Type:</button>
+              <div class="dropdown-menu device" aria-labelledby="ddTypeMenu">
+                <button class="dropdown-item" type="button">Mac</button>
+                <button class="dropdown-item" type="button">Mac/Win</button>
+                <button class="dropdown-item" type="button">Camera</button>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="dropdown">
+              <button class="btn btn-info dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="ddActiveMenu">Status:</button>
+              <div class="dropdown-menu device" aria-labelledby="ddActiveMenu">
+                <button class="dropdown-item" type="button">Active</button>
+                <button class="dropdown-item" type="button">Inactive</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-8">
+    <div class="card">
+      <div class="card-block">
+        <h3 class="card-title">Search:</h3>
+        <form class="form-inline" method="POST" id="searchDevice">
+          <input class="form-control" type="text" name="search" placeholder="Search" />
+          <select class="form-control" id="searchType">
+            <option value="id">Device ID</option>
+            <option value="renter">Device renter</option>
+          </select>
+          <button class="btn btn-primary" type="submit">Search</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row teacher">
+  <div class="col-md-12">
+    <button class="btn btn-success btn-block" type="button" data-toggle="modal" data-target="#returnDevice-m2" id="returnBtn-2">Return a device</button>
+    <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" id="returnDevice-m2">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+            </button>
+            <h4 class="modal-title">Return a device</h4>
+          </div>
+          <div class="modal-body">
+            <div class="loading">
+              <img class="img-fluid" src="images/balls.gif" alt="loading" />
+            </div>
+            <form method="POST" id="returnDevice-f2">
+              <div class="form-group">
+                <label for="device_id">Pick a device to return:</label>
+                <select class="form-control" name="device_id" id="device_id"></select>
+              </div>
+              <div class="form-group">
+                <button class="btn btn-success" type="submit">Return device</button>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-default" type="button" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row admin">
+  <div class="col-md-6">
+    <button class="btn btn-success btn-block" type="button" data-toggle="modal" data-target="#addDevice-m">Add a device</button>
+    <div class="modal fade" id="addDevice-m" tabindex="-1" role="dialog" aria-labelledby="addDeviceModal" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">Add a Device
+            <button class="close" type="button" data-dismiss="modal" aria-hidden="true"><span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="loading">
+              <img src="images/balls.gif" alt="loading" />
+            </div>
+            <form method="post" id="addDevice-f">
+              <div class="form-group">
+                <label for="inputSerial">Serial Number:</label>
+                <input class="form-control" id="inputSerial" type="text" name="serial_no" placeholder="CH 001" required="required" />
+              </div>
+              <div class="form-group deviceType">
+                <label for="inputType">Device Type:</label>
+              </div>
+              <div class="form-group">
+                <label for="inputActive">Is the device active:</label>
+                <div class="form-check">
+                  <label class="form-check-label">
+                    <input class="form-check-input" type="radio" name="is_active" value="true" />
+                    <p>Is Active</p>
+                  </label>
+                </div>
+                <div class="form-check">
+                  <label class="form-check-label">
+                    <input class="form-check-input" type="radio" name="is_active" value="false" />
+                    <p>Not Active</p>
+                  </label>
+                </div>
+              </div>
+              <div class="form-group">
+                <button class="btn btn-success" type="submit">Add Device</button>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-default" type="button" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <button class="btn btn-success btn-block" type="button" data-toggle="modal" data-target="#returnDevice-m3" id="returnBtn-3">Return device</button>
+    <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" id="returnDevice-m3">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+            </button>
+            <h4 class="modal-title">Return a device</h4>
+          </div>
+          <div class="modal-body">
+            <div class="loading">
+              <img class="img-fluid" src="images/balls.gif" alt="loading" />
+            </div>
+            <form method="POST" id="returnDevice-f3">
+              <div class="form-group">
+                <label for="user_id">Pick a user to return the device for:</label>
+                <select class="form-control" name="user_id" id="user_id"></select>
+              </div>
+              <div class="form-group">
+                <label for="device_id">Pick the device to be returned:</label>
+                <select class="form-control" name="device_id"></select>
+              </div>
+              <div class="form-group">
+                <button class="btn btn-success" type="submit">Return device</button>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-default" type="button" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<hr/>
+<div class="row">
+  <div class="col-md-12">
+    <div class="chocolate"></div>
+  </div>
+</div>

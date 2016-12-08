@@ -1,40 +1,29 @@
 doctype html
 html(lang="en")
   head
-    include _html/_head/_head_default_init.pug
-
-    link(rel="stylesheet", type="text/css", href="css/home.css")
-    link(rel="stylesheet", type="text/css", href="css/login.css")
-
-    include _html/_head/_head_qrcode_js.pug
-    script(type="text/javascript", src="js/user/login.js")
+    include _html/_head/_init.pug
   body
     .container-fluid
       .row
-        include _html/_body/_default_body_and_nav.pug
+        include _html/_body/_nav.pug
 
-      .row
-        .col-md-offset-1.col-md-10
-          .content
-            .loading
-              img(src="images/balls.gif", alt="loading").img-responsive
-            p.greeting Hello
-            .panel.panel-default
-              .panel-heading
-                h3.panel-title.text-center Login
-              .panel-body
-                .row
-                  .col-md-6
-                    p Present your QR code
-                    .thumbnail.embed-responsive.embed-responsive-4by3#camera
-                    #qrStatus
-                      p No QR Code in sight.
-                  .col-md-6
-                    .loginmodal-container
-                      h1 Login to Your Account
-                      br
-                      form(method="post", action="user").loginForm
-                        input(type="text", name="email", placeholder="Email/User ID", required)
-                        input(type="password", name="pass", placeholder="Password", required)
-                        input(type="submit", value="Login").login.loginmodal-submit
-          include _html/_body/_default_body_and_footer.pug
+      .row.flex-items-md-center
+        .container
+          .row.flex-items-md-center.content
+            .col-md-8
+              .card.main.text-xs-center.login
+                .card-block
+                  h4.card-title Present your QR code
+                  .loading
+                    img(src="images/balls.gif", alt="loading").img-fluid
+                  .row.flex-items-md-center
+                    .col-md-10
+                      .thumbnail.embed-responsive.embed-responsive-4by3#camera
+                      //- #qrStatus
+                      //-   p No QR Code in sight.
+
+    footer.footer
+      include _html/_body/_footer.pug
+      script(type="application/javascript", src="js/default.js")
+      script(type="application/javascript", src="js/qr.js")
+      script(type="application/javascript", src="js/login.js")

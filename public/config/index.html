@@ -8,80 +8,76 @@
   <title>Cedar House</title>
   <base href="/">
   <link rel="shortcut icon" href="images/index.ico">
-  <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
-  <link rel="stylesheet" href="css/style.css" type="text/css">
-  <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
-  <script type="text/javascript" src="js/bootstrap.min.js"></script>
-  <script type="text/javascript" src="js/defaults.js"></script>
-  <link rel="stylesheet" type="text/css" href="css/config.css">
-  <script type="application/javascript" src="js/config/config.js"></script>
+  <link rel="stylesheet" type="text/css" href="css/styles.css">
 </head>
 
 <body>
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-12">
-        <nav class="navbar navbar-default">
-          <div class="container-fluid">
-            <div class="navbar-header">
-              <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
-              </button>
-              <a class="navbar-brand" href="#">
-                <img class="img-responsive" src="images/logo.png" alt="Cedar House">
-              </a>
-            </div>
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-              <ul class="nav navbar-nav navbar-right">
-                <li><a href="user">Back</a>
-                </li>
-                <li><a href="user/logout" alt="Logout"><span class="glyphicon glyphicon-log-out"></span></a>
-                </li>
-              </ul>
-            </div>
+        <nav class="navbar navbar-light bg-faded">
+          <button class="navbar-toggler hidden-lg-up" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"></button>
+          <div class="collapse navbar-toggleable-md" id="navbarResponsive">
+            <a class="navbar-brand" href="#">
+              <img src="images/logo.png" alt="Cedar House">
+            </a>
           </div>
         </nav>
       </div>
     </div>
     <div class="row">
-      <div class="col-md-offset-1 col-md-10">
-        <div class="content">
-          <div class="loading">
-            <img class="img-responsive" src="images/balls.gif" alt="loading">
-          </div>
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <h3 class="panel-title">Configuration</h3>
+      <div class="container">
+        <div class="row flex-items-md-center">
+          <div class="col-md-10">
+            <div class="row flex-items-md-center">
+              <div class="col-md-8">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="/user">Home</a>
+                  </li>
+                  <li class="breadcrumb-item active">Configuration</li>
+                </ol>
+                <div class="card main">
+                  <div class="card-block">
+                    <h4 class="card-title">Configuration</h4>
+                    <div class="loading">
+                      <img class="img-fluid" src="images/balls.gif" alt="loading">
+                    </div>
+                    <form class="configuration" method="post">
+                      <div class="form-group">
+                        <label for="inputProtocol">Protocol:</label>
+                        <input class="form-control" type="text" name="protocol" placeholder="http">
+                      </div>
+                      <div class="form-group">
+                        <label for="inputHost">Host:</label>
+                        <input class="form-control" type="text" name="host" placeholder="steve.zanity.net">
+                      </div>
+                      <div class="form-group">
+                        <label for="inputPort">Port:</label>
+                        <input class="form-control" type="text" name="port" placeholder="53455">
+                      </div>
+                      <div class="form-group">
+                        <label for="inputPort">Base Directory:</label>
+                        <input class="form-control" type="text" name="base" placeholder="/home/troopy712139/NetBeansProjects/link-server/web">
+                      </div>
+                      <input class="btn btn-success" type="submit">
+                    </form>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div class="panel-body config">
-              <form class="configuration" method="post">
-                <div class="form-group">
-                  <label for="inputProtocol">Protocol:</label>
-                  <input class="form-control" type="text" name="protocol" placeholder="http">
-                </div>
-                <div class="form-group">
-                  <label for="inputHost">Host:</label>
-                  <input class="form-control" type="text" name="host" placeholder="steve.zanity.net">
-                </div>
-                <div class="form-group">
-                  <label for="inputPort">Port:</label>
-                  <input class="form-control" type="text" name="port" placeholder="53455">
-                </div>
-                <div class="form-group">
-                  <label for="inputPort">Base Directory:</label>
-                  <input class="form-control" type="text" name="base" placeholder="/home/troopy712139/NetBeansProjects/link-server/web">
-                </div>
-                <input class="btn btn-success" type="submit">
-              </form>
-            </div>
-          </div>
-        </div>
-        <div class="row footer">
-          <div class="col-md-12"><span class="pull-left">Copyright &copy; Cedar House</span><span class="pull-right text-right">Education for our time</span>
           </div>
         </div>
       </div>
     </div>
   </div>
+  <footer class="footer">
+    <div class="row flex-items-md-around">
+      <div class="col-md-8"><span class="float-md-left">Copyright &copy; Cedar House</span><span class="float-md-right text-right">Education for our time</span>
+      </div>
+    </div>
+    <script type="application/javascript" src="js/default.js"></script>
+    <script type="application/javascript" src="js/config.js"></script>
+  </footer>
 </body>
 
 </html>

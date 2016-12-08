@@ -1,0 +1,72 @@
+<div class="row">
+  <div class="col-md-6">
+    <button class="btn btn-success btn-block" type="button" data-toggle="modal" data-target="#addClass-m">Add a new class</button>
+    <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="addClassModal" aria-hidden="true" id="addClass-m">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">Add a new class
+            <button class="close" type="button" data-dismiss="modal" aria-hidden="true"><span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="loading">
+              <img class="img-fluid" src="images/balls.gif" alt="loading" />
+            </div>
+            <form method="post" id="addClass-f">
+              <div class="form-group">
+                <label for="className">Class name:</label>
+                <input class="form-control" type="text" name="name" placeholder="English" />
+              </div>
+              <div class="form-group">
+                <button class="btn btn-success" type="submit">Add</button>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-default" type="button" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <button class="btn btn-success btn-block" type="button" data-toggle="modal" data-target="#registerStudent-m">Register a student</button>
+    <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="registerStudentModal" aria-hidden="true" id="registerStudent-m">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">Register a student into a class
+            <button class="close" type="button" data-dismiss="modal" aria-hidden="true"><span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="loading">
+              <img class="img-fluid" src="images/balls.gif" alt="loading" />
+            </div>
+            <form method="post" id="registerStudent-f">
+              <div class="form-group">
+                <label for="classes">Classes:</label>
+                <select class="form-control" name="class" id="classes"></select>
+              </div>
+              <div class="form-group">
+                <label for="userName">User:</label>
+                <select class="form-control" name="user" id="userName"></select>
+              </div>
+              <div class="form-group">
+                <button class="btn btn-success" type="submit">Register</button>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-default" type="button" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<hr/>
+<div class="row">
+  <div class="col-md-12">
+    <div class="chocolate"></div>
+  </div>
+</div>

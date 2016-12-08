@@ -1,269 +1,102 @@
 doctype html
 html(lang="en")
   head
-    include _html/_head/_head_default_init.pug
-    include _html/_head/_head_js.pug
+    include ../_html/_head/_init.pug
 
-    link(rel="stylesheet", type="text/css", href="css/user.css")
-
+    link(rel="stylesheet", type="text/css", href="css/font-awesome.min.css")
   body
     .container-fluid
       .row
         .col-md-12
-          nav.navbar.navbar-default
-            .container-fluid
-              .navbar-header
-                button(type="button", data-toggle="collapse", data-target="#bs-example-navbar-collapse-1", aria-expanded="false").navbar-toggle.collapsed
-                  span.sr-only Toggle navigation
-                  span.icon-bar
-                  span.icon-bar
-                  span.icon-bar
-                a(href="#").navbar-brand
-                  img(src="images/logo.png", alt="Cedar House").img-responsive
+          nav.navbar.navbar-light.bg-faded
+            button(type="button", data-toggle="collapse", data-target="#navbarResponsive", aria-controls="navbarResponsive", aria-expanded="false", aria-label="Toggle navigation").navbar-toggler.hidden-lg-up
+            .collapse.navbar-toggleable-md#navbarResponsive
+              a(href="#").navbar-brand
+                img(src="images/logo.png", alt="Cedar House")
 
-              .collapse.navbar-collapse#bs-example-navbar-collapse-1
-                ul.nav.navbar-nav.navbar-right
-                  li.admin
-                    a(href="config", title="Configuration")
-                      span.glyphicon.glyphicon-cog
-                  li
-                    a(href="user/logout", title="Log Out")
-                      span.glyphicon.glyphicon-log-out
+              ul.nav.navbar-nav.float-lg-right
+                li.nav-item.admin
+                  a(href="/config", title="Configuration").nav-link
+                    i.fa.fa-cog.fa-lg
+                li.nav-item
+                  a(href="/user/logout", title="Log Out").nav-link
+                    i.fa.fa-sign-out.fa-lg
 
-        .col-md-12
-          .row
-            .col-md-offset-1.col-md-10
-              .content
-                .loading
-                  img(src="images/balls.gif", alt="loading")
-                .panel.panel-default.users
-                  .panel-heading
-                    h3.panel-title.text-center Users
-                  .panel-body
-                    .status
-                      button(id="addUserBut", type="button", data-toggle="modal", data-target="#addUser").btn.btn-success.pull-right.admin Add a user
+      .row.flex-items-md-center
+        .container
+          .row.flex-items-md-center
+            .col-md-10
+              .row.flex-items-md-center.content
+                .col-md-12
+                  ol.breadcrumb
+                    li.breadcrumb-item.active Home
+                  .card.main.text-md-center
+                    .card-block
+                      h3.card-title Welcome&nbsp;
+                        span.user-name {First Name}
+                      .loading
+                        img(src="images/balls.gif", alt="loading").img-fluid
+                        //- i.fa.fa-circle-o-notch.fa-spin.fa-3x.fa-fw
+                        //- span.sr-only Loading...
+                      .row.flex-items-md-around
+                        .col-md-8
+                          .row.flex-items-md-around.student-available-devices
+                            .col-md-8
+                              p
+                                strong Available devices:
+                              form(method="POST").form-inline#available-devices
+                                .form-group
+                                  select(name="available-devices").form-control.available-devices
+                                button(type="submit").btn.btn-success Rent Device
+                          .row.student
+                            .col-md-12
+                              button(type="button", data-toggle="modal", data-target="#returnDevice-m1").btn.btn-primary.btn-block#returnBtn-1 Return Device
 
-                      button(id="setPrivilegeBut", type="button", data-toggle="modal", data-target="#setPrivilege").btn.btn-primary.pull-right.admin Set Privileges
+                              div(tabindex="-1", role="dialog", aria-labelledby="myModalLabel", aria-hidden="true").modal.fade#returnDevice-m1
+                                div(role="document").modal-dialog
+                                  .modal-content
+                                    .modal-header
+                                      button(type="button", data-dismiss="modal", aria-label="Close").close
+                                        span(aria-hidden="true") &times;
+                                      h4.modal-title Return a device
+                                    .modal-body
+                                      .loading
+                                        img(src="images/balls.gif", alt="loading").img-fluid
+                                      form(method="POST")#returnDevice-f1
+                                        .form-group
+                                          select(name="device_id").form-control
+                                        .form-group
+                                          button(type="submit").btn.btn-success Return
+                                    .modal-footer
+                                      button(type="button", data-dismiss="modal").btn.btn-default Close
 
-                      button(id="revokePrivilegeBut", type="button", data-toggle="modal", data-target="#revokePrivilege").btn.btn-danger.pull-right.admin Revoke Privileges
+                      .row.teacher.admin
+                        .col-md-4.options.landing-user-management
+                          a(href="/user/management/?page=user")
+                            .card.card-block.text-md-center
+                              i.fa.fa-user.fa-5x
+                              h6 User Management
 
-                      div(id="addUser", tabindex="-1", role="dialog", aria-labelledby="addUserModal", aria-hidden="true").modal.fade
-                        div(role="document").modal-dialog
-                          .modal-content
-                            .modal-header Add an user
-                              button(type="button", data-dismiss="modal", aria-label="close").close
-                                span(aria-hidden="true") &times;
-                            .modal-body
-                              .loading
-                                img(src="images/balls.gif", alt="loading")
-                              form(id="add", method="post")
-                                .form-group
-                                  label(for="inputFname") First Name:
-                                  input(id="inputFname", type="text", name="fname", placeholder="Peter", required).form-control
-                                .form-group
-                                  label(for="inputLname") Last Name:
-                                  input(id="inputLname", type="text", name="lname", placeholder="Pan", required).form-control
-                                .form-group
-                                  label(for="inputEmail") Email:
-                                  .input-group
-                                    input(id="inputEmail", type="text", name="email", placeholder="peter.pan", required).form-control
-                                    .input-group-addon @cedarhouse.co.za
-                                .form-group
-                                  label(for="inputType") User Type:
-                                  select(name="type").form-control
-                                    option(value="student") Student
-                                    option(value="teacher") Teacher
-                                    option(value="admin") Admin
-                                .form-group
-                                  label(for="inputPass1") Enter Password:
-                                  input(id="inputPass1", name="pass1", type="password", required).form-control
-                                .form-group
-                                  label(for="inputPass2") Confirm Password:
-                                  input(id="inputPass2", name="pass2", type="password", required).form-control
-                                .form-group
-                                  button(type="submit").pull-right.btn.btn-success Add User
-                                .form-group
-                                  hr
-                            .modal-footer
-                              button(type="button", data-dismiss="modal").btn.btn-default Close
+                        .col-md-4.options.landing-device-management
+                          a(href="/user/management/?page=device")
+                            .card.card-block.text-md-center
+                              i.fa.fa-laptop.fa-5x
+                              h6 Device Management
 
-                      div(id="setPrivilege", tabindex="-1", role="dialog", aria-labelledby="setPrivilegeModal", aria-hidden="true").modal.fade
-                        div(role="document").modal-dialog
-                          .modal-content
-                            .modal-header Set Privilege
-                              button(type="button", data-dismiss="modal", aria-hidden="true").close
-                                span(aria-hidden="true") &times;
-                            .modal-body
-                              .loading
-                                img(src="images/balls.gif", alt="loading")
-                              form(id="setPrivilege", method="post")
-                                .form-group
-                                  label(for="userID") User ID:
-                                  input(id="userID", type="number", name="user_id", placeholder="4", required).form-control
-                                .form-group.deviceType
-                                  label(for="deviceType") Device Type:
-                                .form-group
-                                  button(type="submit").btn.btn-success.pull-right Set
-                                  hr
-                            .modal-footer
-                              button(type="button", data-dismiss="modal").btn.btn-default Close
+                        .col-md-4.options.landing-reservation-management
+                          a(href="/user/management/?page=reservation")
+                            .card.card-block.text-md-center
+                              i.fa.fa-calendar.fa-5x
+                              h6 Reservation Management
 
-                      div(id="revokePrivilege", tabindex="-1", role="dialog", aria-labelledby="revokePrivilegeModal", aria-hidden="true").modal.fade
-                        div(role="document").modal-dialog
-                          .modal-content
-                            .modal-header Revoke Privilege
-                              button(type="button", data-dismiss="modal", aria-hidden="true").close
-                                span(aria-hidden="true") &times;
-                            .modal-body
-                              .loading
-                                img(src="images/balls.gif", alt="loading")
-                              form(id="revokePrivilege", method="post")
-                                .form-group
-                                  label(for="userID") User ID:
-                                  input(id="userID", type="number", name="user_id", placeholder="4", required).form-control
-                                .form-group.deviceType
-                                  label(for="deviceType") Device Type:
-                                .form-group
-                                  button(type="submit").btn.btn-success.pull-right Revoke
-                                  hr
-                            .modal-footer
-                              button(type="button", data-dismiss="modal").btn.btn-default Close
+                      .row.admin
+                        .offset-md-4.col-md-4.options.landing-class-management
+                          a(href="/user/management/?page=class")
+                            .card.card-block.text-md-center
+                              i.fa.fa-book.fa-5x
+                              h6 Class Management
 
-                    table.table.table-striped.users-table
-                      thead
-                        th ID
-                        th Full Name
-                        th Email
-                        th Account Type
-                        th.text-right Options
-                      tbody
-
-                .panel.panel-default.devices
-                  .panel-heading
-                    h3.panel-title.text-center Devices
-                  .panel-body
-                    button(id="addDeviceBut", type="button", data-toggle="modal", data-target="#addDevice").btn.btn-success.pull-right.admin Add a Device
-
-                    button(id="returnDeviceBut", type="button", data-toggle="modal", data-target="#returnDevice").btn.btn-primary.pull-right.admin Return a Device
-
-                    form(id="returnD", method="post").pull-right
-                      button(id="returnAD", type="submit").btn.btn-warning Return a Device
-
-                    div(id="addDevice", tabindex="-1", role="dialog", aria-labelledby="addDeviceModal", aria-hidden="true").modal.fade
-                      div(role="document").modal-dialog
-                        .modal-content
-                          .modal-header Add a Device
-                            button(type="button", data-dismiss="modal", aria-hidden="true").close
-                              span(aria-hidden="true") &times;
-                          .modal-body
-                            .loading
-                              img(src="images/balls.gif", alt="loading")
-                            form(id="addNewDevice", method="post")
-                              .form-group
-                                label(for="inputSerial") Serial Number:
-                                input(id="inputSerial", type="text", name="serial_no", placeholder="MAC001", required).form-control
-                              .form-group.deviceType
-                                label(for="inputType") Device Type:
-                              .form-group
-                                label(for="inputActive") Is the device active:
-                                .radio
-                                  label
-                                    input(type="radio", name="is_active", value="true")
-                                    | Is Active
-                                .radio
-                                  label
-                                    input(type="radio", name="is_active", value="false")
-                                    | Not Active
-                              .form-group
-                                button(type="submit").btn.btn-success.pull-right Add Device
-                                hr
-                          .modal-footer
-                            button(type="button", data-dismiss="modal").btn.btn-default Close
-
-                    div(id="returnDevice", tabindex="-1", role="dialog", aria-labelledby="returnDeviceModal", aria-hidden="true").modal.fade
-                      div(role="document").modal-dialog
-                        .modal-content
-                          .modal-header Return a Device
-                            button(type="button", data-dismiss="modal", aria-hidden="true").close
-                              span(aria-hidden="true") &times;
-                          .modal-body
-                            .loading
-                              img(src="images/balls.gif", alt="loading")
-                            form(id="returnADevice", method="post")
-                              .form-group
-                                label(for="inputUserID") User ID:
-                                input(id="inputUserID", type="number", name="user_id", placeholder="3", required).form-control
-                              .form-group
-                                label(for="inputDeviceID") Device ID:
-                                input(id="inputDeviceID", type="number", name="device_id", placeholder="3", required).form-control
-                              .form-group
-                                button(type="submit").btn.btn-success.pull-right Return Device
-                                hr
-                          .modal-footer
-                            button(type="button", data-dismiss="modal").btn.btn-default Close
-
-                    table.table.table-striped.available-devices
-                      thead
-                        th Device ID
-                        th Type
-                        th.admin Is active
-                        th.admin.teacher Loaned By
-                        th.admin Created At
-                        th.text-right Options
-                      tbody
-
-                .panel.panel-default.reservations.teacher.admin
-                  .panel-heading
-                    h3.panel-title.text-center Reservations
-                  .panel-body
-                    .status
-                      button(id="reserveDeviceBut", type="button", data-toggle="modal", data-target="#reserveDevice").btn.btn-primary.pull-right.teacher.admin Reserve Device/s
-
-                      div(id="reserveDevice", tabindex="-1", role="dialog", aria-labelledby="reserveDeviceModal", aria-hidden="true").modal.fade
-                        div(role="document").modal-dialog
-                          .modal-content
-                            .modal-header Device Reservation
-                              button(type="button", data-dismiss="modal", aria-hidden="true").close
-                                span(aria-hidden="true") &times;
-                            .modal-body
-                              .loading
-                                img(src="images/balls.gif", alt="loading")
-                              form(id="reserve", method="post")
-                                .form-group
-                                  label(for="startTime") Start Time:
-                                  input(id="startTime", type="text", name="start_time", placeholder="2012/12/31 12:45:00", required).form-control
-                                .form-group
-                                  label(for="endTime") End Time:
-                                  input(id="endTime", type="text", name="end_time", placeholder="2012/12/31 14:45:00", required).form-control
-                                .form-group
-                                  label(for="classes") Classes:
-                                  select(name="class")#classes.form-control
-                                .form-group.deviceType
-                                  label(for="deviceType") Device Type:
-                                .form-group
-                                  label(for="count") Number of devices:
-                                  input(id="count", type="number", name="count", placeholder="10", required).form-control
-                                .form-group
-                                  label(for="safeZone") Safe Zone (hh:mm:ss):
-                                  input(id="safeZone", type="text", name="safe_zone", placeholder="00:30:00", value="00:30:00", required).form-control
-                                .form-group
-                                  button(type="submit").btn.btn-success.pull-right Reserve
-                                  hr
-                                script(type="application/javascript", src="js/pickerInit.js")
-                            .modal-footer
-                              button(type="button", data-dismiss="modal").btn.btn-default Close
-
-                    table.table.table-striped.device-reservations
-                      thead
-                        th ID
-                        th Class ID
-                        th Start Time
-                        th Type
-                        th Safe Zone
-                        th Count
-                        th End Time
-                        th User ID
-                        th.text-right.admin Options
-                      tbody
-
-              include _html/_body/_default_body_and_footer.pug
+    footer.footer
+      include ../_html/_body/_footer.pug
+      script(type="application/javascript", src="js/default.js")
+      script(type="application/javascript", src="js/user.js")

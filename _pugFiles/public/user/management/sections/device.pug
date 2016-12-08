@@ -1,0 +1,113 @@
+.row
+  .col-md-4
+    .card
+      .card-block
+        h3.card-title Filter by:
+        .row.flex-items-md-around
+          .col-md-6
+            .dropdown
+              button(type="button", data-toggle="dropdown", aria-haspopup="true", aria-expanded="false").btn.btn-info.dropdown-toggle#ddTypeMenu Type:
+              div(aria-labelledby="ddTypeMenu").dropdown-menu.device
+                button(type="button").dropdown-item Mac
+                button(type="button").dropdown-item Mac/Win
+                button(type="button").dropdown-item Camera
+          .col-md-6
+            .dropdown
+              button(type="button", data-toggle="dropdown", aria-haspopup="true", aria-expanded="false").btn.btn-info.dropdown-toggle#ddActiveMenu Status:
+              div(aria-labelledby="ddActiveMenu").dropdown-menu.device
+                button(type="button").dropdown-item Active
+                button(type="button").dropdown-item Inactive
+  .col-md-8
+    .card
+      .card-block
+        h3.card-title Search:
+        form(method="POST").form-inline#searchDevice
+          input(type="text", name="search", placeholder="Search").form-control
+          select.form-control#searchType
+            option(value="id") Device ID
+            option(value="renter") Device renter
+          button(type="submit").btn.btn-primary Search
+.row.teacher
+  .col-md-12
+    button(type="button", data-toggle="modal", data-target="#returnDevice-m2").btn.btn-success.btn-block#returnBtn-2 Return a device
+
+    div(tabindex="-1", role="dialog", aria-labelledby="myModalLabel", aria-hidden="true").modal.fade#returnDevice-m2
+      div(role="document").modal-dialog
+        .modal-content
+          .modal-header
+            button(type="button", data-dismiss="modal", aria-label="Close").close
+              span(aria-hidden="true") &times;
+            h4.modal-title Return a device
+          .modal-body
+            .loading
+              img(src="images/balls.gif", alt="loading").img-fluid
+            form(method="POST")#returnDevice-f2
+              .form-group
+                label(for="device_id") Pick a device to return:
+                select(name="device_id").form-control#device_id
+              .form-group
+                button(type="submit").btn.btn-success Return device
+          .modal-footer
+            button(type="button", data-dismiss="modal").btn.btn-default Close
+
+.row.admin
+  .col-md-6
+    button(type="button", data-toggle="modal", data-target="#addDevice-m").btn.btn-success.btn-block Add a device
+
+    div(id="addDevice-m", tabindex="-1", role="dialog", aria-labelledby="addDeviceModal", aria-hidden="true").modal.fade
+      div(role="document").modal-dialog
+        .modal-content
+          .modal-header Add a Device
+            button(type="button", data-dismiss="modal", aria-hidden="true").close
+              span(aria-hidden="true") &times;
+          .modal-body
+            .loading
+              img(src="images/balls.gif", alt="loading")
+            form(method="post")#addDevice-f
+              .form-group
+                label(for="inputSerial") Serial Number:
+                input(id="inputSerial", type="text", name="serial_no", placeholder="CH 001", required).form-control
+              .form-group.deviceType
+                label(for="inputType") Device Type:
+              .form-group
+                label(for="inputActive") Is the device active:
+                .form-check
+                  label.form-check-label
+                    input(type="radio", name="is_active", value="true").form-check-input
+                    p Is Active
+                .form-check
+                  label.form-check-label
+                    input(type="radio", name="is_active", value="false").form-check-input
+                    p Not Active
+              .form-group
+                button(type="submit").btn.btn-success Add Device
+          .modal-footer
+            button(type="button", data-dismiss="modal").btn.btn-default Close
+  .col-md-6
+    button(type="button", data-toggle="modal", data-target="#returnDevice-m3").btn.btn-success.btn-block#returnBtn-3 Return device
+
+    div(tabindex="-1", role="dialog", aria-labelledby="myModalLabel", aria-hidden="true").modal.fade#returnDevice-m3
+      div(role="document").modal-dialog
+        .modal-content
+          .modal-header
+            button(type="button", data-dismiss="modal", aria-label="Close").close
+              span(aria-hidden="true") &times;
+            h4.modal-title Return a device
+          .modal-body
+            .loading
+              img(src="images/balls.gif", alt="loading").img-fluid
+            form(method="POST")#returnDevice-f3
+              .form-group
+                label(for="user_id") Pick a user to return the device for:
+                select(name="user_id").form-control#user_id
+              .form-group
+                label(for="device_id") Pick the device to be returned:
+                select(name="device_id").form-control
+              .form-group
+                button(type="submit").btn.btn-success Return device
+          .modal-footer
+            button(type="button", data-dismiss="modal").btn.btn-default Close
+hr
+.row
+  .col-md-12
+    .chocolate

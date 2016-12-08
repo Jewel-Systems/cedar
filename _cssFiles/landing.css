@@ -1,0 +1,15 @@
+.card {
+  border: 1px solid #cbcbcb; }
+
+#returnBtn-1 {
+  margin-top: 20px; }
+
+.options {
+  align-items: stretch; }
+  .options .card {
+    border: 1px solid black; }
+    .options .card h5, .options .card h6 {
+      margin-top: 20px; }
+
+.chocolate {
+  margin-top: 10px; }

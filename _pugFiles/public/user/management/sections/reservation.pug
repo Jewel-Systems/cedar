@@ -1,0 +1,74 @@
+.row
+  .col-md-5
+    .card
+      .card-block
+        h3.card-title Filter by:
+        .row.flex-items-md-around
+          .col-md-6
+            .dropdown
+              button(type="button", data-toggle="dropdown", aria-haspopup="true", aria-expanded="false").btn.btn-info.btn-block.dropdown-toggle#ddTypeMenu Type:
+              div(aria-labelledby="ddTypeMenu").dropdown-menu.reservation-type
+                button(type="button").dropdown-item Mac
+                button(type="button").dropdown-item Mac/Win
+                button(type="button").dropdown-item Camera
+          .col-md-6
+            .dropdown
+              button(type="button", data-toggle="dropdown", aria-haspopup="true", aria-expanded="false").btn.btn-info.btn-block.dropdown-toggle#ddUserMenu User:
+              div(aria-labelledby="ddUserMenu").dropdown-menu.reservation-user
+        hr
+        .row
+          .col-md-12
+            .dropdown
+              button(type="button", data-toggle="dropdown", aria-haspopup="true", aria-expanded="false").btn.btn-info.btn-block.dropdown-toggle#ddClassMenu Class:
+              div(aria-labelledby="ddClassMenu").dropdown-menu.reservation-class
+  .col-md-7
+    .card
+      .card-block
+        h3.card-title Search:
+        form(method="POST").form-inline#searchReservation
+          .form-group
+            input(type="text", name="start", placeholder="Start date").form-control
+            input(type="text", name="end", placeholder="End date").form-control
+          hr
+          .form-group
+            button(type="submit").btn.btn-primary Search
+.row
+  .col-md-12
+    button(type="button", data-toggle="modal", data-target="#deviceReservation-m").btn.btn-success.btn-block Create a reservation
+
+    div(tabindex="-1", role="dialog", aria-labelledby="reserveDeviceModal", aria-hidden="true").modal.fade#deviceReservation-m
+      div(role="document").modal-dialog
+        .modal-content
+          .modal-header Device Reservation
+            button(type="button", data-dismiss="modal", aria-hidden="true").close
+              span(aria-hidden="true") &times;
+          .modal-body
+            .loading
+              img(src="images/balls.gif", alt="loading").img-fluid
+            form(method="post")#deviceReservation-f
+              .form-group
+                label(for="startTime") Start Time:
+                input(id="startTime", type="text", name="start_time", placeholder="2012/12/31 12:45:00", required).form-control
+              .form-group
+                label(for="endTime") End Time:
+                input(id="endTime", type="text", name="end_time", placeholder="2012/12/31 14:45:00", required).form-control
+              .form-group
+                label(for="classes") Classes:
+                select(name="class")#classes.form-control
+              .form-group.deviceType
+                label(for="deviceType") Device Type:
+              .form-group
+                label(for="count") Number of devices:
+                input(id="count", type="number", name="count", placeholder="10", required).form-control
+              .form-group
+                label(for="safeZone") Safe Zone (hh:mm:ss):
+                input(id="safeZone", type="text", name="safe_zone", placeholder="00:30:00", value="00:30:00", required).form-control
+              .form-group
+                button(type="submit").btn.btn-success Reserve
+
+          .modal-footer
+            button(type="button", data-dismiss="modal").btn.btn-default Close
+hr
+.row
+  .col-md-12
+    .chocolate

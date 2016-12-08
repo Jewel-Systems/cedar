@@ -1,0 +1,12 @@
+#addUserBut, #addDeviceBut, #reserveDeviceBut, #setPrivilegeBut, #returnDeviceBut {
+  display: none;
+  margin-left: 10px; }
+
+#returnD, #deleteUser {
+  margin-left: 10px; }
+
+.users {
+  display: none; }
+
+.admin, .teacher, li.admin, .student {
+  display: none; }

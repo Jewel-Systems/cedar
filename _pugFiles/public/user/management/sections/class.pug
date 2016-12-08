@@ -1,0 +1,50 @@
+.row
+  .col-md-6
+    button(type="button", data-toggle="modal", data-target="#addClass-m").btn.btn-success.btn-block Add a new class
+
+    div(tabindex="-1", role="dialog", aria-labelledby="addClassModal", aria-hidden="true").modal.fade#addClass-m
+      div(role="document").modal-dialog
+        .modal-content
+          .modal-header Add a new class
+            button(type="button", data-dismiss="modal", aria-hidden="true").close
+              span(aria-hidden="true") &times;
+          .modal-body
+            .loading
+              img(src="images/balls.gif", alt="loading").img-fluid
+            form(method="post")#addClass-f
+              .form-group
+                label(for="className") Class name:
+                input(type="text", name="name", placeholder="English").form-control
+              .form-group
+                button(type="submit").btn.btn-success Add
+
+          .modal-footer
+            button(type="button", data-dismiss="modal").btn.btn-default Close
+  .col-md-6
+    button(type="button", data-toggle="modal", data-target="#registerStudent-m").btn.btn-success.btn-block Register a student
+
+    div(tabindex="-1", role="dialog", aria-labelledby="registerStudentModal", aria-hidden="true").modal.fade#registerStudent-m
+      div(role="document").modal-dialog
+        .modal-content
+          .modal-header Register a student into a class
+            button(type="button", data-dismiss="modal", aria-hidden="true").close
+              span(aria-hidden="true") &times;
+          .modal-body
+            .loading
+              img(src="images/balls.gif", alt="loading").img-fluid
+            form(method="post")#registerStudent-f
+              .form-group
+                label(for="classes") Classes:
+                select(name="class")#classes.form-control
+              .form-group
+                label(for="userName") User:
+                select(name="user")#userName.form-control
+              .form-group
+                button(type="submit").btn.btn-success Register
+
+          .modal-footer
+            button(type="button", data-dismiss="modal").btn.btn-default Close
+hr
+.row
+  .col-md-12
+    .chocolate
