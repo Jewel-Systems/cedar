@@ -1,5 +1,5 @@
 // FILENAME: pickerInit.js
-// Description: For the bootstrap-material-datetimepicker
+// Description: Setup file for the bootstrap-material-datetimepicker
 
 $(document).ajaxStop(function() {
   $('#endTime').bootstrapMaterialDatePicker({ format : 'YYYY/MM/DD HH:mm:ss', lang : 'en', weekStart : 1, cancelText : 'ANNULER' });

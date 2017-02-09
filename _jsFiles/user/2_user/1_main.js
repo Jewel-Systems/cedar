@@ -73,6 +73,10 @@ function displayUsers(data) {
     display += '<td>' + capitalize(data[i].type) + '</td>';
     display += '<td class="flex-items-md-center"><form id="delete-user" method="POST"><input type="hidden" name="id" value="' + data[i].id + '" /><button class="btn btn-danger btn-block">Delete</button></form></td>';
     display += '</tr>';
+
+    if (data[i].type == "student") {
+      $('#registerStudent-f select#userName').append('<option value="' + data[i].id + '">' + capitalize(data[i].fname) + '</option>');
+    }
   }
 
   display += '</tbody></table>';
