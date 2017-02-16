@@ -33,22 +33,34 @@ function fillDropdown() {
         $('#registerStudent-f select#userName').append('<option value="' + data[i].id + '">' + capitalize(data[i].fname) + '</option>');
         $('#deregisterStudent-f select#userName').append('<option value="' + data[i].id + '">' + capitalize(data[i].fname) + '</option>');
 
-        $.get(domain + "class", function(cdata) {
-          cdata = cdata.data;
-          var classes = data[i].classes;
 
-          for (var j = 0; j < classes.length; j++) {
-            var id = classes[j].id;
-            cdata = $.grep(cdata, function(n, a) {
-              return n.id != id;
-            })
-          }
-        });
+
+        // $.get(domain + "class", function(cdata) {
+        //   cdata = cdata.data;
+        //   if (typeof data[i].classes !== 'undefined') {
+        //     var classes = data[i].classes;
+        //
+        //     for (var j = 0; j < classes.length; j++) {
+        //       var id = classes[j].id;
+        //       cdata = $.grep(cdata, function(n, a) {
+        //         return n.id != id;
+        //       });
+        //     }
+        //   }
+        //
+        //   for (var a = 0; a < cdata.length; a++) {
+        //     $('select#classes').append('<option value="' + cdata[a].id + '">' + cdata[a].name + '</option>');
+        //   }
+        // });
       }
     }
   });
 }
 
 function checkRegistered(id) {
+
+}
+
+function checkDeregistered(id) {
 
 }
