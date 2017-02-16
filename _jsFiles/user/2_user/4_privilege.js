@@ -6,9 +6,9 @@ $(document).one('ajaxStop',function(event, xhr, settings) {
 
     $.get(domain + "user/" + user_id, function(data) {
       data = data.data;
-      if (data.privilages.length > 0) {
-        for (var i = 0; i < data.privilages.length; i++) {
-          if (data.privilages[i].type == "mac") {
+      if (data.privileges.length > 0) {
+        for (var i = 0; i < data.privileges.length; i++) {
+          if (data.privileges[i].type == "mac") {
             $('form#changePermission-f input[name="type"].mac').attr('checked', '');
           } else {
             $('form#changePermission-f input[name="type"].camera').attr('checked', '');
@@ -26,8 +26,8 @@ $(document).one('ajaxStop',function(event, xhr, settings) {
     // Checks to see if Privilege is already given
     $.get(domain + "user/" + data[0].value, function(udata) {
       udata = udata.data;
-      for (var i = 0; i < udata.privilages.length; i++) {
-        if (udata.privilages[i].type == "mac") {
+      for (var i = 0; i < udata.privileges.length; i++) {
+        if (udata.privileges[i].type == "mac") {
           mac = true;
         } else {
           cam = true;

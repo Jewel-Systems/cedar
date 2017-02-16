@@ -63,7 +63,7 @@ $(document).ready(function() {
         window.location = "/user";
       }
       if(!$.trim($('.caramel .chocolate').html()).length) {
-        getClasses();
+        displayClasses();
       }
     }
   }

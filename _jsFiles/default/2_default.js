@@ -63,7 +63,7 @@ $(document).ajaxStart(function() {
   $('.loading').slideUp();
 });
 
-// Play some sound
+// Play a beep sound when an error occur
 (function(){
   $.extend({
     playSound: function(){
@@ -193,7 +193,10 @@ function errorMsg(msg) {
 }
 
 function capitalize(str) {
-  return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+  str = str;
+  return str.replace(/\w\S*/g, function(txt){
+    return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+  });
 }
 
 function convertMonth(m) {

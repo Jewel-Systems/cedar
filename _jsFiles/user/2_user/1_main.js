@@ -35,18 +35,18 @@ function userGetReady() {
         $('form#returnDevice-f3 select[name=device_id]').attr('disabled', '');
       }
 
-      if (u.privilages.length > 1) {
-        for (var i = 0; i < u.privilages.length; i++) {
-          if (u.privilages[i].type == "mac") {
+      if (u.privileges.length > 1) {
+        for (var i = 0; i < u.privileges.length; i++) {
+          if (u.privileges[i].type == "mac") {
             $('form#changePermission-f input[name="type"].mac').attr('checked', '');
-          } else if (u.privilages[i].type == "camera") {
+          } else if (u.privileges[i].type == "camera") {
             $('form#changePermission-f input[name="type"].camera').attr('checked', '');
           }
         }
-      } else if (u.privilages.length === 1) {
-        if (u.privilages[0].type == "mac") {
+      } else if (u.privileges.length === 1) {
+        if (u.privileges[0].type == "mac") {
           $('form#changePermission-f input[name="type"].mac').attr('checked', '');
-        } else if (u.privilages[0].type == "camera") {
+        } else if (u.privileges[0].type == "camera") {
           $('form#changePermission-f input[name="type"].camera').attr('checked', '');
         }
       }

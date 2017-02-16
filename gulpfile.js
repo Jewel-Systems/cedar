@@ -12,14 +12,14 @@ var concat      = require('gulp-concat');
 var concss      = require('gulp-concat-css');
 
 gulp.task('server', function() {
-  browserSync.init({
-    proxy: 'localhost:200',
-    ui: {
-      port: '8000',
-    },
-    // browser: 'google chrome',
-    notify: false,
-  });
+  // browserSync.init({
+  //   proxy: 'localhost:200',
+  //   ui: {
+  //     port: '8000',
+  //   },
+  //   // browser: 'google chrome',
+  //   notify: false,
+  // });
 
   gulp.watch('_pugFiles/public/**', ['pug']);
   gulp.watch('_sassFiles/**', ['sass']);
@@ -48,9 +48,9 @@ gulp.task('sass', function() {
 
 function compileJS(a) {
   return gulp.src('_jsFiles/' + a + '/**/*.js')
-    .pipe(plumber())
-    .pipe(uglify())
-    .pipe(concat(a + '.js'))
+    // .pipe(plumber())
+    // .pipe(uglify())
+    .pipe(concat(a + '.js')) // Helps change the filename to what you want
     .pipe(gulp.dest('public/js'));
 }
 

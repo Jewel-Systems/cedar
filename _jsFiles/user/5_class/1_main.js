@@ -1,4 +1,4 @@
-function getClasses() {
+function displayClasses() {
   $.get(domain + "class", function(data) {
     data = data.data;
 
@@ -32,11 +32,23 @@ function fillDropdown() {
       if (data[i].type == "student") {
         $('#registerStudent-f select#userName').append('<option value="' + data[i].id + '">' + capitalize(data[i].fname) + '</option>');
         $('#deregisterStudent-f select#userName').append('<option value="' + data[i].id + '">' + capitalize(data[i].fname) + '</option>');
+
+        $.get(domain + "class", function(cdata) {
+          cdata = cdata.data;
+          var classes = data[i].classes;
+
+          for (var j = 0; j < classes.length; j++) {
+            var id = classes[j].id;
+            cdata = $.grep(cdata, function(n, a) {
+              return n.id != id;
+            })
+          }
+        });
       }
     }
   });
 }
 
 function checkRegistered(id) {
-  
+
 }

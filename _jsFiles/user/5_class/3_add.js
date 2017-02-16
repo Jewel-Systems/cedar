@@ -10,7 +10,7 @@ $(document).one('ajaxStop', function() {
         contentType: 'application/json',
         data: '{"name": "' + cname + '"}',
         success: function(result, status, xhr) {
-          getClasses();
+          displayClasses();
           statusMsg("Added a new class.");
           $('div.modal#addClass-m').modal('toggle');
         }
