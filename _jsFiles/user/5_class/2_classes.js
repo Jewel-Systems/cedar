@@ -1,3 +1,1 @@
-$(document).one("ready", function() {
-  getClasses();
-});
+// DESCRIPTION: Default functions for the classes management page.

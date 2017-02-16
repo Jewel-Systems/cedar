@@ -1,5 +1,4 @@
 function getAllUsers() {
-
   $.ajaxSetup({
     error: AjaxError
   });

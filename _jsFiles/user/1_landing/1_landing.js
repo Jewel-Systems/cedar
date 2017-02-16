@@ -62,7 +62,9 @@ $(document).ready(function() {
       if (udata.type == "teacher") {
         window.location = "/user";
       }
-      getClasses();
+      if(!$.trim($('.caramel .chocolate').html()).length) {
+        getClasses();
+      }
     }
   }
 

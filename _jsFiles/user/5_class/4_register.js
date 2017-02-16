@@ -1,0 +1,3 @@
+$(document).one('ajaxStop', function() {
+  
+});

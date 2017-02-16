@@ -2,7 +2,7 @@ $(document).ready(function() {
   getTypes();
 });
 
-$(document).ajaxStop(function() {
+$(document).one('ajaxStop', function() {
   $('form#addDevice-f').submit(function(event) {
     var data = $(this).serializeArray();
     $.ajax({

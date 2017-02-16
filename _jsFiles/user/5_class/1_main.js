@@ -10,11 +10,11 @@ function getClasses() {
       display += '<td>' + capitalize(data[i].name) + '</td>';
       display += '<td class="flex-items-md-center"><form id="delete-class" method="POST"><input type="hidden" name="id" value="' + data[i].id + '" /><button class="btn btn-danger btn-block">Delete</button></form></td>';
       display += '</tr>';
-
-      $('#registerStudent-f select#classes').append('<option value="' + data[i].id + '">' + data[i].name + '</option>');
     }
 
     display += '</tbody></table>';
+
+    fillDropdown();
 
     if($.trim($('.caramel .chocolate').html()).length) {
       $('.caramel .chocolate').empty();
@@ -22,4 +22,21 @@ function getClasses() {
 
     $('.caramel .chocolate').append(display);
   });
+}
+
+function fillDropdown() {
+  $.get(domain + "user", function(data) {
+    data = data.data;
+
+    for (var i = 0; i < data.length; i++) {
+      if (data[i].type == "student") {
+        $('#registerStudent-f select#userName').append('<option value="' + data[i].id + '">' + capitalize(data[i].fname) + '</option>');
+        $('#deregisterStudent-f select#userName').append('<option value="' + data[i].id + '">' + capitalize(data[i].fname) + '</option>');
+      }
+    }
+  });
+}
+
+function checkRegistered(id) {
+  
 }

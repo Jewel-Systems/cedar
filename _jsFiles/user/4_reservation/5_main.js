@@ -8,7 +8,7 @@ function displayReservations(data) {
     $.get(domain + "user", function(u) {
       var users = u.data;
 
-      var display = '<table class="table"><thead class="thead-default"><tr><th>ID</th><th>Reserver</th><th>Class</th><th>Device</th><th>Start time</th><th>End time</th><th>Safe zone</th></tr></thead><tbody>';
+      var display = '<table class="table"><thead class="thead-default"><tr><th>ID</th><th>Reserver</th><th>Class</th><th>Device</th><th>Start time</th><th>End time</th><th>Safe zone</th><th>Option</th></tr></thead><tbody>';
 
       for (var i = 0; i < data.length; i++) {
         display += '<tr>';

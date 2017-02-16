@@ -19,7 +19,7 @@ $('form.password').submit(function(event) {
       getUserDetails(result.data.id);
     },
     error: function (result, status, xhr) {
-      errorMsg("The email/ID or password entered is incorrect, please try again.");
+      errorMsg("Sorry can't recognise that QR code, talk to your IT admin please.");
     }
   });
 
@@ -51,7 +51,7 @@ function login(id) {
       if (xhr.readyState === 0) {
         errorMsg("The server may be down.");
       } else if (xhr.readyState === 4) {
-        errorMsg("The email/ID or password entered is incorrect, please try again.");
+        errorMsg("Sorry can't recognise that QR code, talk to your IT admin please.");
       }
     },
   });
