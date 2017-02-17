@@ -24,6 +24,12 @@ function displayClasses() {
   });
 }
 
+function getClasses(callback) {
+  $.get(domain + "class", function(data) {
+    callback.call(this, data.data);
+  });
+};
+
 function fillDropdown() {
   $.get(domain + "user", function(data) {
     data = data.data;
@@ -33,11 +39,15 @@ function fillDropdown() {
         $('#registerStudent-f select#userName').append('<option value="' + data[i].id + '">' + capitalize(data[i].fname) + '</option>');
         $('#deregisterStudent-f select#userName').append('<option value="' + data[i].id + '">' + capitalize(data[i].fname) + '</option>');
 
+        // console.log(getClasses());
 
+        getClasses(function(msg) {
+          console.log(msg);
+        });
 
         // $.get(domain + "class", function(cdata) {
         //   cdata = cdata.data;
-        //   if (typeof data[i].classes !== 'undefined') {
+        //   if (typeof data[i].classes != 'undefined') {
         //     var classes = data[i].classes;
         //
         //     for (var j = 0; j < classes.length; j++) {
