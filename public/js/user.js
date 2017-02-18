@@ -193,6 +193,12 @@ function displayUsers(data) {
 
   var display = '<table class="table"><thead class="thead-default"><tr><th>User ID</th><th>First name</th><th>Last name</th><th>Account type</th><th>Options</th></tr></thead><tbody>';
 
+  if (data.length === 0) {
+    display += '<tr>';
+    display += '<td colspan="5" class="text-center">No results found</td>';
+    display += '</tr>';
+  }
+
   for (var i = 0; i < data.length; i++) {
     display += '<tr>';
     display += '<th scope="row">' + data[i].id + '</th>';
@@ -416,24 +422,66 @@ $(document).one('ajaxStop', function() {
 // DESCRIPTION: Search functions for the Users management page. Search functions include: User ID, Name and Email.
 
 $(document).one("ajaxStop", function() {
-  $('form#searchReservation').submit(function(event) {
+  $('form#searchUser').submit(function(event) {
     var data = $(this).serializeArray();
-    var query = data[0].value;
-    var full_name = query.search(" ");
-    var f = query;
-    var l = "";
 
-    if (full_name === -1) {
-      var n = query.split(" ");
-      f = n[0];
-      l = n[1];
-    }
+    $.get(domain + "user", function(udata) {
+      var users = udata.data;
 
-    $.get(domain + "user/search", {fname: f, lname: l}, function(data) {
-
+      switch (data[1].value) {
+        case "id":
+          checkValue(data[0].value, data[1].value, users);
+          break;
+        case "name":
+          checkValue(data[0].value, data[1].value, users);
+          break;
+        default:
+          checkValue(data[0].value, data[1].value, users);
+          break;
+      }
     });
+
+    event.preventDefault();
   });
 });
+
+function checkValue(value, type, users) {
+  var testEmail = /^[A-Z0-9._%+-]+@([A-Z0-9-]+\.)+[A-Z]{2,4}$/i;
+
+  if ($.isNumeric(value) && type == "id") {
+    searchByID(value, users);
+  } else if (testEmail.test(value) && type == "email") {
+    searchByEmail(value, users);
+  } else if ($.type(new String(value)) === "string" && type == "name" && value != ''){
+    searchByName(value, users);
+  } else {
+    displayUsers(users);
+  }
+}
+
+function searchByID(value, users) {
+  users = users.filter(function(n) {
+    return value.indexOf(n.id) > -1;
+  });
+
+  displayUsers(users);
+}
+
+function searchByName(value, users) {
+  users = users.filter(function(n) {
+    return value.indexOf(n.fname) > -1
+  });
+
+  displayUsers(users);
+}
+
+function searchByEmail(value, users) {
+  users = users.filter(function(n) {
+    return value.indexOf(n.email) > -1;
+  });
+
+  displayUsers(users);
+}
 
 $(document).one('ajaxStop', function() {
   var udata = JSON.parse(sessionStorage.udata);

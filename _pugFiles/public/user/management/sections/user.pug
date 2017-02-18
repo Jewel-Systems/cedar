@@ -15,9 +15,9 @@
         h3.card-title Search:
         form(method="POST").form-inline#searchUser
           input(type="text", name="search", placeholder="Search").form-control
-          select.form-control#searchType
+          select(name="type").form-control#searchType
             option(value="id") User ID
-            option(value="name") Name
+            option(value="name") First Name
             option(value="email") Email
           button(type="submit").btn.btn-primary Search
 .row.admin

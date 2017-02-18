@@ -1,5 +1,5 @@
 .row
-  .col-md-5
+  .col-md-12
     .card
       .card-block
         h3.card-title Filter by:
@@ -21,17 +21,6 @@
             .dropdown
               button(type="button", data-toggle="dropdown", aria-haspopup="true", aria-expanded="false").btn.btn-info.btn-block.dropdown-toggle#ddClassMenu Class:
               div(aria-labelledby="ddClassMenu").dropdown-menu.reservation-class
-  .col-md-7
-    .card
-      .card-block
-        h3.card-title Search:
-        form(method="POST").form-inline#searchReservation
-          .form-group
-            input(type="text", name="start", placeholder="Start date").form-control
-            input(type="text", name="end", placeholder="End date").form-control
-          hr
-          .form-group
-            button(type="submit").btn.btn-primary Search
 .row
   .col-md-12
     button(type="button", data-toggle="modal", data-target="#deviceReservation-m").btn.btn-success.btn-block Create a reservation
