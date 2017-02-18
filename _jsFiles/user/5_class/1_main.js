@@ -57,7 +57,8 @@ function checkRegistered() {
       });
 
       if (cdata.length === 0) {
-        $('#deregisterStudent-f select#classes').append('<option>No more classes to register for</option>');
+        $('#registerStudent-f select#classes').append('<option>No more classes to register for</option>');
+        $('#registerStudent-f button').attr('disabled', 'disabled');
       }
 
       for (var a = 0; a < cdata.length; a++) {
@@ -87,6 +88,7 @@ function checkDeregistered() {
 
       if (cdata.length === 0) {
         $('#deregisterStudent-f select#classes').append('<option>No classes registered</option>');
+        $('#deregisterStudent-f button').attr('disabled', 'disabled');
       }
 
       for (var a = 0; a < cdata.length; a++) {
