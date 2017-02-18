@@ -14409,12 +14409,6 @@ function displayClasses() {
   });
 }
 
-function getClasses(callback) {
-  $.get(domain + "class", function(data) {
-    callback.call(this, data.data);
-  });
-};
-
 function fillDropdown() {
   $.get(domain + "user", function(data) {
     data = data.data;
@@ -14423,41 +14417,68 @@ function fillDropdown() {
       if (data[i].type == "student") {
         $('#registerStudent-f select#userName').append('<option value="' + data[i].id + '">' + capitalize(data[i].fname) + '</option>');
         $('#deregisterStudent-f select#userName').append('<option value="' + data[i].id + '">' + capitalize(data[i].fname) + '</option>');
-
-        // console.log(getClasses());
-
-        getClasses(function(msg) {
-          console.log(msg);
-        });
-
-        // $.get(domain + "class", function(cdata) {
-        //   cdata = cdata.data;
-        //   if (typeof data[i].classes != 'undefined') {
-        //     var classes = data[i].classes;
-        //
-        //     for (var j = 0; j < classes.length; j++) {
-        //       var id = classes[j].id;
-        //       cdata = $.grep(cdata, function(n, a) {
-        //         return n.id != id;
-        //       });
-        //     }
-        //   }
-        //
-        //   for (var a = 0; a < cdata.length; a++) {
-        //     $('select#classes').append('<option value="' + cdata[a].id + '">' + cdata[a].name + '</option>');
-        //   }
-        // });
       }
     }
+    checkRegistered();
+    checkDeregistered();
   });
 }
 
-function checkRegistered(id) {
+function checkRegistered() {
+  var id = $('#registerStudent-f select#userName option:selected').val();
+  $("#registerStudent-f select#classes").empty();
+  $.get(domain + "user/" + id, function(udata) {
+    udata = udata.data;
 
+    var class_ids = udata.classes.map(function(cls) {
+      return cls.id;
+    });
+
+    $.get(domain + "class", function(cdata) {
+      cdata = cdata.data;
+
+      cdata = cdata.filter(function(n) {
+        return class_ids.indexOf(n.id) === -1;
+      });
+
+      if (cdata.length === 0) {
+        $('#deregisterStudent-f select#classes').append('<option>No more classes to register for</option>');
+      }
+
+      for (var a = 0; a < cdata.length; a++) {
+        $('#registerStudent-f select#classes').append('<option value="' + cdata[a].id + '">' + cdata[a].name + '</option>');
+      }
+    });
+  });
 }
 
-function checkDeregistered(id) {
+function checkDeregistered() {
+  var id = $('#deregisterStudent-f select#userName option:selected').val();
+  $("#deregisterStudent-f select#classes").empty();
 
+  $.get(domain + "user/" + id, function(udata) {
+    udata = udata.data;
+
+    var class_ids = udata.classes.map(function(cls) {
+      return cls.id;
+    });
+
+    $.get(domain + "class", function(cdata) {
+      cdata = cdata.data;
+
+      cdata = cdata.filter(function(n) {
+        return class_ids.indexOf(n.id) > -1;
+      });
+
+      if (cdata.length === 0) {
+        $('#deregisterStudent-f select#classes').append('<option>No classes registered</option>');
+      }
+
+      for (var a = 0; a < cdata.length; a++) {
+        $('#deregisterStudent-f select#classes').append('<option value="' + cdata[a].id + '">' + cdata[a].name + '</option>');
+      }
+    });
+  });
 }
 
 // DESCRIPTION: Default functions for the classes management page.
@@ -14495,5 +14516,13 @@ $(document).one('ajaxStop', function() {
 });
 
 $(document).one('ajaxStop', function() {
-  
+  $("#registerStudent-f select#userName").change(function() {
+    checkRegistered();
+  })
+});
+
+$(document).one('ajaxStop', function() {
+  $("#deregisterStudent-f select#userName").change(function() {
+    checkDeregistered();
+  })
 });
