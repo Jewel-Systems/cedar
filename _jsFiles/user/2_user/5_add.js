@@ -27,8 +27,7 @@ $(document).one('ajaxStop', function() {
           },
           error: function(xhr, status, error) {
             var response = JSON.parse(xhr.responseText);
-            var msg = $('<div class="alert alert-danger"></div>').html('<strong>Oh no!</strong> ' + capitalize(response.error));
-            $(msg).insertBefore('.content');
+            errorMsg('<strong>Oh no!</strong> ' + capitalize(response.error));
           },
         });
       } else {

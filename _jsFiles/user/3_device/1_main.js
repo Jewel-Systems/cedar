@@ -156,7 +156,7 @@ function returning(id, device) {
     },
     error: function(e) {
       var response = JSON.parse(e.responseText);
-      errorMsg(response.data);
+      errorMsg(response.error);
     }
   });
 }
@@ -172,7 +172,7 @@ function device_deleting(device) {
     },
     error: function(xhr, status, error) {
       var response = JSON.parse(xhr.responseText);
-      errorMsg(response);
+      errorMsg(response.error);
     }
   });
 }

@@ -22,7 +22,7 @@ $(document).ajaxStop(function() {
         },
         error: function(xhr, status, error) {
           var response = JSON.parse(xhr.responseText);
-          errorMsg(response);
+          errorMsg(response.error);
         }
       });
     } else if (name == "delete") {

@@ -8,7 +8,7 @@ function displayClasses() {
       display += '<tr>';
       display += '<th scope="row">' + data[i].id + '</th>';
       display += '<td>' + capitalize(data[i].name) + '</td>';
-      display += '<td class="flex-items-md-center"><form id="delete-class" method="POST"><input type="hidden" name="id" value="' + data[i].id + '" /><button class="btn btn-danger btn-block">Delete</button></form></td>';
+      display += '<td class="flex-items-md-center"><form id="delete-class" method="POST"><input type="hidden" name="id" value="' + data[i].id + '" /><button class="btn btn-danger btn-block" type="submit">Delete</button></form></td>';
       display += '</tr>';
     }
 

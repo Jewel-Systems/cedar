@@ -378,8 +378,7 @@ $(document).one('ajaxStop', function() {
           },
           error: function(xhr, status, error) {
             var response = JSON.parse(xhr.responseText);
-            var msg = $('<div class="alert alert-danger"></div>').html('<strong>Oh no!</strong> ' + capitalize(response.error));
-            $(msg).insertBefore('.content');
+            errorMsg('<strong>Oh no!</strong> ' + capitalize(response.error));
           },
         });
       } else {
@@ -396,21 +395,19 @@ $(document).one('ajaxStop', function() {
 
 $(document).one('ajaxStop', function() {
   $('form#delete-user').submit(function(event) {
-    var d = confirm("Are you sure you want to delete the user?");
-    if (d) {
-      var data = $(this).serializeArray();
-      $.ajax({
-        url: domain + "user/" + data[0].value,
-        type: "DELETE",
-        success: function (result, status, xhr) {
-          statusMsg("User is deleted");
-          getAllUsers();
-        },
-        error: function(xhr, status, error) {
-          console.log(xhr.statusText);
-        },
-      });
-    }
+    var data = $(this).serializeArray();
+    $.ajax({
+      url: domain + "user/" + data[0].value,
+      type: "DELETE",
+      success: function (result, status, xhr) {
+        statusMsg("User is deleted");
+        getAllUsers();
+      },
+      error: function(xhr, status, error) {
+        var response = JSON.parse(xhr.responseText);
+        errorMsg(response.error);
+      },
+    });
     event.preventDefault();
   });
 });
@@ -435,6 +432,288 @@ $(document).one("ajaxStop", function() {
     $.get(domain + "user/search", {fname: f, lname: l}, function(data) {
 
     });
+  });
+});
+
+$(document).one('ajaxStop', function() {
+  var udata = JSON.parse(sessionStorage.udata);
+  access(udata.type);
+
+  if (udata.type == "teacher") {
+    if($.trim($('form#returnDevice-f2 select[name=device_id]').html()).length) {
+      $('form#returnDevice-f2 select[name=device_id]').empty();
+    }
+    for (var i = 0; i < udata.loaned.length; i++) {
+      $('form#returnDevice-f2 select[name=device_id]').append('<option value="' + udata.loaned[i].id + '">[' + udata.loaned[i].type + '] ' + udata.loaned[i].serial_no + '</option>');
+    }
+  } else if (udata.type == "admin") {
+    $('form#returnDevice-f3 select[name=user_id]').change(function(event) {
+      var user_id = $(this).val();
+      $('form#returnDevice-f3 select[name=device_id]').empty();
+      $.get(domain + "user/" + user_id, function(data) {
+        data = data.data;
+        if (data.loaned.length > 1) {
+          $('form#returnDevice-f3 select[name=device_id]').removeAttr('disabled');
+          for (var i = 0; i < data.loaned.length; i++) {
+            $('form#returnDevice-f3 select[name=device_id]').append('<option value="' + data.loaned[i].id + '">[' + data.loaned[i].type + '] ' + data.loaned[i].serial_no + '</option>');
+          }
+        } else if (data.loaned.length === 1){
+          $('form#returnDevice-f3 select[name=device_id]').removeAttr('disabled');
+          $('form#returnDevice-f3 select[name=device_id]').append('<option value="' + data.loaned[0].id + '">[' + data.loaned[0].type + '] ' + data.loaned[0].serial_no + '</option>');
+        } else if (data.loaned.length === 0) {
+          $('form#returnDevice-f3 select[name=device_id]').attr('disabled', '');
+        }
+      });
+    });
+  }
+});
+
+function displayDevices(data) {
+  var users;
+
+  $.ajaxSetup({
+    error: AjaxError
+  });
+
+  $.get(domain + "user", function(u) {
+    users = u.data;
+
+    var display = '<table class="table"><thead class="thead-default"><tr><th>Device ID</th><th>Serial No.</th><th>Loaned By</th><th>Is Active</th><th>Device Type</th><th>Options</th></tr></thead><tbody>';
+
+    for (var i = 0; i < data.length; i++) {
+      display += '<tr>';
+      display += '<th scope="row">' + data[i].id + '</th>';
+      display += '<td>' + data[i].serial_no + '</td>';
+      var loaned;
+      for (var j = 0; j < users.length; j++) {
+        if (data[i].loaned_by === null) {
+          loaned = "No one";
+        } else if (users[j].id === data[i].loaned_by) {
+          loaned = users[j].fname + ' ' + users[j].lname;
+        }
+      }
+      display += '<td>' + loaned + '</td>';
+      var active = "Inactive";
+      if (data[i].is_active === true) {
+        active = "Active";
+      }
+      display += '<td>' + active + '</td>';
+      display += '<td>' + capitalize(data[i].type) + '</td>';
+      display += '<td><form id="form-device" class="flex-items-md-around" method="POST"><input type="hidden" name="id" value="' + data[i].id + '" /><input type="hidden" name="active" value="' + data[i].is_active + '" />';
+      if (data[i].loaned_by === null) {
+        display += '<button class="btn btn-success" type="submit" name="rent">Rent</button>';
+      } else {
+        display += '<button class="btn btn-success" type="submit" name="rent" disabled>Rent</button>';
+      }
+      display += '<button class="btn btn-warning admin" type="submit" name="toggle">Toggle active</button><button class="btn btn-danger admin" type="submit" name="delete">Delete</button></form></td>';
+      display += '</tr>';
+    }
+
+    display += '</tbody></table>';
+
+    if($.trim($('.caramel .chocolate').html()).length) {
+      $('.caramel .chocolate').empty();
+    }
+
+    $('.caramel .chocolate').append(display);
+  });
+}
+
+function filterByActive(f) {
+  var devices;
+  var active = false;
+
+  if (f == "Active") {
+    active = true;
+  }
+
+  $.get(domain + "device", function(data) {
+    devices = data.data;
+    devices = $.grep(devices, function(n, i) {
+      return n.is_active === active;
+    });
+    displayDevices(devices);
+  });
+}
+
+function filterByType(f) {
+  var devices;
+  f = f.toLowerCase();
+
+  $.get(domain + "device", function(data) {
+    devices = data.data;
+    devices = $.grep(devices, function(n, i) {
+      return n.type == f;
+    });
+    displayDevices(devices);
+  });
+}
+
+function renting(did) {
+  var udata = JSON.parse(sessionStorage.udata);
+
+  $.ajax({
+    url: domain + 'device/' + did + '/loan/' + udata.id,
+    type: 'PUT',
+    success: function(d) {
+      if (udata.type == "student") {
+        window.location = "/user/logout";
+      } else {
+        getUserDetails(udata.id);
+        getAvailableDevices();
+        getDevices();
+        statusMsg('Device Rented');
+      }
+    },
+    error: function(e) {
+      var response = JSON.parse(e.responseText);
+      if (response.error === 1) {
+        errorMsg("You do not have the privilege to rent that device.");
+      } else if (response.error === 2) {
+        errorMsg("The device is already being loaned by another user.");
+      } else if (response.error === 3) {
+        errorMsg("The device you trying to loan is already reserved and you are not in any of the classes of the reservation.");
+      } else {
+        errorMsg("There is an error renting this device. Please try again or contact your system administrator.");
+      }
+    }
+  });
+}
+
+function returning(id, device) {
+  var udata = JSON.parse(sessionStorage.udata);
+  $.ajax({
+    url: domain + "device/" + device + "/loan/" + id,
+    type: "DELETE",
+    success: function(data) {
+      getUserDetails(udata.id);
+      getAvailableDevices();
+      getDevices();
+      statusMsg("Device returned");
+    },
+    error: function(e) {
+      var response = JSON.parse(e.responseText);
+      errorMsg(response.error);
+    }
+  });
+}
+
+function device_deleting(device) {
+  $.ajax({
+    url: domain + "device/" + device,
+    type: "DELETE",
+    cache: false,
+    success: function(result, status, xhr) {
+      statusMsg("Device deleted!");
+      getDevices();
+    },
+    error: function(xhr, status, error) {
+      var response = JSON.parse(xhr.responseText);
+      errorMsg(response.error);
+    }
+  });
+}
+
+function getTypes() {
+  $.ajaxSetup({
+    error: AjaxError
+  });
+
+  $.get(domain + "device/type", function(data, status){
+    datas = data.data;
+    for (var i = 0; i < datas.length; i++) {
+      $('.deviceType').append('<div class="form-check"><label class="form-check-label"><input type="radio" class="form-check-input" name="device_type" value="' + datas[i] + '" /><p>' + datas[i] + '</p></label></div>');
+    }
+  });
+}
+
+function getDevices() {
+  $.ajaxSetup({
+    error: AjaxError
+  });
+
+  $.get(domain + "device", function (data) {
+    displayDevices(data.data);
+  });
+}
+
+$(document).ajaxStop(function() {
+  $('div.dropdown-menu.device button.dropdown-item').click(function(event) {
+    var filter = $(this).text();
+    if (filter == "Active" || filter == "Inactive") {
+      filterByActive(filter);
+    } else if (filter == "Mac" || filter == "Mac/Win" || filter == "Camera") {
+      filterByType(filter);
+    }
+  });
+});
+
+$(document).ajaxStop(function() {
+
+  $("form#form-device button[type=submit]").click(function(event) {
+    $("input[type=submit]", $(this).parents("form#device")).removeAttr("clicked");
+    $(this).attr("clicked", "true");
+  });
+
+  $('form#form-device').submit(function(event) {
+    var data = $(this).serializeArray();
+    var name = $("form#form-device button[type=submit][clicked=true]").attr("name");
+
+    if (name == "rent") {
+      renting(data[0].value);
+    } else if (name == "toggle") {
+      $.ajax({
+        url: domain + "device/" + data[0].value + "/active",
+        type: putOr(data[1].value),
+        cache: false,
+        success: function(result, status, xhr) {
+          getDevices();
+          statusMsg('Device active status set to: ' + data[1].value);
+        },
+        error: function(xhr, status, error) {
+          var response = JSON.parse(xhr.responseText);
+          errorMsg(response.error);
+        }
+      });
+    } else if (name == "delete") {
+      device_deleting(data[0].value);
+    }
+
+    event.preventDefault();
+  });
+});
+
+function putOr(status) {
+  if (status == "true") {
+    return "DELETE";
+  } else if (status == "false") {
+    return "PUT";
+  }
+}
+
+$(document).ready(function() {
+  getTypes();
+});
+
+$(document).one('ajaxStop', function() {
+  $('form#addDevice-f').submit(function(event) {
+    var data = $(this).serializeArray();
+    $.ajax({
+      url: domain + "device",
+      type: "POST",
+      data: '{"serial_no" : "' +  data[0].value + '", "type" : "' + data[1].value + '", "is_active" : ' + data[2].value + '}',
+      contentType: "application/json",
+      success: function(result, status, xhr) {
+        getDevices();
+        statusMsg("Added a new Device.");
+        $('div.modal#addDevice-m').modal('toggle');
+      },
+      error: function(xhr, status, error) {
+        var response = JSON.parse(xhr.responseText);
+        errorMsg(response.error);
+      }
+    });
+    event.preventDefault();
   });
 });
 
@@ -14101,288 +14380,6 @@ $(document).one('ajaxStop', function() {
   });
 });
 
-$(document).one('ajaxStop', function() {
-  var udata = JSON.parse(sessionStorage.udata);
-  access(udata.type);
-
-  if (udata.type == "teacher") {
-    if($.trim($('form#returnDevice-f2 select[name=device_id]').html()).length) {
-      $('form#returnDevice-f2 select[name=device_id]').empty();
-    }
-    for (var i = 0; i < udata.loaned.length; i++) {
-      $('form#returnDevice-f2 select[name=device_id]').append('<option value="' + udata.loaned[i].id + '">[' + udata.loaned[i].type + '] ' + udata.loaned[i].serial_no + '</option>');
-    }
-  } else if (udata.type == "admin") {
-    $('form#returnDevice-f3 select[name=user_id]').change(function(event) {
-      var user_id = $(this).val();
-      $('form#returnDevice-f3 select[name=device_id]').empty();
-      $.get(domain + "user/" + user_id, function(data) {
-        data = data.data;
-        if (data.loaned.length > 1) {
-          $('form#returnDevice-f3 select[name=device_id]').removeAttr('disabled');
-          for (var i = 0; i < data.loaned.length; i++) {
-            $('form#returnDevice-f3 select[name=device_id]').append('<option value="' + data.loaned[i].id + '">[' + data.loaned[i].type + '] ' + data.loaned[i].serial_no + '</option>');
-          }
-        } else if (data.loaned.length === 1){
-          $('form#returnDevice-f3 select[name=device_id]').removeAttr('disabled');
-          $('form#returnDevice-f3 select[name=device_id]').append('<option value="' + data.loaned[0].id + '">[' + data.loaned[0].type + '] ' + data.loaned[0].serial_no + '</option>');
-        } else if (data.loaned.length === 0) {
-          $('form#returnDevice-f3 select[name=device_id]').attr('disabled', '');
-        }
-      });
-    });
-  }
-});
-
-function displayDevices(data) {
-  var users;
-
-  $.ajaxSetup({
-    error: AjaxError
-  });
-
-  $.get(domain + "user", function(u) {
-    users = u.data;
-
-    var display = '<table class="table"><thead class="thead-default"><tr><th>Device ID</th><th>Serial No.</th><th>Loaned By</th><th>Is Active</th><th>Device Type</th><th>Options</th></tr></thead><tbody>';
-
-    for (var i = 0; i < data.length; i++) {
-      display += '<tr>';
-      display += '<th scope="row">' + data[i].id + '</th>';
-      display += '<td>' + data[i].serial_no + '</td>';
-      var loaned;
-      for (var j = 0; j < users.length; j++) {
-        if (data[i].loaned_by === null) {
-          loaned = "No one";
-        } else if (users[j].id === data[i].loaned_by) {
-          loaned = users[j].fname + ' ' + users[j].lname;
-        }
-      }
-      display += '<td>' + loaned + '</td>';
-      var active = "Inactive";
-      if (data[i].is_active === true) {
-        active = "Active";
-      }
-      display += '<td>' + active + '</td>';
-      display += '<td>' + capitalize(data[i].type) + '</td>';
-      display += '<td><form id="form-device" class="flex-items-md-around" method="POST"><input type="hidden" name="id" value="' + data[i].id + '" /><input type="hidden" name="active" value="' + data[i].is_active + '" />';
-      if (data[i].loaned_by === null) {
-        display += '<button class="btn btn-success" type="submit" name="rent">Rent</button>';
-      } else {
-        display += '<button class="btn btn-success" type="submit" name="rent" disabled>Rent</button>';
-      }
-      display += '<button class="btn btn-warning admin" type="submit" name="toggle">Toggle active</button><button class="btn btn-danger admin" type="submit" name="delete">Delete</button></form></td>';
-      display += '</tr>';
-    }
-
-    display += '</tbody></table>';
-
-    if($.trim($('.caramel .chocolate').html()).length) {
-      $('.caramel .chocolate').empty();
-    }
-
-    $('.caramel .chocolate').append(display);
-  });
-}
-
-function filterByActive(f) {
-  var devices;
-  var active = false;
-
-  if (f == "Active") {
-    active = true;
-  }
-
-  $.get(domain + "device", function(data) {
-    devices = data.data;
-    devices = $.grep(devices, function(n, i) {
-      return n.is_active === active;
-    });
-    displayDevices(devices);
-  });
-}
-
-function filterByType(f) {
-  var devices;
-  f = f.toLowerCase();
-
-  $.get(domain + "device", function(data) {
-    devices = data.data;
-    devices = $.grep(devices, function(n, i) {
-      return n.type == f;
-    });
-    displayDevices(devices);
-  });
-}
-
-function renting(did) {
-  var udata = JSON.parse(sessionStorage.udata);
-
-  $.ajax({
-    url: domain + 'device/' + did + '/loan/' + udata.id,
-    type: 'PUT',
-    success: function(d) {
-      if (udata.type == "student") {
-        window.location = "/user/logout";
-      } else {
-        getUserDetails(udata.id);
-        getAvailableDevices();
-        getDevices();
-        statusMsg('Device Rented');
-      }
-    },
-    error: function(e) {
-      var response = JSON.parse(e.responseText);
-      if (response.error === 1) {
-        errorMsg("You do not have the privilege to rent that device.");
-      } else if (response.error === 2) {
-        errorMsg("The device is already being loaned by another user.");
-      } else if (response.error === 3) {
-        errorMsg("The device you trying to loan is already reserved and you are not in any of the classes of the reservation.");
-      } else {
-        errorMsg("There is an error renting this device. Please try again or contact your system administrator.");
-      }
-    }
-  });
-}
-
-function returning(id, device) {
-  var udata = JSON.parse(sessionStorage.udata);
-  $.ajax({
-    url: domain + "device/" + device + "/loan/" + id,
-    type: "DELETE",
-    success: function(data) {
-      getUserDetails(udata.id);
-      getAvailableDevices();
-      getDevices();
-      statusMsg("Device returned");
-    },
-    error: function(e) {
-      var response = JSON.parse(e.responseText);
-      errorMsg(response.data);
-    }
-  });
-}
-
-function device_deleting(device) {
-  $.ajax({
-    url: domain + "device/" + device,
-    type: "DELETE",
-    cache: false,
-    success: function(result, status, xhr) {
-      statusMsg("Device deleted!");
-      getDevices();
-    },
-    error: function(xhr, status, error) {
-      var response = JSON.parse(xhr.responseText);
-      errorMsg(response);
-    }
-  });
-}
-
-function getTypes() {
-  $.ajaxSetup({
-    error: AjaxError
-  });
-
-  $.get(domain + "device/type", function(data, status){
-    datas = data.data;
-    for (var i = 0; i < datas.length; i++) {
-      $('.deviceType').append('<div class="form-check"><label class="form-check-label"><input type="radio" class="form-check-input" name="device_type" value="' + datas[i] + '" /><p>' + datas[i] + '</p></label></div>');
-    }
-  });
-}
-
-function getDevices() {
-  $.ajaxSetup({
-    error: AjaxError
-  });
-
-  $.get(domain + "device", function (data) {
-    displayDevices(data.data);
-  });
-}
-
-$(document).ajaxStop(function() {
-  $('div.dropdown-menu.device button.dropdown-item').click(function(event) {
-    var filter = $(this).text();
-    if (filter == "Active" || filter == "Inactive") {
-      filterByActive(filter);
-    } else if (filter == "Mac" || filter == "Mac/Win" || filter == "Camera") {
-      filterByType(filter);
-    }
-  });
-});
-
-$(document).ajaxStop(function() {
-
-  $("form#form-device button[type=submit]").click(function(event) {
-    $("input[type=submit]", $(this).parents("form#device")).removeAttr("clicked");
-    $(this).attr("clicked", "true");
-  });
-
-  $('form#form-device').submit(function(event) {
-    var data = $(this).serializeArray();
-    var name = $("form#form-device button[type=submit][clicked=true]").attr("name");
-
-    if (name == "rent") {
-      renting(data[0].value);
-    } else if (name == "toggle") {
-      $.ajax({
-        url: domain + "device/" + data[0].value + "/active",
-        type: putOr(data[1].value),
-        cache: false,
-        success: function(result, status, xhr) {
-          getDevices();
-          statusMsg('Device active status set to: ' + data[1].value);
-        },
-        error: function(xhr, status, error) {
-          var response = JSON.parse(xhr.responseText);
-          errorMsg(response);
-        }
-      });
-    } else if (name == "delete") {
-      device_deleting(data[0].value);
-    }
-
-    event.preventDefault();
-  });
-});
-
-function putOr(status) {
-  if (status == "true") {
-    return "DELETE";
-  } else if (status == "false") {
-    return "PUT";
-  }
-}
-
-$(document).ready(function() {
-  getTypes();
-});
-
-$(document).one('ajaxStop', function() {
-  $('form#addDevice-f').submit(function(event) {
-    var data = $(this).serializeArray();
-    $.ajax({
-      url: domain + "device",
-      type: "POST",
-      data: '{"serial_no" : "' +  data[0].value + '", "type" : "' + data[1].value + '", "is_active" : ' + data[2].value + '}',
-      contentType: "application/json",
-      success: function(result, status, xhr) {
-        getDevices();
-        statusMsg("Added a new Device.");
-        $('div.modal#addDevice-m').modal('toggle');
-      },
-      error: function(xhr, status, error) {
-        var response = JSON.parse(xhr.responseText);
-        errorMsg(response.error);
-      }
-    });
-    event.preventDefault();
-  });
-});
-
 function displayClasses() {
   $.get(domain + "class", function(data) {
     data = data.data;
@@ -14393,7 +14390,7 @@ function displayClasses() {
       display += '<tr>';
       display += '<th scope="row">' + data[i].id + '</th>';
       display += '<td>' + capitalize(data[i].name) + '</td>';
-      display += '<td class="flex-items-md-center"><form id="delete-class" method="POST"><input type="hidden" name="id" value="' + data[i].id + '" /><button class="btn btn-danger btn-block">Delete</button></form></td>';
+      display += '<td class="flex-items-md-center"><form id="delete-class" method="POST"><input type="hidden" name="id" value="' + data[i].id + '" /><button class="btn btn-danger btn-block" type="submit">Delete</button></form></td>';
       display += '</tr>';
     }
 
@@ -14520,11 +14517,78 @@ $(document).one('ajaxStop', function() {
 $(document).one('ajaxStop', function() {
   $("#registerStudent-f select#userName").change(function() {
     checkRegistered();
-  })
+  });
+
+  $("#registerStudent-f").submit(function(event) {
+    var data = $(this).serializeArray();
+
+    $.ajax({
+      url: domain + "class/" + data[1].value + "/user/" + data[0].value,
+      type: "PUT",
+      contentType: "application/json",
+      success: function(result, status, xhr) {
+        statusMsg("Student registered");
+        $('div.modal#registerStudent-m').modal('toggle');
+        displayClasses();
+        checkRegistered();
+      },
+      error: function(xhr, status, error) {
+        var response = JSON.parse(xhr.responseText);
+        errorMsg('<strong>Oh no!</strong> ' + capitalize(response.error));
+      }
+    });
+
+    event.preventDefault();
+  });
 });
 
 $(document).one('ajaxStop', function() {
   $("#deregisterStudent-f select#userName").change(function() {
     checkDeregistered();
-  })
+  });
+
+  $("#deregisterStudent-f").submit(function(event) {
+    var data = $(this).serializeArray();
+
+    $.ajax({
+      url: domain + "class/" + data[1].value + "/user/" + data[0].value,
+      type: "DELETE",
+      contentType: "application/json",
+      success: function(result, status, xhr) {
+        statusMsg("Student deregistered");
+        displayClasses();
+        checkDeregistered();
+        $('div.modal#deregisterStudent-m').modal('toggle');
+      },
+      error: function(xhr, status, error) {
+        var response = JSON.parse(xhr.responseText);
+        errorMsg('<strong>Oh no!</strong> ' + capitalize(response.error));
+      }
+    });
+
+    event.preventDefault();
+  });
+});
+
+$(document).one('ajaxStop', function() {
+  $('form#delete-class').submit(function(event) {
+    var data = $(this).serializeArray();
+
+    $.ajax({
+      url: domain + "class/" + data[0].value,
+      type: 'DELETE',
+      success: function(result, status, xhr) {
+        statusMsg("Class is deleted");
+        displayClasses();
+        checkRegistered();
+        checkDeregistered();
+      },
+      error: function(xhr, status, error) {
+        var response = JSON.parse(xhr.responseText);
+        errorMsg(response.error);
+      }
+    });
+
+    event.preventDefault();
+  });
 });
