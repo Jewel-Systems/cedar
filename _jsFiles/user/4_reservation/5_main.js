@@ -10,6 +10,12 @@ function displayReservations(data) {
 
       var display = '<table class="table"><thead class="thead-default"><tr><th>ID</th><th>Reserver</th><th>Class</th><th>Device</th><th>Start time</th><th>End time</th><th>Safe zone</th><th>Option</th></tr></thead><tbody>';
 
+      if (data.length === 0) {
+        display += '<tr>';
+        display += '<td colspan="8" class="text-center">No results found</td>';
+        display += '</tr>';
+      }
+
       for (var i = 0; i < data.length; i++) {
         display += '<tr>';
         display += '<th>' + data[i].id + '</th>';

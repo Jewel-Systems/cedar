@@ -4,6 +4,12 @@ function displayClasses() {
 
     var display = '<table class="table"><thead class="thead-default"><tr><th>Class ID</th><th>Class</th><th>Options</th></tr></thead><tbody>';
 
+    if (data.length === 0) {
+      display += '<tr>';
+      display += '<td colspan="3" class="text-center">No results found</td>';
+      display += '</tr>';
+    }
+
     for (var i = 0; i < data.length; i++) {
       display += '<tr>';
       display += '<th scope="row">' + data[i].id + '</th>';
