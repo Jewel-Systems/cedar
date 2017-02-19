@@ -48,8 +48,8 @@ gulp.task('sass', function() {
 
 function compileJS(a) {
   return gulp.src('_jsFiles/' + a + '/**/*.js')
-    // .pipe(plumber())
-    // .pipe(uglify())
+    .pipe(plumber())
+    .pipe(uglify())
     .pipe(concat(a + '.js')) // Helps change the filename to what you want
     .pipe(gulp.dest('public/js'));
 }

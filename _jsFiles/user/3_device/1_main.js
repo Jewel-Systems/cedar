@@ -43,6 +43,12 @@ function displayDevices(data) {
 
     var display = '<table class="table"><thead class="thead-default"><tr><th>Device ID</th><th>Serial No.</th><th>Loaned By</th><th>Is Active</th><th>Device Type</th><th>Options</th></tr></thead><tbody>';
 
+    if (data.length === 0) {
+      display += '<tr>';
+      display += '<td colspan="6" class="text-center">No results found</td>';
+      display += '</tr>';
+    }
+
     for (var i = 0; i < data.length; i++) {
       display += '<tr>';
       display += '<th scope="row">' + data[i].id + '</th>';
@@ -52,7 +58,7 @@ function displayDevices(data) {
         if (data[i].loaned_by === null) {
           loaned = "No one";
         } else if (users[j].id === data[i].loaned_by) {
-          loaned = users[j].fname + ' ' + users[j].lname;
+          loaned = '[ID: ' + users[j].id + '] ' + users[j].fname + ' ' + users[j].lname;
         }
       }
       display += '<td>' + loaned + '</td>';

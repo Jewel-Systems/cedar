@@ -7,18 +7,7 @@ $(document).one("ajaxStop", function() {
 
     $.get(domain + "user", function(udata) {
       var users = udata.data;
-
-      switch (data[1].value) {
-        case "id":
-          checkValue(data[0].value, data[1].value, users);
-          break;
-        case "name":
-          checkValue(data[0].value, data[1].value, users);
-          break;
-        default:
-          checkValue(data[0].value, data[1].value, users);
-          break;
-      }
+      checkValue(data[0].value, data[1].value, users);
     });
 
     event.preventDefault();

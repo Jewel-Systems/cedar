@@ -23,9 +23,9 @@
         h3.card-title Search:
         form(method="POST").form-inline#searchDevice
           input(type="text", name="search", placeholder="Search").form-control
-          select.form-control#searchType
+          select(name="type").form-control#searchType
             option(value="id") Device ID
-            option(value="renter") Device renter
+            option(value="renter") Renter ID
           button(type="submit").btn.btn-primary Search
 .row.teacher
   .col-md-12
