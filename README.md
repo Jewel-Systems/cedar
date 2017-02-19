@@ -16,6 +16,12 @@ which should install all the dependencies for if you want to make changes. Next 
 
 Change the `config_link.js` file accordingly, such as the details for the main server and also where the `public` folder is located. Then run the script using `nodejs`.
 
+## Simpler Installation
+
+**You won't have the source files included with it.**
+
+Setup the `server` and the `link-server`, then download the zip file or clone the repo. When that is done, just copy the files inside the `public` folder into the web folder in `link-server`.
+
 ## Usage
 
 Files locations have been changed to accommodate the [link-server](https://github.com/Jewel-Systems/link-server). I will make sure to maybe make a separate repo or something to accommodate those who want to test the code out.
