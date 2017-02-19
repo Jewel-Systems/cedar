@@ -19,7 +19,7 @@ After you have installed all dependencies, just type:
     
 ### Compile code
 
-To manually compile the code, I have created a custom command in gulp to do this for you:
+To manually compile the code, I have created a custom command in `gulp` to do this for you:
 
     gulp all
 
