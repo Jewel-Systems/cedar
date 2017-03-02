@@ -14,6 +14,7 @@ $(document).one('ajaxStop', function() {
         getDevices();
         statusMsg("Added a new Device.");
         $('div.modal#addDevice-m').modal('toggle');
+        location.reload();
       },
       error: function(xhr, status, error) {
         var response = JSON.parse(xhr.responseText);

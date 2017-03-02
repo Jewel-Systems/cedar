@@ -3,6 +3,7 @@ $(document).one('ajaxStop', function(event) {
     var data = $(this).serializeArray();
 
     delete_reservation(data[0].value);
+    location.reload();
 
     event.preventDefault();
   });

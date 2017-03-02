@@ -11,6 +11,7 @@ $(document).ajaxStop(function() {
 
     if (name == "rent") {
       renting(data[0].value);
+      location.reload();
     } else if (name == "toggle") {
       $.ajax({
         url: domain + "device/" + data[0].value + "/active",
@@ -19,6 +20,7 @@ $(document).ajaxStop(function() {
         success: function(result, status, xhr) {
           getDevices();
           statusMsg('Device active status set to: ' + data[1].value);
+          location.reload();
         },
         error: function(xhr, status, error) {
           var response = JSON.parse(xhr.responseText);
@@ -27,6 +29,7 @@ $(document).ajaxStop(function() {
       });
     } else if (name == "delete") {
       device_deleting(data[0].value);
+      location.reload();
     }
 
     event.preventDefault();

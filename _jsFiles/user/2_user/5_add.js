@@ -1,4 +1,4 @@
-$(document).one('ajaxStop', function() {
+$(document).bind('ready ajaxStop', function() {
   $('form#addUserForm').submit(function(event) {
     var data = $(this).serializeArray();
     var blank = false;
@@ -24,6 +24,7 @@ $(document).one('ajaxStop', function() {
             $('div.modal#addUser').modal('toggle');
             id = result.data.id;
             privilege("PUT", id, "mac");
+            location.reload();
           },
           error: function(xhr, status, error) {
             var response = JSON.parse(xhr.responseText);

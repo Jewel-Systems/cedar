@@ -1,4 +1,5 @@
-$(document).one('ajaxStop', function() {
+$(document).bind('ready ajaxStop', function() {
+// $(document).ajaxComplete(function() {
   $('form#delete-user').submit(function(event) {
     var data = $(this).serializeArray();
     $.ajax({
@@ -7,6 +8,7 @@ $(document).one('ajaxStop', function() {
       success: function (result, status, xhr) {
         statusMsg("User is deleted");
         getAllUsers();
+        location.reload();
       },
       error: function(xhr, status, error) {
         var response = JSON.parse(xhr.responseText);

@@ -13,6 +13,7 @@ $(document).one('ajaxStop', function() {
           displayClasses();
           statusMsg("Added a new class.");
           $('div.modal#addClass-m').modal('toggle');
+          location.reload();
         }
       })
       .done(function() {

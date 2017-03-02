@@ -10,6 +10,7 @@ $(document).one('ajaxStop', function() {
         displayClasses();
         checkRegistered();
         checkDeregistered();
+        location.reload();
       },
       error: function(xhr, status, error) {
         var response = JSON.parse(xhr.responseText);

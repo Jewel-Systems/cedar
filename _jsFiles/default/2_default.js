@@ -2,8 +2,6 @@ const domain = "/api/v1/";
 const link_domain = "/link/";
 // const domain = "http://steve.zanity.net:53455/api/v1/";
 
-// console.log(sessionStorage);
-
 // Helps check if element exists
 $.fn.exists = function () {
     return this.length !== 0;

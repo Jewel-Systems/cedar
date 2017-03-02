@@ -13,6 +13,7 @@ $(document).one('ajaxStop', function() {
         getReservations();
         statusMsg("Devices Reserved");
         $('#deviceReservation-m').modal('toggle');
+        location.reload();
       },
       error: function(xhr, status, error) {
         var response = JSON.parse(xhr.responseText);
