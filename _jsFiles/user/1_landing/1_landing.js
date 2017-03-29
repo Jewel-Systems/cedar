@@ -9,19 +9,10 @@ $(document).ready(function() {
 
   var udata = JSON.parse(sessionStorage.udata);
 
+  getLoanedDevices();
+
   // Deals with access control
   access(udata.type);
-
-  // Check if the return device button should be hidden
-  if (udata.type == "student") {
-    if (udata.loaned.length === 0) {
-      $('button#returnBtn-1').hide();
-    }
-
-    if (udata.loaned.length === 2) {
-      $('.student-available-devices').hide();
-    }
-  }
 
   $('.user-name').text(udata.fname + ' ' + udata.lname);
 
@@ -71,6 +62,10 @@ $(document).ready(function() {
   change(page, capitalize(page));
 });
 
+$(document).one('ajaxStop', function() {
+  checkData();
+});
+
 function getAvailableDevices() {
   $.ajaxSetup({
     error: AjaxError
@@ -88,4 +83,30 @@ function getAvailableDevices() {
       $('select.available-devices').append('<option value="' + data[i].id + '">[' + data[i].type + '] ' + data[i].serial_no + '</option>');
     }
   });
+}
+
+function getLoanedDevices() {
+  var udata = JSON.parse(sessionStorage.udata);
+
+  $('form#returnDevice-f1 select').empty();
+
+  for (var i = 0; i < udata.loaned.length; i++) {
+    $('form#returnDevice-f1 select').append('<option value="' + udata.loaned[i].id + '">[' + udata.loaned[i].type + ']' + udata.loaned[i].serial_no + '</option>');
+  }
+}
+
+function checkData() {
+  var udata = JSON.parse(sessionStorage.udata);
+  if (udata.type == 'student') {
+    if (udata.loaned.length === 0) {
+      $('button#returnBtn-1').hide();
+    } else if (udata.loaned.length === 1) {
+      $('button#returnBtn-1').removeAttr('data-toggle data-target');
+    } else if (udata.loaned.length === 2) {
+      $('.student-available-devices').hide();
+    } else {
+      $('.student-available-devices').show();
+      $('button#returnBtn-1').show();
+    }
+  }
 }

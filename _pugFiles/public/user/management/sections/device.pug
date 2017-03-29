@@ -69,6 +69,18 @@
                 input(id="inputSerial", type="text", name="serial_no", placeholder="CH 001", required).form-control
               .form-group.deviceType
                 label(for="inputType") Device Type:
+                .form-check
+                  label.form-check-label
+                    input(type="radio", name="device_type", value="mac").form-check-input
+                    p Mac
+                .form-check
+                  label.form-check-label
+                    input(type="radio", name="device_type", value="mac/win").form-check-input
+                    p Mac/Win
+                .form-check
+                  label.form-check-label
+                    input(type="radio", name="device_type", value="camera").form-check-input
+                    p Camera
               .form-group
                 label(for="inputActive") Is the device active:
                 .form-check

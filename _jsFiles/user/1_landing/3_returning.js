@@ -1,20 +1,25 @@
-$(document).ajaxStop(function() {
-  $('button#returnBtn-1').click(function(event) {
-    var udata = JSON.parse(sessionStorage.udata);
+$(document).one('ajaxStop', function() {
+  var udata = JSON.parse(sessionStorage.udata);
 
-    if (udata.loaned.length > 1) {
-      $('div#returnDevice-m1').modal('toggle');
-    } else {
+  $('button#returnBtn-1').click(function(event) {
+    if (udata.type == 'student' && udata.loaned.length === 1) {
       returning(udata.id, udata.loaned[0].id);
     }
   });
 
-  $('form#returnDevice-f2').submit(function(event) {
-    var udata = JSON.parse(sessionStorage.udata);
+  $('form#returnDevice-f1').submit(function(event) {
     var data = $(this).serializeArray();
 
     returning(udata.id, data[0].value);
-    $('div#returnDevice-m2').modal('toggle');
+
+    event.preventDefault();
+  });
+
+  $('form#returnDevice-f2').submit(function(event) {
+    var data = $(this).serializeArray();
+
+    returning(udata.id, data[0].value);
+    location.reload();
 
     event.preventDefault();
   });

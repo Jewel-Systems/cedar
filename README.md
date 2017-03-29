@@ -7,7 +7,7 @@ To get this interface to work, you will need to setup [server](https://github.co
 To install my repo, cd into the `link-server`, remove the `web` folder, then type the following command:
 
     git clone https://github.com/Jewel-Systems/front web
-    
+
 after that type:
 
     npm install
@@ -33,42 +33,12 @@ The repo does not work with XAMPP anymore, you will need to use the [link-server
 After you have installed all dependencies, just type:
 
     gulp
-    
+
 ### Compile code
 
 To manually compile the code, I have created a custom command in `gulp` to do this for you:
 
     gulp all
-
-## Things that have been done and still needs to be done:
-### General User:
-- [x] User Login with Email Address and Password
-- [x] Login with QR Code and Password
-- [x] Logout
-
-### Admin:
-- [x] Display Users
-- [x] Add Users
-- [x] Delete Users
-- [ ] Edit Users (Partially)
-- [x] Add Device
-- [x] Remove Device
-- [x] Edit Device
-- [x] Create Cards
-- [x] Add a class
-- [x] Removing a class
-- [x] Getting all classes
-
-### Teacher:
-- [x] Reserve Devices
-- [x] Loan Device
-- [x] Return Device
-- [ ] ~~View Lateness Register~~
-
-### Student:
-- [ ] ~~Sign Lateness Register~~
-- [x] Loan Device
-- [x] Return Device
 
 ## License
 This project is developed under the [MIT license](LICENSE)

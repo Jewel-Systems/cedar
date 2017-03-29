@@ -11,7 +11,6 @@ $(document).ajaxStop(function() {
 
     if (name == "rent") {
       renting(data[0].value);
-      location.reload();
     } else if (name == "toggle") {
       $.ajax({
         url: domain + "device/" + data[0].value + "/active",

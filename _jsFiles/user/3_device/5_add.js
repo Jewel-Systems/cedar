@@ -1,7 +1,3 @@
-$(document).ready(function() {
-  getTypes();
-});
-
 $(document).one('ajaxStop', function() {
   $('form#addDevice-f').submit(function(event) {
     var data = $(this).serializeArray();

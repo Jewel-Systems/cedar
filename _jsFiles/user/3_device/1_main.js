@@ -128,10 +128,7 @@ function renting(did) {
       if (udata.type == "student") {
         window.location = "/user/logout";
       } else {
-        getUserDetails(udata.id);
-        getAvailableDevices();
-        getDevices();
-        statusMsg('Device Rented');
+        location.reload();
       }
     },
     error: function(e) {
@@ -155,10 +152,17 @@ function returning(id, device) {
     url: domain + "device/" + device + "/loan/" + id,
     type: "DELETE",
     success: function(data) {
-      getUserDetails(udata.id);
-      getAvailableDevices();
-      getDevices();
       statusMsg("Device returned");
+      sessionStorage.removeItem("udata");
+      sessionStorage.removeItem("user_id");
+      $.get(domain + 'user/' + udata.id, function(data) {
+        data = data.data;
+        if (data.type == 'student') {
+          window.location = "/user/logout";
+        } else {
+          location.reload();
+        }
+      });
     },
     error: function(e) {
       var response = JSON.parse(e.responseText);
@@ -179,19 +183,6 @@ function device_deleting(device) {
     error: function(xhr, status, error) {
       var response = JSON.parse(xhr.responseText);
       errorMsg(response.error);
-    }
-  });
-}
-
-function getTypes() {
-  $.ajaxSetup({
-    error: AjaxError
-  });
-
-  $.get(domain + "device/type", function(data, status){
-    datas = data.data;
-    for (var i = 0; i < datas.length; i++) {
-      $('.deviceType').append('<div class="form-check"><label class="form-check-label"><input type="radio" class="form-check-input" name="device_type" value="' + datas[i] + '" /><p>' + datas[i] + '</p></label></div>');
     }
   });
 }

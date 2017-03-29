@@ -33,7 +33,8 @@ function displayClasses() {
 function fillDropdown() {
   $.get(domain + "user", function(data) {
     data = data.data;
-
+    $('#registerStudent-f select#userName').empty();
+    $('#deregisterStudent-f select#userName').empty();
     for (var i = 0; i < data.length; i++) {
       if (data[i].type == "student") {
         $('#registerStudent-f select#userName').append('<option value="' + data[i].id + '">' + capitalize(data[i].fname) + '</option>');
@@ -62,9 +63,10 @@ function checkRegistered() {
         return class_ids.indexOf(n.id) === -1;
       });
 
+      $('#registerStudent-f select#classes').empty();
       if (cdata.length === 0) {
         $('#registerStudent-f select#classes').append('<option>No more classes to register for</option>');
-        $('#registerStudent-f button').attr('disabled', 'disabled');
+        $('#registerStudent-f button').attr('disabled', '');
       }
 
       for (var a = 0; a < cdata.length; a++) {
@@ -92,9 +94,10 @@ function checkDeregistered() {
         return class_ids.indexOf(n.id) > -1;
       });
 
+      $('#deregisterStudent-f select#classes').empty();
       if (cdata.length === 0) {
         $('#deregisterStudent-f select#classes').append('<option>No classes registered</option>');
-        $('#deregisterStudent-f button').attr('disabled', 'disabled');
+        $('#deregisterStudent-f button').attr('disabled', '');
       }
 
       for (var a = 0; a < cdata.length; a++) {
