@@ -1,6 +1,6 @@
 # Cedar UI
 
-![Cedar House](http://imgur.com/flbLz0l)
+![alt text](http://i.imgur.com/flbLz0l.png "Cedar House")
 
 [Screenshots](http://imgur.com/a/i4tEc)
 
