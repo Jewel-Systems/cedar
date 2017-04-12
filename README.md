@@ -1,5 +1,9 @@
 # Cedar UI
 
+![Cedar House](http://imgur.com/flbLz0l)
+
+[Screenshots](http://imgur.com/a/i4tEc)
+
 ## Installation
 
 To get this interface to work, you will need to setup [server](https://github.com/Jewel-Systems/server). The guide to set that up should be in that repo, if not you may contact the owner or me. The [link-server](https://github.com/Jewel-Systems/link-server) will be needed to host my files. The setup instructions are in the `README.md` file of that repo.
